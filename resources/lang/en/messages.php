@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'company_name' => 'PT Arkamaya Guna Saharsa',
-    'tagline' => 'Simplifying Industries',
-    'description' => 'Arkamaya Guna Saharsa is the technology start-up that empowered by innovation.',
+    'company_name' => 'PT Simplay Abyakta Mediatek',
+    'tagline' => 'Your Digital Solutions',
+    'description' => 'SIMPLAY YOUR DIGITAL SOLUTIONS provides a variety of Office Electronic Equipment and Supporting Equipment through E-commerce managed by PT Simplay Abyakta Mediatek.',
     'about_us' => 'About Us',
 
     'partnership' => 'Partnership',
@@ -39,18 +39,12 @@ return [
 
     'keyakinan_kami' => 'Our Beliefs',
     'keunggulan_perusahaan' => 'Company Excellence',
-    'bekerja_cepat' => 'Fast Action',
-    'bekerja_cepat_desc' => 'Acting promptly, we remove obstacles blocking high-priority initiatives, addressing your needs today rather than waiting until next week.',
-    'inovasi' => 'Innovation',
-    'inovasi_desc' => 'Creating value through innovation and product improvement while building relationships with customers to better understand and meet their needs.',
-    'mandiri' => 'Independence',
-    'mandiri_desc' => 'Meeting both short-term and long-term customer needs flexibly by making timely decisions, focusing on growth, and pursuing new opportunities.',
+    'pelayanan' => 'Service',
+    'pelayanan_desc' => 'We provide commitment in the best service with the support from professional resources.',
     'kualitas' => 'Quality',
-    'kualitas_desc' => 'We take pride in providing high-value products and services to ensure customer satisfaction and future growth for our employees and company.',
-    'kepuasan_pelanggan' => 'Customer Satisfaction',
-    'kepuasan_pelanggan_desc' => 'We deliver outstanding service with flexible scheduling, quality products, and innovative solutions, providing added value for customers and the company.',
-    'rasa_hormat' => 'Respect',
-    'rasa_hormat_desc' => 'We treat everyone with dignity, value diverse perspectives, and create an environment where all ideas and contributions are welcomed.',
+    'kualitas_desc' => 'We provide a variety of high-quality Office Electronic Equipment and Supporting Equipment according to the necessary consumer needs.',
+    'kepuasan' => 'Satisfaction',
+    'kepuasan_desc' => 'Provide satisfaction and excellent service and value-added solutions to all partners, and always be the first choice partner.',
 
     'kemitraan' => 'Partnership',
     'saluran_penjualan' => 'Sales Channels',
@@ -77,5 +71,5 @@ return [
     'email_not_available' => 'Email not available',
     'phone_not_available' => 'Phone not available',
     'whatsapp_not_available' => 'WhatsApp not available',
-    
+
 ];

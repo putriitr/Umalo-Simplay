@@ -1,501 +1,309 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
-        <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h1>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-                    <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
-                </ol>
+ <!-- Page Header Start -->
+ <div class="container-fluid page-header mb-5 py-5">
+    <div class="container">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">About</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.1s">
+                <div class="overflow-hidden">
+                    <img class="img-fluid w-100 h-100" src="img/service-1.jpg" alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                    <h5 class="text-truncate me-3 mb-0">Residential Plumbing</h5>
+                    <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.3s">
+                <div class="overflow-hidden">
+                    <img class="img-fluid w-100 h-100" src="img/service-2.jpg" alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                    <h5 class="text-truncate me-3 mb-0">Commercial Plumbing</h5>
+                    <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.5s">
+                <div class="overflow-hidden">
+                    <img class="img-fluid w-100 h-100" src="img/service-3.jpg" alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                    <h5 class="text-truncate me-3 mb-0">Emergency Servicing</h5>
+                    <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- Header End -->
+</div>
+<!-- Service End -->
 
-    <!-- About Start -->
-    <div class="container-fluid about bg-light py-5">
-        <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
-                    <div class="section-title text-start mb-5">
-                        <h4 class="sub-title pe-3 mb-0">{{ __('messages.about_us') }}</h4>
-                        <h4 class="display-3 mb-4" style="font-size: 50px;">
-                            {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
-                        <p class="mb-4" style="text-align: justify;">
-                            {{ $company->sejarah_singkat ?? ' ' }}
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">About Us</h6>
+                <h1 class="mb-4">{{ $compro->nama_perusahaan ?? 'PT Simplay Abyakta Mediatek' }}</h1>
+                <p class="mb-4 justify-text">{{ $company->sejarah_singkat ?? ' ' }}</p>
+                <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Residential & commercial
+                    plumbing</p>
+                <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Quality services at
+                    affordable prices</p>
+                <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Immediate 24/ 7 emergency
+                    services</p>
+                <div class="bg-primary d-flex align-items-center p-4 mt-5">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                        style="width: 60px; height: 60px;">
+                        <i class="fa fa-phone-alt fa-2x text-primary"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="fs-5 fw-medium mb-2 text-white">Emergency 24/7</p>
+                        <h3 class="m-0 text-secondary">+012 345 6789</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 pt-4" style="min-height: 500px;">
+                <div class="position-relative h-100 wow fadeInUp" data-wow-delay="0.5s">
+                    <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets/img/about-1.jpg')}}"
+                        style="object-fit: cover; padding: 0 0 50px 100px;" alt="">
+                    <img class="position-absolute start-0 bottom-0 img-fluid bg-white pt-2 pe-2 w-50 h-50"
+                        src="{{ asset('assets/img/about-2.jpg')}}" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Fact Start -->
+<div class="container-fluid fact bg-dark my-5 py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                <i class="fa fa-check fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Years Experience</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                <i class="fa fa-users-cog fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Expert Technicians</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                <i class="fa fa-users fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Satisfied Clients</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                <i class="fa fa-wrench fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Compleate Projects</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fact End -->
+
+
+<!-- Service Start -->
+<div class="container-fluid py-5 px-4 px-lg-0">
+    <div class="row g-0">
+        <div class="col-lg-3 d-none d-lg-flex">
+            <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100">
+                <h1 class="display-3 text-white m-0" style="transform: rotate(-90deg);">15 Years Experience</h1>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-9">
+            <div class="ms-lg-5 ps-lg-5">
+                <div class="text-center text-lg-start wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase">Our Services</h6>
+                    <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
+                </div>
+                <div class="owl-carousel service-carousel position-relative wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="bg-light p-4">
+                        <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                            style="width: 75px; height: 75px;">
+                            <i class="fa fa-water fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">{{ __('messages.pelayanan') }}</h4>
+                        <p>{{ __('messages.pelayanan_desc') }}</p>
+                        <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
+                                class="fa fa-arrow-right text-secondary ms-2"></i></a>
+                    </div>
+                    <div class="bg-light p-4">
+                        <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                            style="width: 75px; height: 75px;">
+                            <i class="fa fa-toilet fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">{{ __('messages.kualitas') }}</h4>
+                        <p>{{ __('messages.kualitas_desc') }}</p>
+                        <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
+                                class="fa fa-arrow-right text-secondary ms-2"></i></a>
+                    </div>
+                    <div class="bg-light p-4">
+                        <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                            style="width: 75px; height: 75px;">
+                            <i class="fa fa-shower fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">{{ __('messages.kepuasan') }}</h4>
+                        <p>{{ __('messages.kepuasan_desc') }}</p>
+                        <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
+                                class="fa fa-arrow-right text-secondary ms-2"></i></a>
+                    </div>
+                    {{-- <div class="bg-light p-4">
+                        <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                            style="width: 75px; height: 75px;">
+                            <i class="fa fa-tint fa-2x text-primary"></i>
+                        </div>
+                        <h4 class="mb-3">Water Heater Repair</h4>
+                        <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam justo.</p>
+                        <p class="text-primary fw-medium"><i class="fa fa-check text-success me-2"></i>Quality Service
                         </p>
+                        <p class="text-primary fw-medium"><i class="fa fa-check text-success me-2"></i>Customer
+                            Satisfaction</p>
+                        <p class="text-primary fw-medium"><i class="fa fa-check text-success me-2"></i>Support 24/7
+                        </p>
+                        <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
+                                class="fa fa-arrow-right text-secondary ms-2"></i></a>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+
+<!-- Fact Start -->
+<div class="container-fluid fact bg-dark my-5 py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                <i class="fa fa-check fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Years Experience</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                <i class="fa fa-users-cog fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Expert Technicians</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                <i class="fa fa-users fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Satisfied Clients</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                <i class="fa fa-wrench fa-2x text-white mb-3"></i>
+                <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
+                <p class="text-white mb-0">Compleate Projects</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fact End -->
+
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase">Our Technicians</h6>
+            <h1 class="mb-5">Our Expert Technicians</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="img/team-1.jpg" alt="">
+                    </div>
+                    <div class="team-text">
+                        <div class="bg-light">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                        <div class="bg-primary">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="about-img pb-5 ps-5">
-                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
-                            class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
-                        <div class="about-img-inner">
-                            <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
-                                class="img-fluid rounded-circle w-100 h-100" alt="Image">
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="img/team-2.jpg" alt="">
+                    </div>
+                    <div class="team-text">
+                        <div class="bg-light">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                        <div class="bg-primary">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="img/team-3.jpg" alt="">
+                    </div>
+                    <div class="team-text">
+                        <div class="bg-light">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                        <div class="bg-primary">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid" src="img/team-4.jpg" alt="">
+                    </div>
+                    <div class="team-text">
+                        <div class="bg-light">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                        <div class="bg-primary">
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
-
-    <!-- Vision Start -->
-    <div class="container-fluid team py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.tujuan_kami') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
-            </div>
-            <div class="row g-12 justify-content-center d-flex">
-                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill"
-                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
-                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>{{ __('messages.visi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill"
-                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
-                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>{{ __('messages.misi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Vision End -->
-
-
-    <!-- Partner Section Start -->
-    @if ($principals->isNotEmpty())
-        <div class="container-fluid service mb-5">
-            <div class="container">
-                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
-                </div>
-                <div class="container overflow-hidden">
-                    <div class="row gy-4">
-                        @foreach ($partners as $key => $p)
-                            <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
-                                <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
-                                        height="100" style="object-fit:contain;">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    @if ($partners->count() > 8)
-                        <div class="text-center mt-4">
-                            <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    @endif
-    <!-- Partner Section End -->
-
-    <!-- Value Start -->
-    <div class="container-fluid feature py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.keyakinan_kami') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">{{ __('messages.keunggulan_perusahaan') }}</h1>
-            </div>
-
-            <!-- Responsive Values Section -->
-            <div class="row g-4 justify-content-center">
-                @php
-                    // Sample data for the loop, replace with dynamic data if necessary
-                    $values = [
-                        [
-                            'title' => __('messages.bekerja_cepat'),
-                            'image' => 'value (1).png',
-                            'description' => __('messages.bekerja_cepat_desc'),
-                        ],
-                        [
-                            'title' => __('messages.inovasi'),
-                            'image' => 'value (2).png',
-                            'description' => __('messages.inovasi_desc'),
-                        ],
-                        [
-                            'title' => __('messages.mandiri'),
-                            'image' => 'value (3).png',
-                            'description' => __('messages.mandiri_desc'),
-                        ],
-                        [
-                            'title' => __('messages.kualitas'),
-                            'image' => 'value (4).png',
-                            'description' => __('messages.kualitas_desc'),
-                        ],
-                        [
-                            'title' => __('messages.kepuasan_pelanggan'),
-                            'image' => 'value (5).png',
-                            'description' => __('messages.kepuasan_pelanggan_desc'),
-                        ],
-                        [
-                            'title' => __('messages.rasa_hormat'),
-                            'image' => 'value (6).png',
-                            'description' => __('messages.rasa_hormat_desc'),
-                        ],
-                    ];
-                @endphp
-
-                @foreach ($values as $key => $value)
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-item p-4 h-100"
-                            style="height: 400px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                            <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
-                                <div class="p-3 d-inline-flex bg-white rounded-circle"
-                                    style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                                    <img src="{{ asset('assets/img/about/' . $value['image']) }}" alt="Icon"
-                                        style="width: 100px; height: 100px; object-fit: cover;">
-                                </div>
-                            </div>
-                            <div class="feature-content text-center">
-                                <h5 class="mb-4 font-weight-bold">{{ $value['title'] }}</h5>
-                                <p class="mb-0">{{ $value['description'] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <!-- Value End -->
-
-    <!-- Custom CSS -->
-    <style>
-        /* Feature item consistent height */
-        .feature-item {
-            background-color: #fff;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Icon and Image styling */
-        .feature-item img {
-            max-width: 100%;
-            object-fit: cover;
-        }
-
-        /* Hover effect on feature items */
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Responsive Behavior */
-        @media (max-width: 768px) {
-            .feature-item {
-                min-height: 300px;
-            }
-        }
-    </style>
-
-
-    <!-- Sales Channel Start -->
-    <div class="container-fluid team py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.kemitraan') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
-            </div>
-            <div class="row g-3 justify-content-center">
-                <!-- Card 1 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="{{ $company->ekatalog ?? '#' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce" style="width: 55%; height: 50px;">
-                                </div>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">
-                                    {{ __('messages.e_commerce') }}
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <!-- Card content as a trigger for the modal -->
-                        <div class="p-0 w-100 d-flex flex-column flex-grow-1 text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#websiteModal">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <i class="fa fa-globe fa-3x text-success"></i>
-                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ __('messages.website_kami') }}
-                                    </h5>
-                                </div>
-                                <p class="mb-0" style="font-size: 15px;">{{ __('messages.website_resmi') }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Card 3 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <i class="fab fa-whatsapp fa-3x text-success"></i>
-                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ $company->no_wa ?? ' ' }}
-                                    </h5>
-                                </div>
-                                <p class="mb-0" style="font-size: 13px;">{{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.hubungi_langsung') }}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Loop through the first two brands -->
-                            @foreach ($brand as $singleBrand)
-                                <h5>{{ $singleBrand->nama }}</h5>
-                                <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
-                                <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
-                                <hr>
-                            @endforeach
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Sales Channel End -->
-
-    <!-- Map Start -->
-    <div class="container"
-        style="
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background-color: #fff;
-    text-align: center; ">
-
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Para Pelanggan Terbaik Kami</h4>
-            </div>
-            <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
-        </div>
-        <hr>
-
-        <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
-    </div> <br> <br>
-    <!-- Map End -->
-
-    <!-- Include Leaflet.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script>
-        // Inisialisasi peta
-        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
-
-        //tile layer dari OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        function addMarker(lat, lng, province, userCount, users) {
-            var marker = L.marker([lat, lng]).addTo(map);
-
-            // Build user info HTML
-            let userList = '<ul>';
-            users.forEach(function(user) {
-                userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
-            });
-            userList += '</ul>';
-
-            // Popup content for marker
-            marker.bindPopup(`
-        <div class="info-window">
-            <h3 class="popup-title">${province}</h3>
-            <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
-            ${userList}
-        </div>
-    `);
-
-            // Adding tooltip
-            marker.bindTooltip(`<div>${province}</div>`, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -20],
-                className: 'marker-tooltip'
-            });
-            marker.on('mouseover', function(e) {
-                this.openTooltip();
-            });
-            marker.on('mouseout', function(e) {
-                this.closeTooltip();
-            });
-        }
-
-
-        // Fetch lokasi dari backend
-        // Fetch lokasi dari backend
-        fetch("{{ url('/locations') }}")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // for debugging
-                data.forEach(location => {
-                    addMarker(location.latitude, location.longitude, location.province, location.user_count,
-                        location.user_data);
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
-
-    <style>
-        .marker-tooltip {
-            background-color: #b3d9ff;
-            border: 1px solid #80b3ff;
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            font-size: 12px;
-            color: #333;
-        }
-
-        .info-window img.popup-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-
-        .popup-title {
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-        }
-
-        .popup-description,
-        .popup-address {
-            font-size: 12px;
-            color: #333;
-            margin-top: 10px;
-            text-align: justify;
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 768px */
-        @media (max-width: 768px) {
-            .info-window {
-                padding: 10px;
-            }
-
-            .popup-title {
-                font-size: 18px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 10px;
-            }
-
-            .info-window img.popup-image {
-                margin-bottom: 5px
-            }
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 480px */
-        @media (max-width: 480px) {
-            .popup-title {
-                font-size: 16px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 9px;
-            }
-        }
-    </style>
-    <!-- Map End -->
-
-    <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
-
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 10) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
-        });
-    </script>
+</div>
+<!-- Team End -->
 @endsection

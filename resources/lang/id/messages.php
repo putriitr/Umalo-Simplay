@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'company_name' => 'PT Arkamaya Guna Saharsa',
-    'tagline' => 'Simplifying Industries',
-    'description' => 'Arkamaya Guna Saharsa adalah startup teknologi yang didorong oleh inovasi.',
+    'company_name' => 'PT Simplay Abyakta Mediatek',
+    'tagline' => 'Your Digital Solutions',
+    'description' => 'SIMPLAY YOUR DIGITAL SOLUTIONS menyediakan berbagai Peralatan Elektronik Perkantoran dan Peralatan Pendukungnya melalui E-commerce yang di kelola PT. Simplay Abyakta Mediatek.',
     'about_us' => 'Tentang Kami',
 
     'partnership' => 'Kerja Sama',
@@ -22,7 +22,7 @@ return [
     'our_customers' => 'Pelanggan Kami',
 
     'members_in_province' => 'Kami memiliki :count member di :province:',
-    "Created on"=> "Menjadi Member pada",
+    "Created on" => "Menjadi Member pada",
 
     'home' => 'Beranda',
     'about' => 'Tentang',
@@ -40,18 +40,12 @@ return [
 
     'keyakinan_kami' => 'Keyakinan Kami',
     'keunggulan_perusahaan' => 'Keunggulan Perusahaan',
-    'bekerja_cepat' => 'Bekerja Cepat',
-    'bekerja_cepat_desc' => 'Bertindak dengan segera, kami menghilangkan hambatan yang menghalangi inisiatif prioritas tinggi, memenuhi kebutuhan Anda hari ini daripada menunggu hingga minggu depan.',
-    'inovasi' => 'Inovasi',
-    'inovasi_desc' => 'Menciptakan nilai melalui inovasi dan peningkatan produk serta membangun hubungan dengan pelanggan untuk lebih memahami dan memenuhi kebutuhan mereka.',
-    'mandiri' => 'Mandiri',
-    'mandiri_desc' => 'Memenuhi kebutuhan pelanggan jangka pendek dan jangka panjang secara fleksibel dengan membuat keputusan tepat waktu, berfokus pada pertumbuhan, dan mengejar peluang baru.',
-    'kualitas' => 'Kualitas',
-    'kualitas_desc' => 'Kami bangga menyediakan produk dan layanan bernilai tinggi untuk memastikan kepuasan pelanggan dan pertumbuhan masa depan karyawan dan perusahaan kami.',
-    'kepuasan_pelanggan' => 'Kepuasan Pelanggan',
-    'kepuasan_pelanggan_desc' => 'Kami memberikan layanan yang luar biasa dengan penjadwalan yang fleksibel, produk berkualitas, dan solusi inovatif, yang memberikan nilai tambah bagi pelanggan dan perusahaan.',
-    'rasa_hormat' => 'Rasa Hormat',
-    'rasa_hormat_desc' => 'Kami memperlakukan semua orang dengan bermartabat, menghargai perspektif yang beragam, dan menciptakan lingkungan di mana semua ide dan kontribusi diterima.',
+    'pelayanan' => 'Pelayanan',
+    'pelayanan_desc' => 'Kami memberikan komitmen dalam layanan yang terbaik dengan didukung dari sumber daya yang profesional.',
+    'kualitas' => 'Pelayanan',
+    'kualitas_desc' => 'Kami menyediakan berbagai Peralatan Elektronik Perkantoran dan Peralatan Pendukungnya yang berkualitas tinggi sesuai kebutuhan konsumen yang diperlukan.',
+    'kepuasan' => 'Kepuasan',
+    'kepuasan_desc' => 'Memberikan kepuasan dan layanan prima serta solusi yang bernilai tambah kepada seluruh mitra, dan selalu menjadi mitra pilihan utama.',
 
     'kemitraan' => 'Kemitraan',
     'saluran_penjualan' => 'Saluran Penjualan',
