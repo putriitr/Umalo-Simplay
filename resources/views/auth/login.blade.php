@@ -6,7 +6,7 @@
             <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #5bc0de;">
                 <div class="inner-box rounded-4 p-4" style="background: #ffffff; width: 70%; margin: 40px 0;">
                     <div class="featured-image mb-3 d-flex justify-content-center">
-                        <img src="{{ asset('assets/images/logo.png') }}" class="img-fluid" style="width: 250px;">
+                        <img src="{{ asset('assets/img/Logo.png') }}" class="img-fluid" style="width: 250px;">
                     </div>
                     <p class="text-dark text-wrap text-center">Email anda telah terverifikasi.</p>
                     <p class="text-dark text-wrap text-center">Temukan teknologi terbaru bersama kami.</p>

@@ -42,13 +42,13 @@
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
         Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
-        
+
         Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
         Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
         Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
         Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
         Route::get('/locations', [LocationMemberController::class, 'index']);
-        
+
     Auth::routes();
     });
 
@@ -79,7 +79,7 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::group(['prefix' => LaravelLocalization::setLocale()], function() {
         Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-     
+
         Route::resource('admin/members', MemberController::class);
         Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
         Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');

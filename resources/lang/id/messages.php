@@ -11,7 +11,6 @@ return [
     'show_more' => 'Selanjutnya',
     'show_less' => 'Kembali',
 
-
     'trusted_collaboration' => 'Kolaborasi Terpercaya',
     'distributor_company' => 'Perusahaan Distributor',
 
@@ -41,11 +40,11 @@ return [
     'keyakinan_kami' => 'Keyakinan Kami',
     'keunggulan_perusahaan' => 'Keunggulan Perusahaan',
     'pelayanan' => 'Pelayanan',
-    'pelayanan_desc' => 'Kami memberikan komitmen dalam layanan yang terbaik dengan didukung dari sumber daya yang profesional.',
-    'kualitas' => 'Pelayanan',
-    'kualitas_desc' => 'Kami menyediakan berbagai Peralatan Elektronik Perkantoran dan Peralatan Pendukungnya yang berkualitas tinggi sesuai kebutuhan konsumen yang diperlukan.',
+    'pelayanan_desc' => 'Kami berkomitmen untuk memberikan layanan terbaik dengan dukungan tenaga profesional yang ahli dan berpengalaman.',
+    'kualitas' => 'Kualitas',
+    'kualitas_desc' => 'Kami menyediakan peralatan elektronik kantor dan pendukung dengan kualitas tinggi untuk memenuhi kebutuhan Anda.',
     'kepuasan' => 'Kepuasan',
-    'kepuasan_desc' => 'Memberikan kepuasan dan layanan prima serta solusi yang bernilai tambah kepada seluruh mitra, dan selalu menjadi mitra pilihan utama.',
+    'kepuasan_desc' => 'Memberikan kepuasan optimal dengan layanan prima dan solusi berkualitas menjadi pilihan utama bagi setiap mitra kami.',
 
     'kemitraan' => 'Kemitraan',
     'saluran_penjualan' => 'Saluran Penjualan',
@@ -65,8 +64,10 @@ return [
     'our_activity' => 'Aktivitas Kami',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
+    'explore_products' => 'Lihat lebih banyak produk',
     'member_portal' => 'Masuk Member',
 
+    'contact' => 'Kontak',
     'contact_info' => 'Informasi Kontak',
     'address_not_available' => 'Alamat tidak tersedia',
     'email_not_available' => 'Email tidak tersedia',

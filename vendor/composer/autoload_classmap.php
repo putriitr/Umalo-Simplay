@@ -54,6 +54,7 @@ return array(
     'App\\Models\\BrandPartner' => $baseDir . '/app/Models/BrandPartner.php',
     'App\\Models\\Brosur' => $baseDir . '/app/Models/Brosur.php',
     'App\\Models\\CompanyParameter' => $baseDir . '/app/Models/CompanyParameter.php',
+    'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\ControlGenerationsProduk' => $baseDir . '/app/Models/ControlGenerationsProduk.php',
     'App\\Models\\DocumentCertificationsProduk' => $baseDir . '/app/Models/DocumentCertificationsProduk.php',
     'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',

@@ -28,5 +28,6 @@ class CompanyParameterSeeder extends Seeder
                 'sejarah_singkat' => 'SIMPLAY YOUR DIGITAL SOLUTIONS adalah perusahaan yang bergerak di bidang Perdagangan serta Penyedia barang Elektronik dan Peralatan Pendukungnya yang didirikan pada tahun 2020. Kami menyediakan solusi bisnis yang inovatif kepada perusahaan yang menjadi konsumen kami...',
             ]
         ]);
-    }s
+    }
 }
+s

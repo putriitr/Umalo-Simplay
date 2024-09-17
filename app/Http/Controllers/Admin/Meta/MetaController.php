@@ -36,10 +36,10 @@ class MetaController extends Controller
     {
         $meta = Meta::findOrFail($id);
         $meta->delete();
-    
+
         return redirect()->route('admin.meta.index')->with('success', 'Meta deleted successfully.');
     }
-    
+
 
     public function store(Request $request)
     {
@@ -50,9 +50,9 @@ class MetaController extends Controller
             'end_date' => 'required|date',
             'type' => 'required|in:pengumuman,promosi', // Validasi ENUM
         ]);
-    
+
         $slug = Str::slug($request->title, '-');
-    
+
         // Check if the slug already exists and append a number to make it unique
         $originalSlug = $slug;
         $count = 1;
@@ -60,7 +60,7 @@ class MetaController extends Controller
             $slug = $originalSlug . '-' . $count;
             $count++;
         }
-    
+
         Meta::create([
             'title' => $request->title,
             'slug' => $slug,
@@ -69,10 +69,10 @@ class MetaController extends Controller
             'end_date' => $request->end_date,
             'type' => $request->type, // Simpan tipe
         ]);
-    
+
         return redirect()->route('admin.meta.index');
     }
-    
+
 
     public function update(Request $request, $id)
     {
@@ -82,13 +82,13 @@ class MetaController extends Controller
             'end_date' => 'required|date',
             'type' => 'required|in:pengumuman,promosi', // Validasi ENUM
         ]);
-    
+
         $meta = Meta::findOrFail($id);
-    
+
         // Check if the title is being updated and generate a new slug if needed
         if ($meta->title !== $request->title) {
             $slug = Str::slug($request->title, '-');
-    
+
             // Check if the new slug already exists and append a number to make it unique
             $originalSlug = $slug;
             $count = 1;
@@ -100,10 +100,10 @@ class MetaController extends Controller
             // Keep the old slug if the title hasn't changed
             $slug = $meta->slug;
         }
-    
+
         // Check if the content is empty
         $content = $request->content ? $request->content : $meta->content;
-    
+
         // Update the meta with the new data
         $meta->update([
             'title' => $request->title,
@@ -114,28 +114,22 @@ class MetaController extends Controller
             'type' => $request->type, // Simpan tipe
 
         ]);
-    
+
         return redirect()->route('admin.meta.index')->with('success', 'Meta updated successfully.');
     }
 
     public function uploadImage(Request $request)
-{
-    if ($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('public/images', $filename);
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/images', $filename);
 
-        // Mengembalikan URL gambar yang sudah diupload
-        return response()->json([
-            'link' => asset('storage/images/' . $filename)
-        ]);
+            // Mengembalikan URL gambar yang sudah diupload
+            return response()->json([
+                'link' => asset('storage/images/' . $filename)
+            ]);
+        }
+        return response()->json(['error' => 'File upload failed.'], 500);
     }
-    return response()->json(['error' => 'File upload failed.'], 500);
-}
-
-    
-    
-    
-
-
 }

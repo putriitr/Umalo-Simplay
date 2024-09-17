@@ -23,7 +23,7 @@
                 <div class="card-body p-0">
                     @if ($produk->images->isNotEmpty())
                         <!-- Display all images if available -->
-                        <div id="productImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div id="productImagescarousel" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($produk->images as $index => $image)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -31,15 +31,15 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="prev">
+                            <button class="carousel-control-prev custom-carousel-control" type="button" data-bs-target="#productImagescarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#productImagesCarousel" data-bs-slide="next">
+                            <button class="carousel-control-next custom-carousel-control" type="button" data-bs-target="#productImagescarousel" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
-                            
+
                             <style>
                                 /* Custom styles for carousel controls */
                                 .custom-carousel-control .carousel-control-prev-icon,
@@ -47,20 +47,20 @@
                                     background-color: black; /* Change the background color of the control icons */
                                     border-radius: 50%; /* Optional: Add border-radius for a round effect */
                                 }
-                            
+
                                 /* Optional: Adjust the size of the icons */
                                 .custom-carousel-control .carousel-control-prev-icon,
                                 .custom-carousel-control .carousel-control-next-icon {
                                     background-size: 50% 50%; /* Adjust icon size if needed */
                                 }
-                            
+
                                 /* Optional: Make sure the icon color is white */
                                 .custom-carousel-control .carousel-control-prev-icon::after,
                                 .custom-carousel-control .carousel-control-next-icon::after {
                                     color: white; /* Ensure the arrow is visible */
                                 }
                             </style>
-                            
+
                         </div>
                     @else
                         <!-- Display a default image if there are no images -->
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 <!-- Product Details End -->

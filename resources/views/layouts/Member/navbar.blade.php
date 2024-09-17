@@ -18,8 +18,8 @@
     <div class="container-fluid bg-light d-none d-lg-block">
         <div class="row align-items-center top-bar">
             <div class="col-lg-3 col-md-12 text-center text-lg-start">
-                <a href="{{ route('home') }}" class="navbar-brand m-0 p-0">
-                    <h1 class="text-primary m-0">SIMPLAY</h1>
+                <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0">
+                    <img src="{{ asset('assets/img/Logo.png')}}" alt="SIMPLAY Logo" class="img-fluid">
                 </a>
             </div>
             <div class="col-lg-9 col-md-12 text-end">
@@ -70,12 +70,21 @@
     </div>
     <!-- Topbar End -->
 
+    @php
+        $activeMetas = \App\Models\Meta::where('start_date', '<=', today())
+            ->where('end_date', '>=', today())
+            ->get()
+            ->groupBy('type');
+
+        $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
+
+    @endphp
 
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-light">
         <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-                <h1 class="text-primary m-0">SIMPLAY</h1>
+                <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid" style="max-width: 100px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -86,25 +95,82 @@
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
+
+                    @foreach ($activeMetas as $type => $metas)
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
+                            <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
+                                @foreach ($metas as $meta)
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title }}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+
+                    @auth
+                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
+                    @endauth
+
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                    <!-- Dropdown for language selection -->
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu fade-up m-0">
-                            <a href="booking.html" class="dropdown-item">Booking</a>
-                            <a href="team.html" class="dropdown-item">Technicians</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            @if(LaravelLocalization::getCurrentLocale() == 'id')
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                            @elseif(LaravelLocalization::getCurrentLocale() == 'en')
+                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                            @else
+                                {{ LaravelLocalization::getCurrentLocaleNative() }}
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end m-0">
+                            <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                                {{ __('messages.bahasa') }}
+                            </a>
+                            <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
+                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                                {{ __('messages.english') }}
+                            </a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
-                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white" style="width: 45px; height: 45px;">
-                        <i class="fa fa-phone-alt text-primary"></i>
-                    </div>
-                    <div class="ms-3">
-                        <p class="mb-1 text-white">Emergency 24/7</p>
-                        <h5 class="m-0 text-secondary">+012 345 6789</h5>
-                    </div>
+                    @if (auth()->check())
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <small class=""><i
+                                            class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                                    <!-- Show Profile -->
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                            <i class="fa fa-user me-2"></i>Profil
+                                        </a>
+                                    </li>
+
+                                    <!-- Logout -->
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out-alt me-2"></i>Keluar
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Logout Form -->
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}"><small
+                                    class="btn btn-primary rounded-pill text-white py-1 px-1"><i
+                                        class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member</small></a>
+                        @endif
                 </div>
             </div>
         </nav>

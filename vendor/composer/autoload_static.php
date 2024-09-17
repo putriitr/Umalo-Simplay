@@ -362,8 +362,8 @@ class ComposerStaticInite1f2747c81e6f593546dd330641c4da3
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -603,6 +603,7 @@ class ComposerStaticInite1f2747c81e6f593546dd330641c4da3
         'App\\Models\\BrandPartner' => __DIR__ . '/../..' . '/app/Models/BrandPartner.php',
         'App\\Models\\Brosur' => __DIR__ . '/../..' . '/app/Models/Brosur.php',
         'App\\Models\\CompanyParameter' => __DIR__ . '/../..' . '/app/Models/CompanyParameter.php',
+        'App\\Models\\Contact' => __DIR__ . '/../..' . '/app/Models/Contact.php',
         'App\\Models\\ControlGenerationsProduk' => __DIR__ . '/../..' . '/app/Models/ControlGenerationsProduk.php',
         'App\\Models\\DocumentCertificationsProduk' => __DIR__ . '/../..' . '/app/Models/DocumentCertificationsProduk.php',
         'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',

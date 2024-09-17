@@ -64,8 +64,10 @@ return [
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Products',
     'our_products' => 'Our Products',
+    'explore_products' => 'See More Products',
     'member_portal' => 'Member Portal',
 
+    'contact' => 'Contact',
     'contact_info' => 'Contact Information',
     'address_not_available' => 'Address not available',
     'email_not_available' => 'Email not available',

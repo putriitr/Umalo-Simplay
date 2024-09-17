@@ -1,5 +1,5 @@
 /**
- * Owl Carousel v2.2.1
+ * Owl carousel v2.2.1
  * Copyright 2013-2017 David Deutsch
  * Licensed under  ()
  */
@@ -19,7 +19,7 @@
 
 	/**
 	 * Creates a carousel.
-	 * @class The Owl Carousel.
+	 * @class The Owl carousel.
 	 * @public
 	 * @param {HTMLElement|jQuery} element - The element to create the carousel for.
 	 * @param {Object} [options] - The options
@@ -1653,11 +1653,11 @@
 	};
 
 	/**
-	 * The jQuery Plugin for the Owl Carousel
+	 * The jQuery Plugin for the Owl carousel
 	 * @todo Navigation plugin `next` and `prev`
 	 * @public
 	 */
-	$.fn.owlCarousel = function(option) {
+	$.fn.owlcarousel = function(option) {
 		var args = Array.prototype.slice.call(arguments, 1);
 
 		return this.each(function() {
@@ -1692,7 +1692,7 @@
 	 * The constructor for the jQuery Plugin
 	 * @public
 	 */
-	$.fn.owlCarousel.Constructor = Owl;
+	$.fn.owlcarousel.Constructor = Owl;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -1708,7 +1708,7 @@
 	/**
 	 * Creates the auto refresh plugin.
 	 * @class The Auto Refresh Plugin
-	 * @param {Owl} carousel - The Owl Carousel
+	 * @param {Owl} carousel - The Owl carousel
 	 */
 	var AutoRefresh = function(carousel) {
 		/**
@@ -1804,7 +1804,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
+	$.fn.owlcarousel.Constructor.Plugins.AutoRefresh = AutoRefresh;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -1820,7 +1820,7 @@
 	/**
 	 * Creates the lazy plugin.
 	 * @class The Lazy Plugin
-	 * @param {Owl} carousel - The Owl Carousel
+	 * @param {Owl} carousel - The Owl carousel
 	 */
 	var Lazy = function(carousel) {
 
@@ -1940,7 +1940,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Lazy = Lazy;
+	$.fn.owlcarousel.Constructor.Plugins.Lazy = Lazy;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -1956,7 +1956,7 @@
 	/**
 	 * Creates the auto height plugin.
 	 * @class The Auto Height Plugin
-	 * @param {Owl} carousel - The Owl Carousel
+	 * @param {Owl} carousel - The Owl carousel
 	 */
 	var AutoHeight = function(carousel) {
 		/**
@@ -2038,7 +2038,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.AutoHeight = AutoHeight;
+	$.fn.owlcarousel.Constructor.Plugins.AutoHeight = AutoHeight;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2054,7 +2054,7 @@
 	/**
 	 * Creates the video plugin.
 	 * @class The Video Plugin
-	 * @param {Owl} carousel - The Owl Carousel
+	 * @param {Owl} carousel - The Owl carousel
 	 */
 	var Video = function(carousel) {
 		/**
@@ -2358,7 +2358,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Video = Video;
+	$.fn.owlcarousel.Constructor.Plugins.Video = Video;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2374,7 +2374,7 @@
 	/**
 	 * Creates the animate plugin.
 	 * @class The Navigation Plugin
-	 * @param {Owl} scope - The Owl Carousel
+	 * @param {Owl} scope - The Owl carousel
 	 */
 	var Animate = function(scope) {
 		this.core = scope;
@@ -2480,7 +2480,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Animate = Animate;
+	$.fn.owlcarousel.Constructor.Plugins.Animate = Animate;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2497,7 +2497,7 @@
 	/**
 	 * Creates the autoplay plugin.
 	 * @class The Autoplay Plugin
-	 * @param {Owl} scope - The Owl Carousel
+	 * @param {Owl} scope - The Owl carousel
 	 */
 	var Autoplay = function(carousel) {
 		/**
@@ -2680,7 +2680,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.autoplay = Autoplay;
+	$.fn.owlcarousel.Constructor.Plugins.autoplay = Autoplay;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -2697,7 +2697,7 @@
 	/**
 	 * Creates the navigation plugin.
 	 * @class The Navigation Plugin
-	 * @param {Owl} carousel - The Owl Carousel.
+	 * @param {Owl} carousel - The Owl carousel.
 	 */
 	var Navigation = function(carousel) {
 		/**
@@ -3063,7 +3063,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Navigation = Navigation;
+	$.fn.owlcarousel.Constructor.Plugins.Navigation = Navigation;
 
 })(window.Zepto || window.jQuery, window, document);
 
@@ -3080,7 +3080,7 @@
 	/**
 	 * Creates the hash plugin.
 	 * @class The Hash Plugin
-	 * @param {Owl} carousel - The Owl Carousel
+	 * @param {Owl} carousel - The Owl carousel
 	 */
 	var Hash = function(carousel) {
 		/**
@@ -3186,7 +3186,7 @@
 		}
 	};
 
-	$.fn.owlCarousel.Constructor.Plugins.Hash = Hash;
+	$.fn.owlcarousel.Constructor.Plugins.Hash = Hash;
 
 })(window.Zepto || window.jQuery, window, document);
 

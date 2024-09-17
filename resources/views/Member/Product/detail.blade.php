@@ -13,39 +13,39 @@
             </div>
             <div class="col-md-6 text-center">
                 @if($produk->images->count() > 1)
-                    <!-- Bootstrap Carousel for multiple images -->
-                    <div id="productImageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Bootstrap carousel for multiple images -->
+                    <div id="productImagecarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach($produk->images as $key => $image)
                             <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                                <img src="{{ asset($image->gambar) }}" alt="{{ $produk->nama }}" 
+                                <img src="{{ asset($image->gambar) }}" alt="{{ $produk->nama }}"
                                      class="img-fluid w-100" style="height: 350; object-fit: cover; border-radius: 10px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
                             </div>
                             @endforeach
                         </div>
-                        
-                        <a class="carousel-control-prev" href="#productImageCarousel" role="button" data-bs-slide="prev" style="width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; top: 50%; transform: translateY(-50%);">
+
+                        <a class="carousel-control-prev" href="#productImagecarousel" role="button" data-bs-slide="prev" style="width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; top: 50%; transform: translateY(-50%);">
                             <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1); width: 20px; height: 20px;"></span>
                             <span class="visually-hidden">Previous</span>
                         </a>
-                        <a class="carousel-control-next" href="#productImageCarousel" role="button" data-bs-slide="next" style="width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; top: 50%; transform: translateY(-50%);">
+                        <a class="carousel-control-next" href="#productImagecarousel" role="button" data-bs-slide="next" style="width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.5); border-radius: 50%; display: flex; justify-content: center; align-items: center; top: 50%; transform: translateY(-50%);">
                             <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1); width: 20px; height: 20px;"></span>
                             <span class="visually-hidden">Next</span>
                         </a>
-                        
-                        
-                        
+
+
+
                     </div>
                 @else
                     <!-- Display single image if there's only one -->
-                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" 
-                         alt="{{ $produk->nama }}" class="img-fluid" 
+                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                         alt="{{ $produk->nama }}" class="img-fluid"
                          style="max-height: 350px; border-radius: 10px; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);">
                 @endif
             </div>
         </div>
     </div>
-    
+
 
 </div>
     <!-- Spacer -->
@@ -71,7 +71,7 @@
                 </div>
             </div>
         @endforeach
-        
+
     </div>
     </div>
 </div>

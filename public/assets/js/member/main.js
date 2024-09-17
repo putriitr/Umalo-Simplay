@@ -10,8 +10,8 @@
         }, 1);
     };
     spinner();
-    
-    
+
+
     // Initiate the wowjs
     new WOW().init();
 
@@ -24,14 +24,14 @@
             $('.nav-bar').removeClass('sticky-top shadow');
         }
     });
-    
-    
+
+
     // Dropdown on mouse hover
     const $dropdown = $(".dropdown");
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
     const showClass = "show";
-    
+
     $(window).on("load resize", function() {
         if (this.matchMedia("(min-width: 992px)").matches) {
             $dropdown.hover(
@@ -52,8 +52,8 @@
             $dropdown.off("mouseenter mouseleave");
         }
     });
-    
-    
+
+
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
@@ -103,7 +103,7 @@
 
 
     // Header carousel
-    $(".header-carousel").owlCarousel({
+    $(".header-carousel").owlcarousel({
         autoplay: true,
         smartSpeed: 1500,
         items: 1,
@@ -118,7 +118,7 @@
 
 
     // Service carousel
-    $(".service-carousel").owlCarousel({
+    $(".service-carousel").owlcarousel({
         autoplay: true,
         smartSpeed: 1000,
         center: true,
@@ -147,7 +147,7 @@
 
 
     // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
+    $(".testimonial-carousel").owlcarousel({
         autoplay: true,
         smartSpeed: 1000,
         center: true,
@@ -170,6 +170,6 @@
             }
         }
     });
-    
+
 })(jQuery);
 

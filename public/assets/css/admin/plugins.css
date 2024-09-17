@@ -7445,9 +7445,9 @@ a.note-dropdown-item, a.note-dropdown-item:hover {
   display: inline-block; }
 
 /**
-* Owl Carousel v2.3.4
+* Owl carousel v2.3.4
 * Copyright 2013-2018 David Deutsch
-* Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+* Licensed under: SEE LICENSE IN https://github.com/Owlcarousel2/Owlcarousel2/blob/master/LICENSE
 */
 .owl-carousel {
   -webkit-tap-highlight-color: transparent;
@@ -7642,7 +7642,7 @@ a.note-dropdown-item, a.note-dropdown-item:hover {
   .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
     background: #869791; }
 
-/* Owl Carousel Responsive Image */
+/* Owl carousel Responsive Image */
 .owl-img-responsive .owl-wrapper, .owl-img-responsive .owl-stage {
   display: flex !important; }
   .owl-img-responsive .owl-wrapper .item, .owl-img-responsive .owl-stage .item {
