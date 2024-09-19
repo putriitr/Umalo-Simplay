@@ -21,7 +21,7 @@ return [
     'our_customers' => 'Our Customers',
 
     'members_in_province' => 'We have :count members in :province:',
-    "Created on"=> "Became a Member on",
+    "Created on" => "Became a Member on",
 
     'home' => 'Home',
     'about' => 'About',
@@ -57,9 +57,10 @@ return [
     'no_additional_info' => 'No additional information available.',
     'close' => 'Close',
     'whatsapp_resmi' => 'Official WhatsApp of :company',
-    'hubungi_langsung' => 'Contact Directly',
+    'hubungi_langsung' => 'sct Directly',
 
     'quick_access' => 'Quick Access',
+    'our_brand' => 'Our Brand',
     'brands_partners' => 'Brands & Partners',
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Products',
@@ -73,5 +74,14 @@ return [
     'email_not_available' => 'Email not available',
     'phone_not_available' => 'Phone not available',
     'whatsapp_not_available' => 'WhatsApp not available',
+
+    'explore_product' => 'Explore Our Products',
+    'category_product' => 'Category',
+    'sort_by' => 'Sort By',
+    'newest' => 'Newest',
+    'latest' => 'Latest',
+    'leave_message' => 'Send Us a Message',
+    'leave_message_desc' => 'We would love to hear from you! Feel free to drop us a message.'
+
 
 ];

@@ -29,6 +29,11 @@
 </div>
 
 <div class="form-group">
+    <label for="alamat">Website</label>
+    <textarea name="website" class="form-control" required>{{ old('website', $companyParameter->website ?? '') }}</textarea>
+</div>
+
+<div class="form-group">
     <label for="maps">URL Lokasi</label>
     <input type="text" name="maps" class="form-control" value="{{ old('maps', $companyParameter->maps ?? '') }}">
 </div>

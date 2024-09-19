@@ -39,6 +39,7 @@ class CompanyParameterController extends Controller
             'no_wa' => 'required|string',
             'alamat' => 'required|string',
             'maps' => 'nullable|string',
+            'website' => 'nullable|string',
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
@@ -92,6 +93,7 @@ class CompanyParameterController extends Controller
             'no_wa' => 'required|string',
             'alamat' => 'required|string',
             'maps' => 'nullable|string',
+            'website' => 'nullable|string',
             'visi' => 'nullable|string',
             'misi' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
@@ -100,6 +102,7 @@ class CompanyParameterController extends Controller
             'linkedin' => 'nullable|string',
             'ekatalog' => 'nullable|string',
         ]);
+        // dd($validated);
 
         $companyParameter = CompanyParameter::findOrFail($id);
 

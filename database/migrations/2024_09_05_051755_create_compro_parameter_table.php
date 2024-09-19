@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('no_telepon')->nullable();  // Phone number
             $table->string('no_wa')->nullable();  // WhatsApp number
             $table->string('alamat')->nullable();  // Address
+            $table->string('website')->nullable();
             $table->text('maps')->nullable();  // Google Maps embed code or URL
             $table->text('visi')->nullable();  // Vision statement
             $table->text('misi')->nullable();  // Mission statement

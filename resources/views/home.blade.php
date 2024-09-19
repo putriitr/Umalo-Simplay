@@ -5,7 +5,7 @@
     <div class="container-fluid p-0 mb-5">
         <div class="owl-carousel header-carousel position-relative">
             <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('assets/img/building.jpeg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('assets/img/bg3.jpeg') }}" alt="">
                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                     style="background: rgba(0, 0, 0, .4);">
                     <div class="container">
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">About Us</h6>
+                    <h5 class="text-secondary text-uppercase">{{ __('messages.about_us') }}</h5>
                     <h1 class="mb-4">{{ $compro->nama_perusahaan ?? 'PT Simplay Abyakta Mediatek' }}</h1>
                     <p class="mb-4" style="text-align: justify;">{{ $company->sejarah_singkat ?? ' ' }}</p>
                     {{-- <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Residential & commercial
@@ -91,35 +91,158 @@
     </div>
     <!-- About End -->
 
-
     <!-- Fact Start -->
-    <div class="container-fluid fact bg-dark my-5 py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <i class="fa fa-check fa-2x text-white mb-3"></i>
-                    <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p class="text-white mb-0">Years Experience</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                    <i class="fa fa-users-cog fa-2x text-white mb-3"></i>
-                    <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p class="text-white mb-0">Expert Technicians</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <i class="fa fa-users fa-2x text-white mb-3"></i>
-                    <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p class="text-white mb-0">Satisfied Clients</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                    <i class="fa fa-wrench fa-2x text-white mb-3"></i>
-                    <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p class="text-white mb-0">Compleate Projects</p>
-                </div>
+    <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+            <h1 class="mb-4">{{ __('messages.our_brand') }}</h1>
+        </div>
+        <div class="carousel"
+            data-flickity='{ "wrapAround": true, "autoPlay": false, "pageDots": false, "prevNextButtons": false }'>
+            <!-- Ulangi div brand-cell ini sebanyak 53 kali untuk memasukkan gambar -->
+            <div class="carousel-cell">
+                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (1).png') }}" alt="Brand 1">
             </div>
+            <div class="carousel-cell">
+                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (2).png') }}" alt="Brand 2">
+            </div>
+            <div class="carousel-cell">
+                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (3).png') }}" alt="Brand 3">
+            </div>
+            <div class="carousel-cell">
+                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (4).png') }}" alt="Brand 4">
+            </div>
+            <div class="carousel-cell">
+                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (5).png') }}" alt="Brand 5">
+            </div>
+            <!-- Continue adding image cells up to 53 images -->
+        </div>
+        <div class="slider-container">
+            <input type="range" min="0" max="52" value="0" class="slider" id="carouselSlider">
         </div>
     </div>
     <!-- Fact End -->
+
+    <!-- Include Flickity JS -->
+    <script src="{{ asset('assets/js/member/flickity.pkgd.min.js') }}"></script>
+    <script>
+        // Inisialisasi Flickity
+        var flkty = new Flickity('.carousel', {
+            wrapAround: true,
+            autoPlay: false,
+            pageDots: false,
+            prevNextButtons: false
+        });
+
+        // Ambil elemen slider
+        var rangeInput = document.getElementById('carouselSlider');
+
+        // Event Listener untuk menggeser carousel saat slider digeser
+        rangeInput.addEventListener('input', function() {
+            flkty.select(rangeInput.value); // Sesuaikan gambar sesuai dengan nilai slider
+        });
+
+        // Update slider saat carousel digeser dengan manual atau otomatis
+        flkty.on('change', function(index) {
+            rangeInput.value = index; // Perbarui nilai slider sesuai gambar yang sedang aktif
+        });
+    </script>
+
+    <style>
+        .fact h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2C2F8C;
+        }
+
+        .fact p {
+            font-size: 16px;
+            color: #7B7F8A;
+        }
+
+        /* Carousel container with limited width and centered on the page */
+        .carousel {
+            max-width: 80%;
+            /* Set max width to 80% of the page */
+            margin: 0 auto;
+            /* Center the carousel on the page */
+            background-color: #fff;
+        }
+
+        /* Each cell within the carousel */
+        .carousel-cell {
+            width: 200px;
+            /* Adjust width for image container */
+            height: 120px;
+            /* Adjust height for image container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            overflow: hidden;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            margin-right: 15px;
+        }
+
+        /* Styling for the images inside each cell */
+        .carousel-image {
+            max-width: 100px;
+            /* Adjust the image width */
+            max-height: 80px;
+            /* Adjust the image height */
+            object-fit: contain;
+            /* Centers and resizes images while keeping proportions */
+        }
+
+        /* Styling untuk container slider */
+        .slider-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Kustomisasi input range */
+        input[type=range].slider {
+            -webkit-appearance: none;
+            width: 80%;
+            background: transparent;
+        }
+
+        /* Track slider (garis di belakang slider) */
+        input[type=range].slider::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type=range].slider::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Thumb (lingkaran kecil untuk slider) */
+        input[type=range].slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type=range].slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 
 
     <!-- Service Start -->
@@ -174,7 +297,6 @@
         </div>
     </div>
     <!-- Service End -->
-
 
     <!-- Service Start -->
     <div class="container-xxl py-5">

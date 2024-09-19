@@ -17,6 +17,7 @@ class CompanyParameterSeeder extends Seeder
                 'email' => 'info@simplay.co.id',
                 'no_telepon' => '(021) 22097542',
                 'no_wa' => '+62 821-69998-0001',
+                'website' => 'www.simplay.co.id',
                 'alamat' => 'Jalan Raya Pondok Gede nomor 81 B, Kel. Lubang Buaya, Kec. Cipayung, Kota Adm. Jakarta Timur, Provinsi DKI Jakarta 13810',
                 'maps' => 'https://www.google.com/maps/place/PT.+Arkamaya+Guna+Saharsa/@-6.2114159,106.8600596,15z/data=!4m2!3m1!1s0x0:0x1bc64c80b9328ca6?sa=X&ved=1t:2428&ictx=111',
                 'visi' => 'Perusahaan rintisan teknologi yang menyediakan solusi inovatif untuk tumbuh dan memberikan nilai tambah bagi industri Anda.',
@@ -30,4 +31,3 @@ class CompanyParameterSeeder extends Seeder
         ]);
     }
 }
-s

@@ -21,6 +21,7 @@
                             <th>Nomor Telepon</th>
                             <th>WhatsApp</th>
                             <th>Alamat</th>
+                            <th>Website</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -31,6 +32,7 @@
                                 <td>{{ $parameter->no_telepon }}</td>
                                 <td>{{ $parameter->no_wa }}</td>
                                 <td>{{ $parameter->alamat }}</td>
+                                <td>{{ $parameter->website }}</td>
                                 <td>
                                     <a href="{{ route('parameter.edit', $parameter->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('parameter.destroy', $parameter->id) }}" method="POST" style="display:inline-block;">

@@ -60,6 +60,7 @@ return [
     'hubungi_langsung' => 'Hubungi Langsung',
 
     'quick_access' => 'Akses Cepat',
+    'our_brand' => 'Brand Kami',
     'brands_partners' => 'Merek & Mitra',
     'our_activity' => 'Aktivitas Kami',
     'find_products' => 'Temukan Produk',
@@ -74,4 +75,11 @@ return [
     'phone_not_available' => 'Telepon tidak tersedia',
     'whatsapp_not_available' => 'WhatsApp tidak tersedia',
 
+    'explore_product' => 'Jelajahi Produk Kami',
+    'category_product' => 'Kategori',
+    'sort_by' => 'Urut berdasarkan',
+    'newest' => 'Terbaru',
+    'latest' => 'Terlama',
+    'leave_message' => 'Kirimkan pesan kepada kami',
+    'leave_message' => 'Kami ingin sekali mendengar pendapat Anda! Jangan ragu untuk mengirimkan pesan kepada kami.',
 ];

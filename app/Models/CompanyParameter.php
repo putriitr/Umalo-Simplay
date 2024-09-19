@@ -18,6 +18,7 @@ class CompanyParameter extends Model
         'no_wa',
         'alamat',
         'maps',
+        'website',
         'visi',
         'misi',
         'logo',

@@ -111,7 +111,7 @@
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth
 
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="{{ route('contact') }}" class="nav-item nav-link">{{ __('messages.contact') }}</a>
 
                     <!-- Dropdown for language selection -->
                     <div class="nav-item dropdown">
