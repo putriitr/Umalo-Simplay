@@ -1,61 +1,14 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 py-5">
-        <div class="container">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">About Us</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb text-uppercase">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">About</li>
-                </ol>
-            </nav>
-        </div>
+
+<!-- Header Start -->
+<div class="container-fluid">
+    <div class="section-title mb-5 wow fadeInUp text-center" data-wow-delay="0.1s">
+        <br><br><h1 class="display-3 mb-4">{{ __('messages.about_us') }}</br>
     </div>
-    <!-- Page Header End -->
-
-
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="img/service-1.jpg" alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Residential Plumbing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i
-                                class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="img/service-2.jpg" alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Commercial Plumbing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i
-                                class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="img/service-3.jpg" alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Emergency Servicing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i
-                                class="fa fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
+</div>
+<!-- Header End -->
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -74,11 +27,23 @@
                     <div class="bg-primary d-flex align-items-center p-3 mt-4">
                         <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
                             style="width: 60px; height: 60px;">
-                            <i class="fab fa-whatsapp fa-2x text-primary"></i>
+                            <i class="fas fa-envelope fa-2x text-primary"></i>
                         </div>
                         <div class="ms-3">
-                            <p class="fs-5 fw-medium mb-2 text-white">Emergency 24/7</p>
-                            <h3 class="m-0 text-secondary">{{ $company->no_wa }}</h3>
+                            <p class="fs-5 fw-medium mb-2 text-white">LEGALITAS</p>
+                            <h5 class="m-0 text-secondary">Surat Keterangan (SK)<br>
+                                S-5552KT/WPJ.20/KP.0803/2022</h5>
+                        </div>
+                    </div>
+                    <div class="bg-primary d-flex align-items-center p-3 mt-4">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                            style="width: 60px; height: 60px;">
+                            <i class="fas fa-envelope fa-2x text-primary"></i>
+                        </div>
+                        <div class="ms-3">
+                            <p class="fs-5 fw-medium mb-2 text-white">LEGALITAS</p>
+                            <h5 class="m-0 text-secondary">Surat Keterangan (SK)<br>
+                                S-5552KT/WPJ.20/KP.0803/2022</h5>
                         </div>
                     </div>
                 </div>
@@ -94,6 +59,39 @@
         </div>
     </div>
     <!-- About End -->
+
+    <!-- Legality Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-12 wow fadeInUp text-center" data-wow-delay="0.1s">
+                    <h5 class="text-secondary text-uppercase">{{ __('messages.about_us') }}</h5>
+                    <h1 class="mb-4">{{ $compro->nama_perusahaan ?? 'PT Simplay Abyakta Mediatek' }}</h1>
+            </div>
+            <div class="row g-12 justify-content-center d-flex">
+                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
+                    <div class="team-item rounded flex-fill"
+                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
+                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <h5>{{ __('messages.legality_1') }}</h5>
+                            <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
+                    <div class="team-item rounded flex-fill"
+                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
+                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <h5>{{ __('messages.legality_2') }}</h5>
+                            <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Fact Start -->

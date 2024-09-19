@@ -1,6 +1,14 @@
 @extends('layouts.member.master')
 
 @section('content')
+    <!-- Header Start -->
+    <div class="container-fluid">
+        <div class="section-title mb-5 wow fadeInUp text-center" data-wow-delay="0.1s">
+            <br><br>
+            <h1 class="display-3 mb-4">{{ __('messages.our_products') }}</br>
+        </div>
+    </div>
+    <!-- Header End -->
 
     <div class="container mt-5">
         <div class="row">
@@ -8,7 +16,7 @@
             <div class="col-lg-3">
                 <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category_product') }}</h4>
                 <ul class="list-group mb-4 shadow-sm">
-                    @foreach($kategori as $kat)
+                    @foreach ($kategori as $kat)
                         <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                             style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
                             onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
@@ -34,28 +42,28 @@
 
                 <div class="row">
                     @foreach ($produks as $produk)
-                    <div class="col-md-4 mb-4">
-                        <div class="card product-card border-0 shadow-sm"
-                            style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400;">
-                            <a href="{{ route('product.show', $produk->id) }}">
-                                <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                    class="card-img-top" alt="{{ $produk->nama }}"
-                                    style="object-fit: contain; height: 250; transition: transform 0.3s ease;">
-                            </a>
-                            <div class="card-body text-center">
-                                @php
-                                    $name = $produk->nama;
-                                    $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                @endphp
-                                <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
-                                <a href="{{ route('product.show', $produk->id) }}"
-                                    class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
-                                    style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
-                                    View Product →
+                        <div class="col-md-4 mb-4">
+                            <div class="card product-card border-0 shadow-sm"
+                                style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400;">
+                                <a href="{{ route('product.show', $produk->id) }}">
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                        class="card-img-top" alt="{{ $produk->nama }}"
+                                        style="object-fit: contain; height: 250; transition: transform 0.3s ease;">
                                 </a>
+                                <div class="card-body text-center">
+                                    @php
+                                        $name = $produk->nama;
+                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                    @endphp
+                                    <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
+                                    <a href="{{ route('product.show', $produk->id) }}"
+                                        class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
+                                        style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
+                                        View Product →
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>

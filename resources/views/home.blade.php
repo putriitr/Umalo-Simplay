@@ -1,57 +1,76 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div class="owl-carousel header-carousel position-relative">
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('assets/img/bg3.jpeg') }}" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                    style="background: rgba(0, 0, 0, .4);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Plumbing & Repairing
-                                    Services</h5>
-                                <h1 class="display-3 text-white animated slideInDown mb-4">Efficient Residential Plumbing
-                                    Services</h1>
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at
-                                    sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                    More</a>
-                                <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free
-                                    Quote</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-carousel-item position-relative">
-                <img class="img-fluid" src="{{ asset('assets/img/profil2.png') }}" alt="">
-                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                    style="background: rgba(0, 0, 0, .4);">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8">
-                                <h5 class="text-white text-uppercase mb-3 animated slideInDown">Plumbing & Repairing
-                                    Services</h5>
-                                <h1 class="display-3 text-white animated slideInDown mb-4">Efficient Commercial Plumbing
-                                    Services</h1>
-                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at
-                                    sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                                <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                    More</a>
-                                <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free
-                                    Quote</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Carousel End -->
 
+<!-- Menampilkan pesan error -->
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
+        <ul class="mb-0">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+<!-- Menampilkan pesan sukses -->
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
+        <p>{{ session('success') }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
+
+
+
+    <!-- Carousel Start -->
+    <div class="header-carousel owl-carousel mb-5">
+        @if ($sliders->isEmpty())
+            <!-- Default Slider if no data -->
+            <div class="header-carousel-item">
+                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid w-100" alt="Default Image">
+                <div class="carousel-caption">
+                    <div class="carousel-caption-content p-3">
+                        <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                            {{ __('messages.company_name') }}
+                        </h5>
+                        <h1 class="display-1 text-capitalize text-white mb-4">
+                            {{ __('messages.tagline') }}
+                        </h1>
+                        <p class="mb-5 fs-5">{{ __('messages.description') }}</p>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
+                            {{ __('messages.about_us') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @else
+            <!-- Loop through sliders if data exists -->
+            @foreach ($sliders as $slider)
+                <div class="header-carousel-item">
+                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="carousel-caption-content p-3">
+                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                                {{ $slider->subtitle }}
+                            </h5>
+                            <h1 class="display-1 text-capitalize text-white mb-4">
+                                {{ $slider->title }}
+                            </h1>
+                            <p class="mb-5 fs-5">{{ $slider->description }}</p>
+                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
+                                {{ $slider->button_text }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -61,21 +80,9 @@
                     <h5 class="text-secondary text-uppercase">{{ __('messages.about_us') }}</h5>
                     <h1 class="mb-4">{{ $compro->nama_perusahaan ?? 'PT Simplay Abyakta Mediatek' }}</h1>
                     <p class="mb-4" style="text-align: justify;">{{ $company->sejarah_singkat ?? ' ' }}</p>
-                    {{-- <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Residential & commercial
-                        plumbing</p>
-                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Quality services at
-                        affordable prices</p>
-                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Immediate 24/ 7 emergency
-                        services</p> --}}
-                    <div class="bg-primary d-flex align-items-center p-3 mt-4">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
-                            style="width: 60px; height: 60px;">
-                            <i class="fab fa-whatsapp fa-2x text-primary"></i>
-                        </div>
-                        <div class="ms-3">
-                            <p class="fs-5 fw-medium mb-2 text-white">Emergency 24/7</p>
-                            <h3 class="m-0 text-secondary">{{ $company->no_wa }}</h3>
-                        </div>
+                    <div class="col-6 text-center wow fadeInUp" data-wow-delay="0.2s">
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5"
+                            href="{{ route('about') }}">{{ __('messages.about_us') }}</a>
                     </div>
                 </div>
                 <div class="col-lg-6 pt-4" style="min-height: 500px;">
@@ -91,8 +98,99 @@
     </div>
     <!-- About End -->
 
-    <!-- Fact Start -->
-    <div class="container">
+
+    <!-- Service Start -->
+    <div class="container-fluid py-5 px-4 px-lg-0">
+        <div class="row g-0">
+            <div class="col-lg-2 d-none d-lg-flex">
+                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100">
+                    <img src="{{ asset('assets/img/Logo2.png')}}" alt="SIMPLAY Logo" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-10">
+                <div class="ms-lg-5 ps-lg-5">
+                    <div class="text-center text-lg-start wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 class="text-secondary text-uppercase">{{ __('messages.tujuan_kami') }}</h6>
+                        <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
+                    </div>
+                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;" data-wow-delay="0.1s">
+                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                                <i class="fa fa-handshake fa-2x text-primary"></i>
+                            </div>
+                            <h4 class="mb-3">{{ __('messages.pelayanan') }}</h4>
+                            <p>{{ __('messages.pelayanan_desc') }}</p>
+                        </div>
+                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                                <i class="fa fa-check-circle fa-2x text-primary"></i>
+                            </div>
+                            <h4 class="mb-3">{{ __('messages.kualitas') }}</h4>
+                            <p>{{ __('messages.kualitas_desc') }}</p>
+                        </div>
+                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                                <i class="fa fa-star fa-2x text-primary"></i>
+                            </div>
+                            <h4 class="mb-3">{{ __('messages.kepuasan') }}</h4>
+                            <p>{{ __('messages.kepuasan_desc') }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- Service Start -->
+    @if (!$produks->isEmpty())
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">{{ __('messages.find_products') }}</h6>
+                <h1 class="mb-5">{{ __('messages.our_products') }}</h1>
+            </div>
+            <div class="row g-4">
+                @foreach ($produks as $produk)
+                        <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                            <!-- Card is now wrapped in a link -->
+                            <a href="{{ route('product.show', $produk->id) }}" style="text-decoration: none;">
+                                <div class="blog-item rounded"
+                                    style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; height: 400px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div class="blog-img"
+                                        style="overflow: hidden; border-radius: 15px; position: relative; flex: 1;">
+                                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                            class="img-fluid w-100"
+                                            style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                            alt="{{ $produk->nama }}"
+                                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
+                                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                                    </div>
+                                    <h5
+                                        style="font-weight: bold; color: #343a40; font-size: 1rem; margin: 0; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                                        {{ $produk->nama }}
+                                        <span class="arrow"
+                                            style="display: inline-block; font-size: 1.5rem; color: #007BFF; transition: transform 0.3s ease;"
+                                            onmouseover="this.textContent='—>'" onmouseout="this.textContent='→'">→</span>
+                                    </h5>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5"
+                            href="{{ route('product.index') }}">See More</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    <!-- Service End -->
+
+
+     <!-- Brand Start -->
+     <div class="container">
         <div class="row justify-content-center text-center mb-4">
             <h1 class="mb-4">{{ __('messages.our_brand') }}</h1>
         </div>
@@ -245,145 +343,9 @@
     </style>
 
 
-    <!-- Service Start -->
-    <div class="container-fluid py-5 px-4 px-lg-0">
-        <div class="row g-0">
-            <div class="col-lg-3 d-none d-lg-flex">
-                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100">
-                    <h1 class="display-3 text-white m-0" style="transform: rotate(-90deg);">15 Years Experience</h1>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-9">
-                <div class="ms-lg-5 ps-lg-5">
-                    <div class="text-center text-lg-start wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 class="text-secondary text-uppercase">{{ __('messages.tujuan_kami') }}</h6>
-                        <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
-                    </div>
-                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;"
-                        data-wow-delay="0.1s">
-                        <div class="bg-light p-4">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-handshake fa-2x text-primary"></i>
-                            </div>
-                            <h4 class="mb-3">{{ __('messages.pelayanan') }}</h4>
-                            <p>{{ __('messages.pelayanan_desc') }}</p>
-                            {{-- <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
-                                    class="fa fa-arrow-right text-secondary ms-2"></i></a> --}}
-                        </div>
-                        <div class="bg-light p-4">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-check-circle fa-2x text-primary"></i>
-                            </div>
-                            <h4 class="mb-3">{{ __('messages.kualitas') }}</h4>
-                            <p>{{ __('messages.kualitas_desc') }}</p>
-                            {{-- <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
-                                    class="fa fa-arrow-right text-secondary ms-2"></i></a> --}}
-                        </div>
-                        <div class="bg-light p-4">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-star fa-2x text-primary"></i>
-                            </div>
-                            <h4 class="mb-3">{{ __('messages.kepuasan') }}</h4>
-                            <p>{{ __('messages.kepuasan_desc') }}</p>
-                            {{-- <a href="" class="btn bg-white text-primary w-100 mt-2">Read More<i
-                                    class="fa fa-arrow-right text-secondary ms-2"></i></a>  --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">{{ __('messages.find_products') }}</h6>
-                <h1 class="mb-5">{{ __('messages.our_products') }}</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="{{ asset('assets/img/produk/category-1.png') }}"
-                            alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Residential Plumbing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href="">
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="{{ asset('assets/img/produk/category-2.png') }}"
-                            alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Commercial Plumbing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href="">
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="overflow-hidden">
-                        <img class="img-fluid w-100 h-100" src="{{ asset('assets/img/produk/category-4.png') }}"
-                            alt="">
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
-                        <h5 class="text-truncate me-3 mb-0">Emergency Servicing</h5>
-                        <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href="">
-                            <i class="fa fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Add space for better alignment -->
-            <div class="text-center mt-4">
-                <button class="btn btn-primary w-100 py-3" type="submit">{{ __('messages.explore_products') }}</button>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
-
-
 
     <!-- Booking Start -->
-    <div class="container-fluid my-5 px-0">
-        <div class="video wow fadeInUp" data-wow-delay="0.1s">
-            <button type="button" class="btn-play" data-bs-toggle="modal"
-                data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                <span></span>
-            </button>
-
-            <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content rounded-0">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- 16:9 aspect ratio -->
-                            <div class="ratio ratio-16x9">
-                                <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                                    allowscriptaccess="always" allow="autoplay"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h1 class="text-white mb-4">Emergency Plumbing Service</h1>
-            <h3 class="text-white mb-0">24 Hours 7 Days a Week</h3>
-        </div>
+    <div class="container-fluid my-5 px-0"><br><br></div>
         <div class="container position-relative wow fadeInUp" data-wow-delay="0.1s" style="margin-top: -6rem;">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -428,172 +390,4 @@
         </div>
     </div>
     <!-- Booking End -->
-
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">Our Technicians</h6>
-                <h1 class="mb-5">Our Expert Technicians</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Team End -->
-
-
-    <!-- Testimonial Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="text-center">
-                <h6 class="text-secondary text-uppercase">Testimonial</h6>
-                <h1 class="mb-5">Our Clients Say!</h1>
-            </div>
-            <div class="owl-carousel testimonial-carousel position-relative wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item text-center">
-                    <div class="testimonial-text bg-light text-center p-4 mb-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/testimonial-1.jpg"
-                        style="width: 80px; height: 80px;">
-                    <div class="mb-2">
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                    </div>
-                    <h5 class="mb-1">Client Name</h5>
-                    <p class="m-0">Profession</p>
-                </div>
-                <div class="testimonial-item text-center">
-                    <div class="testimonial-text bg-light text-center p-4 mb-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/testimonial-2.jpg"
-                        style="width: 80px; height: 80px;">
-                    <div class="mb-2">
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                    </div>
-                    <h5 class="mb-1">Client Name</h5>
-                    <p class="m-0">Profession</p>
-                </div>
-                <div class="testimonial-item text-center">
-                    <div class="testimonial-text bg-light text-center p-4 mb-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/testimonial-3.jpg"
-                        style="width: 80px; height: 80px;">
-                    <div class="mb-2">
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                    </div>
-                    <h5 class="mb-1">Client Name</h5>
-                    <p class="m-0">Profession</p>
-                </div>
-                <div class="testimonial-item text-center">
-                    <div class="testimonial-text bg-light text-center p-4 mb-4">
-                        <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et
-                            eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                    <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/testimonial-4.jpg"
-                        style="width: 80px; height: 80px;">
-                    <div class="mb-2">
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                        <small class="fa fa-star text-secondary"></small>
-                    </div>
-                    <h5 class="mb-1">Client Name</h5>
-                    <p class="m-0">Profession</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
 @endsection

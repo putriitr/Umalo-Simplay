@@ -25,12 +25,13 @@ return [
 
     'home' => 'Beranda',
     'about' => 'Tentang',
-    'activity' => 'Aktivitas',
+    'activity' => 'Kegiatan',
     'products' => 'Produk',
     'ecommerce' => 'E-Commerce',
     'portal_member' => 'Portal Member',
     'bahasa' => 'Bahasa',
     'english' => 'English',
+    'our_products' => 'Produk Kami',
 
     'tujuan_kami' => 'Tujuan Kami',
     'visi_misi_perusahaan' => 'Visi & Misi Perusahaan',

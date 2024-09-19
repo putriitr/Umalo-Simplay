@@ -31,11 +31,12 @@ return [
     'portal_member' => 'Member Portal',
     'bahasa' => 'Bahasa',
     'english' => 'English',
+    'our_products' => 'Our Product',
 
     'tujuan_kami' => 'Our Goals',
     'visi_misi_perusahaan' => 'Company Vision & Mission',
-    'visi' => 'Vision',
-    'misi' => 'Mission',
+    'legality_1' => 'Certificate',
+    'legality_2' => 'Business Identification Number',
 
     'keyakinan_kami' => 'Our Beliefs',
     'keunggulan_perusahaan' => 'Company Excellence',

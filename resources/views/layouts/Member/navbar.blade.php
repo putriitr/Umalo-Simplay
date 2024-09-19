@@ -138,11 +138,11 @@
                 </div>
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
                     @if (auth()->check())
-                            <div class="dropdown">
+                            <div class="dropdown text-light">
                                 <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    <small class=""><i
-                                            class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                                    <small class="text-light"><i
+                                            class="fa fa-user text-light text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="companyDropdown">
                                     <!-- Show Profile -->
