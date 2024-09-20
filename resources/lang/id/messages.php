@@ -62,7 +62,7 @@ return [
 
     'quick_access' => 'Akses Cepat',
     'our_brand' => 'Brand Kami',
-    'brands_partners' => 'Merek & Mitra',
+    'brands_product' => 'Merek Produk',
     'our_activity' => 'Aktivitas Kami',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
@@ -81,6 +81,9 @@ return [
     'sort_by' => 'Urut berdasarkan',
     'newest' => 'Terbaru',
     'latest' => 'Terlama',
-    'leave_message' => 'Kirimkan pesan kepada kami',
-    'leave_message' => 'Kami ingin sekali mendengar pendapat Anda! Jangan ragu untuk mengirimkan pesan kepada kami.',
+    'leave_message' => 'Kirimkan pesan!!',
+    'company' => 'Perusahaan',
+    'see more' => 'Lihat lebih banyak',
+    'legality_top' => 'Izin Operasional',
+    'legality' => 'Legalitas Perusahaan',
 ];

@@ -2,26 +2,28 @@
 
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
-        <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Member Portal</h1>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item active text-primary">Member Portal</li>
+    <div class="container-fluid page-header mb-5 py-5" style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/member.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
+        <div class="container">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __('messages.portal_member') }}</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">{{ __('messages.portal_member') }}</li>
                 </ol>
+            </nav>
         </div>
     </div>
-    <!-- Header End --><br><br>
+    <!-- Header End -->
 
     <!-- Services Start -->
-    <div class="container-fluid service py-5">
+
         <div class="container py-5">
             <div class="row g-4 justify-content-center">
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-package' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-package' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -35,8 +37,8 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-book' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-book' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -50,8 +52,8 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-file doc' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-file doc' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -67,8 +69,8 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-video' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-video' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -82,8 +84,8 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-tachometer' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-tachometer' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -97,8 +99,8 @@
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item rounded">
                         <div class="service-img rounded-top"
-                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                            <i class='bx bx-help-circle' style="font-size: 200px; color: #000000;"></i>
+                            style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                            <i class='bx bx-help-circle' style="font-size: 200px; color: #fff;"></i>
                         </div>
                         <div class="service-content rounded-bottom bg-light p-4">
                             <div class="service-content-inner">
@@ -111,6 +113,6 @@
                 </div>
             </div>
         </div>
-    </div>
+
     <!-- Services End -->
 @endsection

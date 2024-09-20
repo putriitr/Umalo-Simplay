@@ -101,7 +101,7 @@
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
                             <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
                                 @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title }}</a>
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">s</a>
                                 @endforeach
                             </div>
                         </div>

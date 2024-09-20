@@ -13,7 +13,6 @@ return [
 
     'trusted_collaboration' => 'Trusted Collaboration',
     'distributor_company' => 'Distributor Company',
-
     'ecommerce_title' => 'Our E-commerce',
     'explore_more_products' => 'Explore More Products',
 
@@ -62,7 +61,7 @@ return [
 
     'quick_access' => 'Quick Access',
     'our_brand' => 'Our Brand',
-    'brands_partners' => 'Brands & Partners',
+    'brands_product' => 'Product Brand',
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Products',
     'our_products' => 'Our Products',
@@ -81,8 +80,11 @@ return [
     'sort_by' => 'Sort By',
     'newest' => 'Newest',
     'latest' => 'Latest',
-    'leave_message' => 'Send Us a Message',
-    'leave_message_desc' => 'We would love to hear from you! Feel free to drop us a message.'
-
+    'leave_message' => 'Leave Message!!',
+    'send_message' => 'Send Message',
+    'company' => 'Companyf',
+    'see_more' => 'See More',
+    'legality_topa' => 'Operational License',
+    'legality' => 'Company Legality',
 
 ];

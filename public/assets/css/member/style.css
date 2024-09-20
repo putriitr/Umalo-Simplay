@@ -235,9 +235,12 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('/assets/img/bg.png') center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url('/assets/img/bg.jpg') center center no-repeat;
     background-size: cover;
+    height: 300px; /* Sesuaikan tinggi sesuai kebutuhan */
 }
+
+
 
 .breadcrumb-item + .breadcrumb-item::before {
     color: var(--light);
