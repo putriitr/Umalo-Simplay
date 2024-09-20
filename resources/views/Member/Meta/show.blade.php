@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid page-header mb-5 py-5" style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/announcement.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
+    <div class="container-fluid page-header mb-5 py-5" style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/announcementt.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
         <div class="container">
             <h1 class="display-3 text-white mb-3 animated slideInDown">{{ $meta->title }}</h1>
             <nav aria-label="breadcrumb animated slideInDown">

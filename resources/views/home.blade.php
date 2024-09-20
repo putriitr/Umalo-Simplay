@@ -2,27 +2,27 @@
 
 @section('content')
 
-<!-- Menampilkan pesan error -->
-@if($errors->any())
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
-        <ul class="mb-0">
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    <!-- Menampilkan pesan error -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle"></i> Ada Kesalahan:</h4>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
-<!-- Menampilkan pesan sukses -->
-@if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-        <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
-        <p>{{ session('success') }}</p>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    <!-- Menampilkan pesan sukses -->
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-check-circle"></i> Berhasil!</h4>
+            <p>{{ session('success') }}</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
 
 
@@ -104,7 +104,7 @@
         <div class="row g-0">
             <div class="col-lg-2 d-none d-lg-flex">
                 <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100">
-                    <img src="{{ asset('assets/img/Logo2.png')}}" alt="SIMPLAY Logo" class="img-fluid">
+                    <img src="{{ asset('assets/img/Logo2.png') }}" alt="SIMPLAY Logo" class="img-fluid">
                 </div>
             </div>
             <div class="col-md-12 col-lg-10">
@@ -113,23 +113,30 @@
                         <h6 class="text-secondary text-uppercase">{{ __('messages.tujuan_kami') }}</h6>
                         <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
                     </div>
-                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;" data-wow-delay="0.1s">
-                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;"
+                        data-wow-delay="0.1s">
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
                                 <i class="fa fa-handshake fa-2x text-primary"></i>
                             </div>
                             <h5 class="mb-3">{{ __('messages.pelayanan') }}</h5>
                             <p>{{ __('messages.pelayanan_desc') }}</p>
                         </div>
-                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
                                 <i class="fa fa-check-circle fa-2x text-primary"></i>
                             </div>
                             <h5 class="mb-3">{{ __('messages.kualitas') }}</h5>
                             <p>{{ __('messages.kualitas_desc') }}</p>
                         </div>
-                        <div class="bg-light p-4" style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4" style="width: 75px; height: 75px;">
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
                                 <i class="fa fa-star fa-2x text-primary"></i>
                             </div>
                             <h5 class="mb-3">{{ __('messages.kepuasan') }}</h5>
@@ -145,14 +152,14 @@
 
     <!-- Service Start -->
     @if (!$produks->isEmpty())
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">{{ __('messages.find_products') }}</h6>
-                <h1 class="mb-5">{{ __('messages.our_products') }}</h1>
-            </div>
-            <div class="row g-4">
-                @foreach ($produks as $produk)
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase">{{ __('messages.find_products') }}</h6>
+                    <h1 class="mb-5">{{ __('messages.our_products') }}</h1>
+                </div>
+                <div class="row g-4">
+                    @foreach ($produks as $produk)
                         <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
                             <!-- Card is now wrapped in a link -->
                             <a href="{{ route('product.show', $produk->id) }}" style="text-decoration: none;">
@@ -182,43 +189,94 @@
                         <a class="btn btn-primary rounded-pill text-white py-3 px-5"
                             href="{{ route('product.index') }}">{{ __('messages.see_more') }}</a>
                     </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </div><br>
     @endif
     <!-- Service End -->
 
-
-     <!-- Brand Start -->
-     <div class="container">
-        <div class="row justify-content-center text-center mb-4">
-            <h1 class="mb-4">{{ __('messages.our_brand') }}</h1>
-        </div>
-        <div class="carousel"
-            data-flickity='{ "wrapAround": true, "autoPlay": false, "pageDots": false, "prevNextButtons": false }'>
-            <!-- Ulangi div brand-cell ini sebanyak 53 kali untuk memasukkan gambar -->
-            <div class="carousel-cell">
-                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (1).png') }}" alt="Brand 1">
+    <!-- Brand Start -->
+    <div class="container">
+        <section id="trusted-brands">
+            <div class="row justify-content-center text-center mb-4">
+                <h1 class="mb-4">{{ __('messages.trusted_by') }}</h1>
             </div>
-            <div class="carousel-cell">
-                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (2).png') }}" alt="Brand 2">
+            <div class="carousel"
+                data-flickity='{ "wrapAround": true, "autoPlay": true, "pageDots": false, "prevNextButtons": true, "groupCells": true }'>
+                @foreach ($brands as $brand)
+                    <div class="carousel-cell">
+                        <img class="brand-logo" src="{{ asset('assets/img/brands/' . $brand->logo) }}"
+                            alt="{{ $brand->name }}">
+                    </div>
+                @endforeach
             </div>
-            <div class="carousel-cell">
-                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (3).png') }}" alt="Brand 3">
-            </div>
-            <div class="carousel-cell">
-                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (4).png') }}" alt="Brand 4">
-            </div>
-            <div class="carousel-cell">
-                <img class="carousel-image" src="{{ asset('assets/img/brands/brand (5).png') }}" alt="Brand 5">
-            </div>
-            <!-- Continue adding image cells up to 53 images -->
-        </div>
-        <div class="slider-container">
-            <input type="range" min="0" max="52" value="0" class="slider" id="carouselSlider">
-        </div>
+        </section>
     </div>
-    <!-- Fact End -->
+    <!-- Brand End -->
+
+
+    <!-- Additional CSS for responsiveness -->
+    <style>
+        .carousel {
+            margin: 0;
+            /* Remove default margin */
+            padding: 0;
+            /* Remove default padding */
+            width: 100%;
+            /* Ensure the carousel takes full width */
+        }
+
+        /* Styling container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #trusted-brands h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        /* Styling carousel cells */
+        .carousel-cell {
+            width: 20%;
+            /* Tampilkan 5 logo pada desktop */
+            padding: 10px;
+        }
+
+        .brand-logo {
+            width: 100%;
+            height: auto;
+            max-width: 180px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Styling untuk responsif */
+        @media (max-width: 1024px) {
+            .carousel-cell {
+                width: 25%;
+                /* Tampilkan 4 logo per slide di tablet */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-cell {
+                width: 33.333%;
+                /* Tampilkan 3 logo per slide di tablet kecil */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .carousel-cell {
+                width: 50%;
+                /* Tampilkan 2 logo per slide di mobile */
+            }
+        }
+    </style>
+
 
     <!-- Include Flickity JS -->
     <script src="{{ asset('assets/js/member/flickity.pkgd.min.js') }}"></script>
@@ -244,101 +302,4 @@
             rangeInput.value = index; // Perbarui nilai slider sesuai gambar yang sedang aktif
         });
     </script>
-
-    <style>
-        .fact h1 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2C2F8C;
-        }
-
-        .fact p {
-            font-size: 16px;
-            color: #7B7F8A;
-        }
-
-        /* Carousel container with limited width and centered on the page */
-        .carousel {
-            max-width: 80%;
-            /* Set max width to 80% of the page */
-            margin: 0 auto;
-            /* Center the carousel on the page */
-            background-color: #fff;
-        }
-
-        /* Each cell within the carousel */
-        .carousel-cell {
-            width: 200px;
-            /* Adjust width for image container */
-            height: 120px;
-            /* Adjust height for image container */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            overflow: hidden;
-            border-radius: 5px;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            margin-right: 15px;
-        }
-
-        /* Styling for the images inside each cell */
-        .carousel-image {
-            max-width: 100px;
-            /* Adjust the image width */
-            max-height: 80px;
-            /* Adjust the image height */
-            object-fit: contain;
-            /* Centers and resizes images while keeping proportions */
-        }
-
-        /* Styling untuk container slider */
-        .slider-container {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Kustomisasi input range */
-        input[type=range].slider {
-            -webkit-appearance: none;
-            width: 80%;
-            background: transparent;
-        }
-
-        /* Track slider (garis di belakang slider) */
-        input[type=range].slider::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        input[type=range].slider::-moz-range-track {
-            width: 100%;
-            height: 4px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Thumb (lingkaran kecil untuk slider) */
-        input[type=range].slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        input[type=range].slider::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
-    </style>
 @endsection

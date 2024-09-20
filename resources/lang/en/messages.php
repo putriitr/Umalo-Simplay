@@ -82,7 +82,7 @@ return [
     'latest' => 'Latest',
     'leave_message' => 'Leave Message!!',
     'send_message' => 'Send Message',
-    'company' => 'Companyf',
+    'company' => 'Company',
     'see_more' => 'See More',
     'legality_topa' => 'Operational License',
     'legality' => 'Company Legality',

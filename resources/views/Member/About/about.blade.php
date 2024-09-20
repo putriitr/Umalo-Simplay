@@ -162,165 +162,21 @@
     <!-- Customer Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>
-                <h1 class="mb-5">{{ __('messages.our_customers') }}</h1>
-            </div>
-            <div class="network-container">
-                <div class="node node1">
-                    <img src="{{ asset('assets/img/users/U1.png') }}" alt="Logo 1" style="width: 100%; height: 100%;">
+            <section id="customer">
+                <div class="row justify-content-center text-center mb-4">
+                    <h1 class="mb-4">{{ __('messages.trusted_by') }}</h1>
                 </div>
-                <div class="node node2">
-                    <img src="{{ asset('assets/img/users/U2.png') }}" alt="Logo 2" style="width: 80%; height: 80%;">
+                <div class="carousel"
+                    data-flickity='{ "wrapAround": true, "autoPlay": true, "pageDots": false, "prevNextButtons": true, "groupCells": true }'>
+                    @foreach ($brands as $brand)
+                        <div class="carousel-cell">
+                            <img class="brand-logo" src="{{ asset('assets/img/brands/' . $brand->logo) }}" alt="{{ $brand->name }}">
+                        </div>
+                    @endforeach
                 </div>
-                <div class="node node3">
-                    <img src="{{ asset('assets/img/users/U3.png') }}" alt="Logo 3" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node4">
-                    <img src="{{ asset('assets/img/users/U4.png') }}" alt="Logo 4" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node5">
-                    <img src="{{ asset('assets/img/users/U5.png') }}" alt="Logo 5" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node6">
-                    <img src="{{ asset('assets/img/users/U6.png') }}" alt="Logo 6" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node7">
-                    <img src="{{ asset('assets/img/users/U7.png') }}" alt="Logo 7" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node8">
-                    <img src="{{ asset('assets/img/users/U8.png') }}" alt="Logo 8" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node9">
-                    <img src="{{ asset('assets/img/users/U9.png') }}" alt="Logo 9" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node10">
-                    <img src="{{ asset('assets/img/users/U10.png') }}" alt="Logo 10" style="width: 80%; height: 80%;">
-                </div>
-                <div class="node node11">
-                    <img src="{{ asset('assets/img/users/U11.png') }}" alt="Logo 11" style="width: 80%; height: 80%;">
-                </div>
-
-                <!-- Lines (Connections between logos) -->
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-                <div class="line line3"></div>
-                <div class="line line4"></div>
-                <div class="line line5"></div>
-                <div class="line line6"></div>
-                <div class="line line7"></div>
-                <div class="line line8"></div>
-                <div class="line line9"></div>
-                <div class="line line10"></div>
-                <div class="line line11"></div>
-            </div>
-            <style>
-                .network-container {
-                    position: relative;
-                    width: 1000px;
-                    height: 1000px;
-                    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-                    margin: auto;
-                    border: 2px solid #ccc;
-                }
-
-                .node {
-                    position: absolute;
-                    width: 100px;
-                    height: 100px;
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border: 5px solid white;
-                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                }
-
-                .node1 {
-                    top: 50px;
-                    left: 450px;
-                }
-
-                .node2 {
-                    top: 150px;
-                    left: 150px;
-                }
-
-                .node3 {
-                    top: 300px;
-                    left: 300px;
-                }
-
-                .node4 {
-                    top: 300px;
-                    left: 600px;
-                }
-
-                .node5 {
-                    top: 150px;
-                    left: 750px;
-                }
-
-                .node6 {
-                    top: 500px;
-                    left: 100px;
-                }
-
-                .node7 {
-                    top: 500px;
-                    left: 500px;
-                }
-
-                .node8 {
-                    top: 500px;
-                    left: 900px;
-                }
-
-                .node9 {
-                    top: 700px;
-                    left: 200px;
-                }
-
-                .node10 {
-                    top: 700px;
-                    left: 750px;
-                }
-
-                .node11 {
-                    top: 850px;
-                    left: 500px;
-                }
-
-                .line {
-                    position: absolute;
-                    width: 2px;
-                    background-color: #00f;
-                    transform-origin: top left;
-                }
-
-                .line1 {
-                    top: 100px;
-                    left: 500px;
-                    height: 150px;
-                    transform: rotate(30deg);
-                }
-
-                .line2 {
-                    top: 200px;
-                    left: 200px;
-                    height: 200px;
-                    transform: rotate(-30deg);
-                }
-
-                .line3 {
-                    top: 300px;
-                    left: 400px;
-                    height: 200px;
-                    transform: rotate(60deg);
-                }
-
-            </style>
+            </section>
         </div>
+
     </div>
     <!-- Customer End -->
 @endsection

@@ -24,6 +24,7 @@
     use App\Http\Controllers\Member\Location\LocationMemberController;
     use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     use App\Http\Controllers\Member\ContactMenu\ContactMenuController;
+    use App\Http\Controllers\Member\Brand\BrandController;
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@
         Route::get('/locations', [LocationMemberController::class, 'index']);
         Route::get('/contact', [ContactMenuController::class, 'index'])->name('contact');
         Route::post('/contact', [ContactMenuController::class, 'store']);
+        Route::get('/brands', [BrandController::class, 'index']);
 
         Auth::routes();
     });

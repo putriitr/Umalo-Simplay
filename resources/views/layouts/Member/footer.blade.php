@@ -32,8 +32,8 @@
                 <a class="btn btn-link" href="{{ route('about') }}">{{ __('messages.about_us') }}</a>
                 <a class="btn btn-link" href="{{ route('product.index') }}">{{ __('messages.our_products') }}</a>
                 <a class="btn btn-link" href="{{ route('activity') }}">{{ __('messages.activity') }}</a>
-                <a class="btn btn-link" href="">{{ __('messages.our_brand') }}</a>
-                <a class="btn btn-link" href="">{{ __('messages.our_customers') }}</a>
+                <a class="btn btn-link" href="{{ route('home') }}#brand">{{ __('messages.our_brand') }}</a>
+                <a class="btn btn-link" href="{{ route('about') }}#customer">{{ __('messages.our_customers') }}</a>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="position-relative mx-auto"
@@ -68,7 +68,9 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<link rel='stylesheet' href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'>
+<link rel="stylesheet" href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'>
+<link rel="styleshceet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 <script src="{{ asset('assets/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('assets/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('assets/lib/waypoints/waypoints.min.js') }}"></script>
