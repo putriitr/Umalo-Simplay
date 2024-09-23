@@ -51,7 +51,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
                         <div class="team-item rounded flex-fill"
                             style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
+                            <div class="team-content text-center border border-primary rounded-bottom p-4"
                                 style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                                 <h5>{{ __('messages.legality_1') }}</h5>
                                 <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
@@ -61,7 +61,7 @@
                     <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
                         <div class="team-item rounded flex-fill"
                             style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
+                            <div class="team-content text-center border border-primary rounded-bottom p-4"
                                 style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
                                 <h5>{{ __('messages.legality_2') }}</h5>
                                 <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
