@@ -137,7 +137,7 @@
                         <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                             aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="{{ asset('assets/images/Logo.pnng') }}" alt="..."
+                                <img src="{{ asset('assets/img/user.png') }}" alt="..."
                                     class="avatar-img rounded-circle" />
                             </div>
                             <span class="profile-username">

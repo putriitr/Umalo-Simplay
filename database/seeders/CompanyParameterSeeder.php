@@ -26,7 +26,7 @@ class CompanyParameterSeeder extends Seeder
                 'linkedin' => 'https://www.linkedin.com/company/arkamaya-guna-saharsa/?originalSubdomain=id',
                 'ekatalog' => 'https://e-katalog.lkpp.go.id/info/penyedia/444815?komoditasId=812',
                 'nama_perusahaan' => 'PT Simplay Abyakta Mediatek',
-                'sejarah_singkat' => 'SIMPLAY YOUR DIGITAL SOLUTIONS adalah perusahaan yang bergerak di bidang Perdagangan serta Penyedia barang Elektronik dan Peralatan Pendukungnya yang didirikan pada tahun 2020. Kami menyediakan solusi bisnis yang inovatif kepada perusahaan yang menjadi konsumen kami...',
+                'sejarah_singkat' => 'SIMPLAY YOUR DIGITAL SOLUTIONS adalah perusahaan yang bergerak di bidang Perdagangan serta Penyedia barang Elektronik dan Peralatan Pendukungnya yang didirikan pada tahun 2020. Kami menyediakan solusi bisnis yang inovatif kepada perusahaan yang menjadi konsumen kami. Kami mengutamakan mutu serta kepercayaan konsumen dengan harapan melalui pelayanan istimewa dari kami secara profesional menghasilkan integrasi dan kepuasan penuh pelanggan kami.',
             ]
         ]);
     }

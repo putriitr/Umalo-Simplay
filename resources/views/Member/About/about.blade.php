@@ -137,4 +137,42 @@
         </div>
     @endif
     <!-- User End -->
+
+    <script>
+        document.getElementById('show-more-partners').addEventListener('click', function() {
+            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
+                item.classList.remove('d-none');
+            });
+            this.style.display = 'none';
+            document.getElementById('show-less-partners').classList.remove('d-none');
+        });
+
+        document.getElementById('show-less-partners').addEventListener('click', function() {
+            document.querySelectorAll('.partner-item').forEach(function(item, index) {
+                if (index >= 8) {
+                    item.classList.add('d-none');
+                }
+            });
+            this.classList.add('d-none');
+            document.getElementById('show-more-partners').style.display = 'inline-block';
+        });
+
+        document.getElementById('show-more-principals').addEventListener('click', function() {
+            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
+                item.classList.remove('d-none');
+            });
+            this.style.display = 'none';
+            document.getElementById('show-less-principals').classList.remove('d-none');
+        });
+
+        document.getElementById('show-less-principals').addEventListener('click', function() {
+            document.querySelectorAll('.principal-item').forEach(function(item, index) {
+                if (index >= 10) {
+                    item.classList.add('d-none');
+                }
+            });
+            this.classList.add('d-none');
+            document.getElementById('show-more-principals').style.display = 'inline-block';
+        });
+    </script>
 @endsection
