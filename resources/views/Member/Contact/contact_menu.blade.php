@@ -27,7 +27,7 @@
         <div class="container">
             <div class="container-fluid">
                 <div class="row text-center justify-content-center">
-                    <h1 class="mb-4">Contact Us For Any Query</h1>
+                    <h1 class="mb-4">{{ __('messages.contact_title') }}</h1>
                     <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="bg-transparent rounded">
                             <div class="d-flex flex-column align-items-center text-center mb-2">
@@ -35,7 +35,7 @@
                                     style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                     <i class="fa fa-phone-alt fa-2x" style="color: white;"></i>
                                 </a>
-                                <h5 class="text-dark">PHONE</h5>
+                                <h5 class="text-dark">{{ __('messages.phone_title') }}</h5>
                                 <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->no_telepon }}</p>
                             </div>
                         </div>
@@ -47,21 +47,8 @@
                                     style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF;">
                                     <i class="fab fa-whatsapp fa-3x" style="color: white;"></i>
                                 </div>
-                                <h5 class="text-dark">WORK TIME</h5>
+                                <h5 class="text-dark">{{ __('messages.wa_title') }}</h5>
                                 <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->no_wa }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="bg-transparent rounded">
-                            <div class="d-flex flex-column align-items-center text-center mb-2">
-                                <a href="https://maps.app.goo.gl/tyu8r4ncFS69fCmH7" target="_blank"
-                                    class="d-flex align-items-center justify-content-center mb-3"
-                                    style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
-                                    <i class="fa fa-map-marker-alt fa-2x" style="color: white;"></i>
-                                </a>
-                                <h5 class="text-dark">ADDRESS</h5>
-                                <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->alamat }}</p>
                             </div>
                         </div>
                     </div>
@@ -73,7 +60,7 @@
                                     style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                     <i class="fa fa-envelope-open fa-2x" style="color: white;"></i>
                                 </a>
-                                <h5 class="text-dark">EMAIL</h5>
+                                <h5 class="text-dark">{{ __('messages.email_title') }}</h5>
                                 <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->email }}</p>
                             </div>
                         </div>
@@ -86,8 +73,21 @@
                                     style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
                                     <i class="fa fa-globe fa-2x" style="color: white;"></i>
                                 </a>
-                                <h5 class="text-dark">WEBSITE</h5>
+                                <h5 class="text-dark">{{ __('messages.website_title') }}</h5>
                                 <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->website }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="bg-transparent rounded">
+                            <div class="d-flex flex-column align-items-center text-center mb-2">
+                                <a href="https://maps.app.goo.gl/tyu8r4ncFS69fCmH7" target="_blank"
+                                    class="d-flex align-items-center justify-content-center mb-3"
+                                    style="width: 90px; height: 90px; border-radius: 50px; background-color: #6196FF; text-decoration: none;">
+                                    <i class="fa fa-map-marker-alt fa-2x" style="color: white;"></i>
+                                </a>
+                                <h5 class="text-dark">{{ __('messages.address_title') }}</h5>
+                                <p class="mb-0 text-dark" style="font-weight: bold;">{{ $compro->alamat }}</p>
                             </div>
                         </div>
                     </div>
@@ -97,12 +97,14 @@
 
             <!-- Message Start -->
             <div class="container-fluid my-5 px-0"><br><br></div>
-            <div id="message" class="container position-relative wow fadeInUp" data-wow-delay="0.1s" style="margin-top: -6rem;">
+            <div id="message" class="container position-relative wow fadeInUp" data-wow-delay="0.1s"
+                style="margin-top: -6rem;">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="bg-light text-center p-5">
                             <h1 class="mb-4">{{ __('messages.leave_message') }}</h1>
-                            <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded" style="text-align: left;">
+                            <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded"
+                                style="text-align: left;">
                                 @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
@@ -114,7 +116,8 @@
                                     <div class="col-12 col-sm-6">
                                         <label for="email" class="form-label">{{ __('messages.email') }} <span
                                                 class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            required>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                         <label for="company" class="form-label">{{ __('messages.company') }} <span

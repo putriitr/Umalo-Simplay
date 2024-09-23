@@ -89,7 +89,6 @@
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
-
                     @foreach ($activeMetas as $type => $metas)
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>

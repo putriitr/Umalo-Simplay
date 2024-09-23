@@ -92,10 +92,11 @@ return [
     'legality_top' => 'Operational License',
     'legality' => 'Company Legality',
 
-    'komputer_desc' => 'We offer a wide selection of computers and laptops designed to meet modern computing needs. Whether for business, education or entertainment, our devices are powered by the latest technology for maximum performance. With a variety of specifications and advanced features, you can choose a device that suits your productivity and mobility needs.',
-    'printer_desc' => 'The best printing and scanning solutions for your needs. Our products include high-quality printers and scanners that print documents crisply and scan with precision. Suitable for home or office use, our technology ensures efficiency in every print and scan job.',
-    'ac_desc' => 'Enjoy the comfort of cool, fresh air with our selection of energy-efficient, high-performance Air Conditioners. Designed to maintain the ideal temperature in various rooms, our products come with the latest technology to ensure optimal cooling and quiet operation, suitable for any kind of room.',
-    'tv_desc' => 'We provide the best visual solutions with our range of television and video wall products. Get a great viewing experience with sharp images and vivid colors. Our televisions come in a variety of sizes and modern features, while video walls allow for impressive large visual displays, ideal for commercial or event use.',
-    'kamera_desc' => 'Explore the world of photography',
+    'contact_title' => 'Contact Us For Any Query',
+    'phone_title' => 'PHONE',
+    'wa_title' => 'WHATSAPP',
+    'address_title' => 'ADDRESS',
+    'email_title' => 'EMAIL',
+    'website_title' => 'WEBSITE',
 
 ];
