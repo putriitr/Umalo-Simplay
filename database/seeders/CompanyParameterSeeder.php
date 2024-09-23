@@ -19,7 +19,7 @@ class CompanyParameterSeeder extends Seeder
                 'no_wa' => '+62 821-69998-0001',
                 'website' => 'www.simplay.co.id',
                 'alamat' => 'Rajawali Selatan Raya Blok A No.33 Gunung Sahari Utara Sawah Besar Kota Adm. Jakarta Pusat DKI Jakarta 10720',
-                'maps' => 'https://www.google.com/maps/place/PT.+Arkamaya+Guna+Saharsa/@-6.2114159,106.8600596,15z/data=!4m2!3m1!1s0x0:0x1bc64c80b9328ca6?sa=X&ved=1t:2428&ictx=111',
+                'maps' => 'https://maps.app.goo.gl/qyNy2Y54hEn3nWvq7',
                 'visi' => 'Perusahaan rintisan teknologi yang menyediakan solusi inovatif untuk tumbuh dan memberikan nilai tambah bagi industri Anda.',
                 'misi' => 'Dengan memberikan pelayanan terbaik melalui inovasi sehingga Anda mendapatkan solusi yang tepat dalam memenuhi setiap kebutuhan dengan orientasi yang detail dan juga garansi yang dapat diandalkan.',
                 'instagram' => 'None',
