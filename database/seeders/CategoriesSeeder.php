@@ -17,49 +17,22 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('kategori')->insert([
             [
-                'nama' => 'Hidrolika',
+                'nama' => 'Komputer & Laptop',
             ],
             [
-                'nama' => 'Beton',
+                'nama' => 'Printer & Scanner',
             ],
             [
-                'nama' => 'Tanah',
+                'nama' => 'Air Conditioner',
             ],
             [
-                'nama' => 'Aspal',
+                'nama' => 'Televisi & Video Wall',
             ],
             [
-                'nama' => 'Bebatuan',
+                'nama' => 'Kamera & Fotografi',
             ],
             [
-                'nama' => 'Manajemen Konstruksi',
-            ],
-            [
-                'nama' => 'Semen',
-            ],
-            [
-                'nama' => 'Kebumian',
-            ],
-            [
-                'nama' => 'Listrik',
-            ],
-            [
-                'nama' => 'Mekanik',
-            ],
-            [
-                'nama' => 'Material',
-            ],
-            [
-                'nama' => 'Industri',
-            ],
-            [
-                'nama' => 'Kelautan',
-            ],
-            [
-                'nama' => 'Perkapalan',
-            ],
-            [
-                'nama' => 'Perkeretaapian',
+                'nama' => 'Networking ',
             ],
         ]);
     }

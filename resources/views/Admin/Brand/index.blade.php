@@ -4,8 +4,8 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h1 class="h4">Daftar Merek/Brand/Induk Perusahaan</h1>
-                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary">Tambah Merek/Mitra/Induk Perusahaan Baru</a>
+                <h1 class="h4">Daftar Merek/Pengguna</h1>
+                <a href="{{ route('admin.brand.create') }}" class="btn btn-primary">Tambah Merek/Pengguna Baru</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

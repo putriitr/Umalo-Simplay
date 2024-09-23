@@ -75,108 +75,66 @@
     <!-- Legality End -->
 
     <!-- Brand Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
-                <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-1.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
+    @if ($principals->isNotEmpty())
+        <section id="brand">
+            <div class="container-xxl py-5" data-wow-delay="0.1s">
+                <div class="container">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
+                        <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-2.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
+                    <div class="row gy-4">
+                        @foreach ($principals as $key => $p)
+                            <div
+                                class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                                <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                        width="100%" height="45">
+                                </div>
                             </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-3.jpg" alt="">
+                    @if ($principals->count() > 8)
+                        <div class="text-center mt-4">
+                            <button id="show-more-principals"
+                                class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                            <button id="show-less-principals"
+                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                         </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <div class="position-relative overflow-hidden">
-                            <img class="img-fluid" src="img/team-4.jpg" alt="">
-                        </div>
-                        <div class="team-text">
-                            <div class="bg-light">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                            <div class="bg-primary">
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    @endif
     <!-- Brand End -->
 
-    <!-- Customer Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <section id="customer">
-                <div class="row justify-content-center text-center mb-4">
-                    <h1 class="mb-4">{{ __('messages.trusted_by') }}</h1>
+    <!-- User Start -->
+    @if ($partners->isNotEmpty())
+        <div id="user" class="container-xxl py-5" data-wow-delay="0.1s">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>
+                    <h1 class="mb-5">{{ __('messages.our_customers') }}</h1>
                 </div>
-                <div class="carousel"
-                    data-flickity='{ "wrapAround": true, "autoPlay": true, "pageDots": false, "prevNextButtons": true, "groupCells": true }'>
-                    @foreach ($brands as $brand)
-                        <div class="carousel-cell">
-                            <img class="brand-logo" src="{{ asset('assets/img/brands/' . $brand->logo) }}" alt="{{ $brand->name }}">
+                <div class="row gy-4">
+                    @foreach ($partners as $key => $p)
+                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
+                                    height="80">
+                            </div>
                         </div>
                     @endforeach
                 </div>
-            </section>
+                @if ($partners->count() > 4)
+                    <div class="text-center mt-4">
+                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-principals"
+                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                    </div>
+                @endif
+            </div>
         </div>
-
-    </div>
-    <!-- Customer End -->
+    @endif
+    <!-- User End -->
 @endsection

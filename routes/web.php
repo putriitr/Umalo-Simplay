@@ -25,6 +25,8 @@
     use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     use App\Http\Controllers\Member\ContactMenu\ContactMenuController;
     use App\Http\Controllers\Member\Brand\BrandController;
+    use App\Http\Controllers\Admin\QnaGuest\QnaGuestController;
+    use App\Http\Controllers\Guest\Message\GuestMessageController;
 
     /*
     |--------------------------------------------------------------------------
@@ -50,6 +52,13 @@
         Route::get('/contact', [ContactMenuController::class, 'index'])->name('contact');
         Route::post('/contact', [ContactMenuController::class, 'store']);
         Route::get('/brands', [BrandController::class, 'index']);
+        Route::get('/admin/guest-messages', [GuestMessageController::class, 'index'])->name('admin.guest-messages.index');
+        Route::post('/guest-messages', [GuestMessageController::class, 'store'])->name('guest-messages.store');
+
+        // Admin Qna Guest
+        Route::prefix('admin')->name('admin.')->group(function () {
+            Route::resource('qnaguest', QnaGuestController::class);
+        });
 
         Auth::routes();
     });

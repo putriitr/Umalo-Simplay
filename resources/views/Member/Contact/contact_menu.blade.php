@@ -94,42 +94,50 @@
                 </div>
             </div><br><br>
             <!-- Booking Start -->
+
+            <!-- Message Start -->
             <div class="container-fluid my-5 px-0"><br><br></div>
-            <div class="container position-relative wow fadeInUp" data-wow-delay="0.1s" style="margin-top: -6rem;">
+            <div id="message" class="container position-relative wow fadeInUp" data-wow-delay="0.1s" style="margin-top: -6rem;">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="bg-light text-center p-5">
                             <h1 class="mb-4">{{ __('messages.leave_message') }}</h1>
-                            <form>
+                            <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded" style="text-align: left;">
+                                @csrf
                                 <div class="row g-3">
                                     <div class="col-12 col-sm-6">
-                                        <input type="text" class="form-control border-0" placeholder="Your Name"
-                                            style="height: 55px;">
+                                        <label for="first_name" class="form-label">{{ __('messages.full_name') }} <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="first_name" name="first_name"
+                                            required>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <input type="email" class="form-control border-0" placeholder="Your Email"
-                                            style="height: 55px;">
+                                        <label for="email" class="form-label">{{ __('messages.email') }} <span
+                                                class="text-danger">*</span></label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <select class="form-select border-0" style="height: 55px;">
-                                            <option selected>Select A Service</option>
-                                            <option value="1">Service 1</option>
-                                            <option value="2">Service 2</option>
-                                            <option value="3">Service 3</option>
-                                        </select>
+                                        <label for="company" class="form-label">{{ __('messages.company') }} <span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="company" name="company"
+                                            required>
                                     </div>
                                     <div class="col-12 col-sm-6">
-                                        <div class="date" id="date1" data-target-input="nearest">
-                                            <input type="text" class="form-control border-0 datetimepicker-input"
-                                                placeholder="Service Date" data-target="#date1"
-                                                data-toggle="datetimepicker" style="height: 55px;">
-                                        </div>
+                                        <label for="phone" class="form-label">{{ __('messages.phone') }} <span
+                                                class="text-danger">*</span></label>
+                                        <input type="tel" id="no_wa" name="no_wa" class="form-control"
+                                            required pattern="\d{10,12}"
+                                            title="Nomor WhatsApp harus terdiri dari 10 hingga 12 digit angka"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="12">
                                     </div>
                                     <div class="col-12">
-                                        <textarea class="form-control border-0" placeholder="Special Request"></textarea>
+                                        <label for="message" class="form-label">{{ __('messages.your_message') }} <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                        <button class="btn btn-primary w-100 py-3"
+                                            type="submit">{{ __('messages.send_message') }}</button>
                                     </div>
                                 </div>
                             </form>
@@ -138,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <!-- Booking End -->
+        <!-- Message End -->
     </div>
     </div>
     <!-- Contact End -->

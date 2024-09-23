@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Tambah Merek/Mitra Baru</h1>
+                <h1 class="h4">Tambah Merek/Pengguna Baru</h1>
             </div>
 
             <div class="card-body">
@@ -22,16 +22,16 @@
                     <div class="form-group mb-3">
                         <label for="type">Tipe</label>
                         <select name="type" class="form-control">
-                            <option value="brand">Merek</option>
-                            <option value="partner">Mitra</option>
-                            <option value="principal">Induk Perusahaan</option>
+                            {{-- <option value="brand">Merek</option> --}}
+                            <option value="principal">Merek</option>
+                            <option value="partner">Pengguna</option>
                         </select>
                         @error('type')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
 
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="url">URL (Opsional)</label>
                         <input type="text" name="url" class="form-control" value="{{ old('url') }}">
                         @error('url')
@@ -45,9 +45,9 @@
                         @error('nama')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    <button type="submit" class="btn btn-primary">Buat Merek/Mitra</button>
+                    <button type="submit" class="btn btn-primary">Buat Merek/Pengguna</button>
                 </form>
             </div>
         </div>

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-lg">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h3>Kategori List</h3>
+                    <h3>Daftar Kategori Produk</h3>
                     <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">Tambah Kategori Baru</a>
                 </div>
                 <div class="card-body">

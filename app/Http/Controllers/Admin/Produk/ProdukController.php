@@ -46,19 +46,19 @@ class ProdukController extends Controller
             'via' => 'required|in:labtek,labverse',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:15000',
-            'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000', 
+            'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
             'user_manual' => 'nullable|file|mimes:pdf,doc,docx|max:20000',
             'document_certification_pdf.*' => 'nullable|file|mimes:pdf|max:20000',
             'file.*' => 'nullable|mimes:pdf,jpeg,png,jpg,gif|max:20000', // Optional for editing
 
-    
+
         ]);
-        
+
         // Create a new Produk instance and fill it with the validated data
         $produk = new Produk;
         $produk->fill($request->all());
         $produk->save();
-        
+
         // Handle user manual upload
         if ($request->hasFile('user_manual')) {
             $userManualName = time() . '_' . Str::slug(pathinfo($request->file('user_manual')->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $request->file('user_manual')->getClientOriginalExtension();
@@ -72,7 +72,7 @@ class ProdukController extends Controller
             foreach ($request->file('document_certification_pdf') as $file) {
                 $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
                 $file->move('uploads/produk/document_certifications/', $fileName);
-        
+
                 // Simpan dokumen di database
                 DocumentCertificationsProduk::create([
                     'produk_id' => $produk->id,
@@ -80,29 +80,29 @@ class ProdukController extends Controller
                 ]);
             }
         }
-        
-    
+
+
         // Handle video upload
         if ($request->hasFile('video')) {
             foreach ($request->file('video') as $videoFile) {
                 $slug = Str::slug(pathinfo($videoFile->getClientOriginalName(), PATHINFO_FILENAME));
                 $newVideoName = time() . '_' . $slug . '.' . $videoFile->getClientOriginalExtension();
                 $videoFile->move('uploads/produk/videos/', $newVideoName);
-    
+
                 $produkVideo = new ProdukVideo;
                 $produkVideo->produk_id = $produk->id;
                 $produkVideo->video = 'uploads/produk/videos/' . $newVideoName;
                 $produkVideo->save();
             }
         }
-    
+
         // Handle images upload
         if ($request->hasFile('gambar')) {
             foreach ($request->file('gambar') as $imgProduk) {
                 $slug = Str::slug(pathinfo($imgProduk->getClientOriginalName(), PATHINFO_FILENAME));
                 $newImageName = time() . '_' . $slug . '.' . $imgProduk->getClientOriginalExtension();
                 $imgProduk->move('uploads/produk/', $newImageName);
-    
+
                 $produkImage = new ProdukImage;
                 $produkImage->produk_id = $produk->id;
                 $produkImage->gambar = 'uploads/produk/' . $newImageName;
@@ -116,7 +116,7 @@ class ProdukController extends Controller
                 $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
                 $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
                 $file->move('uploads/produk/brosur/', $fileName);
-        
+
                 // Simpan brosur di database
                 Brosur::create([
                     'produk_id' => $produk->id,
@@ -125,11 +125,11 @@ class ProdukController extends Controller
                 ]);
             }
         }
-        
-    
+
+
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -146,8 +146,8 @@ class ProdukController extends Controller
         $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
         return view('admin.produk.show', compact('produk'));
     }
-    
-    
+
+
 
 
     /**
@@ -172,7 +172,7 @@ class ProdukController extends Controller
     $produk->fill($request->all());
     $produk->save();
 
-    
+
     if ($request->has('delete_images')) {
         $deleteImageIds = $request->input('delete_images');
         foreach ($deleteImageIds as $imageId) {
@@ -203,7 +203,7 @@ class ProdukController extends Controller
         if ($request->hasFile('document_certification_pdf')) {
             // Ambil brosur lama terkait produk dan hapus file fisiknya jika diperlukan
             $oldDocumentCertifications = DocumentCertificationsProduk::where('produk_id', $produk->id)->get();
-            
+
             // Menghapus semua dokumen lama
             foreach ($oldDocumentCertifications as $oldDocument) {
                 if (file_exists(public_path($oldDocument->pdf))) {
@@ -211,12 +211,12 @@ class ProdukController extends Controller
                 }
                 $oldDocument->delete(); // Menghapus record dari database
             }
-        
+
             // Upload dan simpan dokumen baru
             foreach ($request->file('document_certification_pdf') as $file) {
                 $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
                 $file->move('uploads/produk/document_certifications/', $fileName);
-        
+
                 // Simpan dokumen di database
                 DocumentCertificationsProduk::create([
                     'produk_id' => $produk->id,
@@ -224,8 +224,8 @@ class ProdukController extends Controller
                 ]);
             }
         }
-        
-    
+
+
 
     // Handle video upload
     if ($request->hasFile('video')) {
@@ -259,7 +259,7 @@ class ProdukController extends Controller
         if ($request->hasFile('file')) {
             // Ambil brosur lama terkait produk
             $oldBrosur = Brosur::where('produk_id', $produk->id)->get();
-            
+
             // Hapus semua file brosur lama
             foreach ($oldBrosur as $brosur) {
                 if (file_exists(public_path($brosur->file))) {
@@ -267,13 +267,13 @@ class ProdukController extends Controller
                 }
                 $brosur->delete(); // Hapus dari database
             }
-        
+
             // Upload brosur baru
             foreach ($request->file('file') as $file) {
                 $fileName = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
                 $type = $file->getClientOriginalExtension() === 'pdf' ? 'pdf' : 'image';
                 $file->move('uploads/produk/brosur/', $fileName);
-                
+
                 // Simpan brosur baru di database
                 Brosur::create([
                     'produk_id' => $produk->id,
@@ -282,10 +282,10 @@ class ProdukController extends Controller
                 ]);
             }
         }
-        
-        
 
-    
+
+
+
 
     return redirect()->route('admin.produk.index')->with('success', 'Produk updated successfully.');
 }
@@ -303,5 +303,5 @@ class ProdukController extends Controller
 
         return redirect()->route('admin.produk.index')->with('success', 'Produk deleted successfully.');
     }
-    
+
 }

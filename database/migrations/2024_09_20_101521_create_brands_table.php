@@ -11,12 +11,12 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('logo'); 
+            $table->string('logo');
             $table->timestamps();
         });
     }
 
-    public function down()
+    public function ddown()
     {
         Schema::dropIfExists('brands');
     }

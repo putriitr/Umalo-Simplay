@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Detail Brand/Mitra/Induk Perusahaan</h1>
+        <h1>Detail Merek/Pengguna</h1>
 
         <div class="card">
             <div class="card-header">
@@ -11,13 +11,13 @@
             <div class="card-body">
                 <p><strong>Tipe : </strong>{{ ucfirst($brandPartner->type) }}</p>
 
-                <p><strong>URL : </strong>
+                {{-- <p><strong>URL : </strong>
                     @if($brandPartner->url)
                         <a href="{{ $brandPartner->url }}" target="_blank">{{ $brandPartner->url }}</a>
                     @else
                         N/A
                     @endif
-                </p>
+                </p> --}}
 
                 <p><strong>Gambar : </strong></p>
                 @if($brandPartner->gambar)

@@ -95,7 +95,7 @@
                             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}" aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
                             <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
                                 @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">s</a>
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}" class="dropdown-item">{{ $meta->title}}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
                     @if (auth()->check())
                             <div class="dropdown text-light">
-                                <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
+                                <a href="#" class="dropdown-toggle text-light" id="companyDropdown" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     <small class="text-light"><i
                                             class="fa fa-user text-light text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>

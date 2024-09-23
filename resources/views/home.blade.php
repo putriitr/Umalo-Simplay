@@ -150,7 +150,7 @@
     </div>
     <!-- Service End -->
 
-    <!-- Service Start -->
+    <!-- Product Start -->
     @if (!$produks->isEmpty())
         <div class="container-xxl py-5">
             <div class="container">
@@ -160,16 +160,16 @@
                 </div>
                 <div class="row g-4">
                     @foreach ($produks as $produk)
-                        <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.1s">
                             <!-- Card is now wrapped in a link -->
                             <a href="{{ route('product.show', $produk->id) }}" style="text-decoration: none;">
                                 <div class="blog-item rounded"
-                                    style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; height: 400px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                                    style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 20px; height: 250px; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                                     <div class="blog-img"
                                         style="overflow: hidden; border-radius: 15px; position: relative; flex: 1;">
                                         <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
                                             class="img-fluid w-100"
-                                            style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;"
+                                            style="border-radius: 15px; width: 100%; height: 150px; object-fit: cover; transition: transform 0.3s ease, box-shadow 0.3s ease;"
                                             alt="{{ $produk->nama }}"
                                             onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 4px 15px rgba(0, 0, 0, 0.2)';"
                                             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
@@ -193,113 +193,35 @@
             </div>
         </div><br>
     @endif
-    <!-- Service End -->
+    <!-- Product End -->
 
     <!-- Brand Start -->
-    <div class="container">
-        <section id="trusted-brands">
-            <div class="row justify-content-center text-center mb-4">
-                <h1 class="mb-4">{{ __('messages.trusted_by') }}</h1>
-            </div>
-            <div class="carousel"
-                data-flickity='{ "wrapAround": true, "autoPlay": true, "pageDots": false, "prevNextButtons": true, "groupCells": true }'>
-                @foreach ($brands as $brand)
-                    <div class="carousel-cell">
-                        <img class="brand-logo" src="{{ asset('assets/img/brands/' . $brand->logo) }}"
-                            alt="{{ $brand->name }}">
+    @if ($principals->isNotEmpty())
+        <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
+            <div class="container">
+               <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
+                    <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
+                </div>
+                <div class="row gy-4">
+                    @foreach ($principals as $key => $p)
+                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                    width="100%" height="45">
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                @if ($principals->count() > 8)
+                    <div class="text-center mt-4">
+                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-principals"
+                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                     </div>
-                @endforeach
+                @endif
             </div>
-        </section>
-    </div>
+        </div>
+    @endif
     <!-- Brand End -->
-
-
-    <!-- Additional CSS for responsiveness -->
-    <style>
-        .carousel {
-            margin: 0;
-            /* Remove default margin */
-            padding: 0;
-            /* Remove default padding */
-            width: 100%;
-            /* Ensure the carousel takes full width */
-        }
-
-        /* Styling container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        #trusted-brands h1 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
-
-        /* Styling carousel cells */
-        .carousel-cell {
-            width: 20%;
-            /* Tampilkan 5 logo pada desktop */
-            padding: 10px;
-        }
-
-        .brand-logo {
-            width: 100%;
-            height: auto;
-            max-width: 180px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Styling untuk responsif */
-        @media (max-width: 1024px) {
-            .carousel-cell {
-                width: 25%;
-                /* Tampilkan 4 logo per slide di tablet */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .carousel-cell {
-                width: 33.333%;
-                /* Tampilkan 3 logo per slide di tablet kecil */
-            }
-        }
-
-        @media (max-width: 576px) {
-            .carousel-cell {
-                width: 50%;
-                /* Tampilkan 2 logo per slide di mobile */
-            }
-        }
-    </style>
-
-
-    <!-- Include Flickity JS -->
-    <script src="{{ asset('assets/js/member/flickity.pkgd.min.js') }}"></script>
-    <script>
-        // Inisialisasi Flickity
-        var flkty = new Flickity('.carousel', {
-            wrapAround: true,
-            autoPlay: false,
-            pageDots: false,
-            prevNextButtons: false
-        });
-
-        // Ambil elemen slider
-        var rangeInput = document.getElementById('carouselSlider');
-
-        // Event Listener untuk menggeser carousel saat slider digeser
-        rangeInput.addEventListener('input', function() {
-            flkty.select(rangeInput.value); // Sesuaikan gambar sesuai dengan nilai slider
-        });
-
-        // Update slider saat carousel digeser dengan manual atau otomatis
-        flkty.on('change', function(index) {
-            rangeInput.value = index; // Perbarui nilai slider sesuai gambar yang sedang aktif
-        });
-    </script>
 @endsection
