@@ -1,18 +1,9 @@
 @extends('layouts.Member.master')
 
 @section('content')
-<!-- Header Start -->
-<div class="container-fluid bg-breadcrumb py-5">
-    <div class="container text-center" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Product Details</h3>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-white">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/portal') }}" class="text-white">Portal Member</a></li>
-            <li class="breadcrumb-item active text-primary">Product Details</li>
-        </ol>
-    </div>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ __('messages.my_product_2') }}</h2>
 </div>
-<!-- Header End -->
 
 <!-- Product Details Start -->
 <div class="container mt-5 mb-5">

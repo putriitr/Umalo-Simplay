@@ -100,4 +100,14 @@ return [
     'address_title' => 'ALAMAT',
     'email_title' => 'EMAIL',
     'website_title' => 'WEBSITE',
+    'see_more' => 'Lihat Lainnya',
+
+    'my_product' => 'Produk Saya',
+    'my_product_2' => 'Detail Produk Saya',
+    'user_manual' => 'Panduan Penggunaan Produk',
+    'document' => 'Dokumen & Sertifikat',
+    'tutorials' => 'Video Cara Penggunaan',
+    'monitoring' => 'Monitoring Produk',
+    'monitoring_2' => 'Detail Monitoring Produk',
+    'qna' => 'Pertanyaan & Jawaban',
 ];

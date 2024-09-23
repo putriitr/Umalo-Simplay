@@ -99,4 +99,13 @@ return [
     'email_title' => 'EMAIL',
     'website_title' => 'WEBSITE',
 
+    'my_product' => 'My Product',
+    'my_product_2' => 'My Product Detail',
+    'user_manual' => 'User Manual',
+    'document' => 'Document & Certification',
+    'tutorials' => 'Tutorials Video',
+    'monitoring' => 'Product Monitoring',
+    'monitoring_2' => 'Product Monitoring Detail ',
+    'qna' => 'Question & Answer',
+
 ];
