@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('merk');
-            $table->text('kegunaan');
+            $table->text('deskripsi');
+            $table->text('spesifikasi');
             $table->string('user_manual')->nullable();
-            $table->enum('via', ['labtek', 'labverse']);
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
             $table->timestamps();
         });

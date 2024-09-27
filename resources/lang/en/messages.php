@@ -107,5 +107,13 @@ return [
     'monitoring' => 'Product Monitoring',
     'monitoring_2' => 'Product Monitoring Detail ',
     'qna' => 'Question & Answer',
+    'related_products' => 'Related Product',
+
+    'merk' => 'Brand',
+    'type' => 'Type',
+    'link' => 'E-Katalog',
+    'description_product' => 'Description',
+    'specification_product' => 'Specification',
+    'click_here' => 'Click Here'
 
 ];

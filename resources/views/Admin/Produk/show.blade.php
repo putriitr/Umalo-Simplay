@@ -21,21 +21,28 @@
                                 <td>{{ $produk->merk }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Kegunaan</th>
-                                <td>{{ $produk->kegunaan }}</td>
+                                <th scope="row">Tipe</th>
+                                <td>{{ $produk->tipe }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Via</th>
-                                <td>{{ ucfirst($produk->via) }}</td>
+                                <th scope="row">Link</th>
+                                <td>{{ $produk->link }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Kategori</th>
                                 <td>{{ $produk->kategori->nama }}</td>
+                            </tr>p
+                            <tr>
+                                <th scope="row">Deskripsi</th>
+                                <td>{{ $produk->deskripsi }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Spesifikasi</th>
+                                <td>{{ $produk->spesifikasi }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
 
             <!-- Gambar Produk -->

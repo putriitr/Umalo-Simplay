@@ -58,31 +58,30 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="kegunaan">Kegunaan Produk :</label>
-                                        <textarea name="kegunaan" class="form-control" required>{{ old('kegunaan') }}</textarea>
+                                        <label for="link">Link E-Katalog Produk :</label>
+                                        <input type="text" name="link" class="form-control" value="{{ old('link') }}" required>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="via">Via:</label>
-                                                <select name="via" class="form-control" required>
-                                                    <option value="labtek" {{ old('via') == 'labtek' ? 'selected' : '' }}>Labtek</option>
-                                                    <option value="labverse" {{ old('via') == 'labverse' ? 'selected' : '' }}>Labverse</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="kategori_id">Kategori :</label>
-                                                <select name="kategori_id" class="form-control" required>
-                                                    @foreach ($kategori as $kategoris)
-                                                        <option value="{{ $kategoris->id }}" {{ old('kategori_id') == $kategoris->id ? 'selected' : '' }}>
-                                                            {{ $kategoris->nama }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                    <div class="form-group">
+                                        <label for="deskripsi">Deskripsi Produk :</label>
+                                        <textarea name="deskripsi" class="form-control" required>{{ old('deskripsi') }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="spesifikasi">Spesifikasi Produk :</label>
+                                        <textarea name="spesifikasi" class="form-control" required>{{ old('spesifikasi') }}</textarea>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="kategori_id">Kategori :</label>
+                                            <select name="kategori_id" class="form-control" required>
+                                                @foreach ($kategori as $kategoris)
+                                                    <option value="{{ $kategoris->id }}" {{ old('kategori_id') == $kategoris->id ? 'selected' : '' }}>
+                                                        {{ $kategoris->nama }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 

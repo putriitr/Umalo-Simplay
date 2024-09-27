@@ -27,7 +27,6 @@
                                         <th>ID</th>
                                         <th>Nama Produk</th>
                                         <th>Merk</th>
-                                        <th>Via</th>
                                         <th>Kategori</th>
                                         <th>Gambar</th>
                                         <th>Aksi</th>
@@ -39,7 +38,6 @@
                                             <td>{{ $produk->id }}</td>
                                             <td class="text-truncate" style="max-width: 150px;">{{ $produk->nama }}</td>
                                             <td class="text-truncate" style="max-width: 100px;">{{ $produk->merk }}</td>
-                                            <td>{{ ucfirst($produk->via) }}</td>
                                             <td>{{ $produk->kategori->nama }}</td>
                                             <td>
                                                 @foreach ($produk->images as $image)

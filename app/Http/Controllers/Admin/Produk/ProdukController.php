@@ -42,8 +42,9 @@ class ProdukController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'merk' => 'required|string|max:255',
-            'kegunaan' => 'required',
-            'via' => 'required|in:labtek,labverse',
+            'link' => 'required|string|max:255',
+            'deskripsi' => 'required',
+            'spesifikasi' => 'required',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
@@ -158,8 +159,9 @@ class ProdukController extends Controller
     $request->validate([
         'nama' => 'required|string|max:255',
         'merk' => 'required|string|max:255',
-        'kegunaan' => 'required',
-        'via' => 'required|in:labtek,labverse',
+        'link' => 'required|string|max:255',
+        'deskripsi' => 'required',
+        'spesifikasi' => 'required',
         'kategori_id' => 'required|exists:kategori,id',
         'gambar.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:15000',
         'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',

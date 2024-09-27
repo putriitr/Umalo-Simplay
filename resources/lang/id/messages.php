@@ -110,4 +110,13 @@ return [
     'monitoring' => 'Monitoring Produk',
     'monitoring_2' => 'Detail Monitoring Produk',
     'qna' => 'Pertanyaan & Jawaban',
+    'related_products' => 'Produk Serupa',
+
+    'merk' => 'Merek',
+    'type' => 'Tipe',
+    'link' => 'E-Katalog',
+    'description_product' => 'Deskripsi',
+    'specification_product' => 'Spesifikasi',
+    'click_here' => 'Klik Disini',
+
 ];
