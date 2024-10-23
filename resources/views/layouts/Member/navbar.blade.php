@@ -19,7 +19,7 @@
         <div class="row align-items-center top-bar">
             <div class="col-lg-3 col-md-12 text-center text-lg-start">
                 <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0">
-                    <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid">
+                    <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid" style="width: 50%;">
                 </a>
             </div>
             <div class="col-lg-9 col-md-12 text-end">
@@ -115,7 +115,7 @@
                             @if (LaravelLocalization::getCurrentLocale() == 'id')
                                 <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
                             @elseif(LaravelLocalization::getCurrentLocale() == 'en')
-                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
                             @else
                                 {{ LaravelLocalization::getCurrentLocaleNative() }}
                             @endif
@@ -126,7 +126,7 @@
                                 {{ __('messages.bahasa') }}
                             </a>
                             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
                                 {{ __('messages.english') }}
                             </a>
                         </div>

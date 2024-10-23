@@ -114,6 +114,7 @@ return [
     'link' => 'E-Katalog',
     'description_product' => 'Description',
     'specification_product' => 'Specification',
-    'click_here' => 'Click Here'
+    'click_here' => 'Click Here',
+    'search' => 'Type Keywords Here ..',
 
 ];

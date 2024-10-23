@@ -118,5 +118,6 @@ return [
     'description_product' => 'Deskripsi',
     'specification_product' => 'Spesifikasi',
     'click_here' => 'Klik Disini',
+    'search' => 'Ketik Kata Kunci Disini ..',
 
 ];

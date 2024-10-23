@@ -1,7 +1,6 @@
 @extends('layouts.member.master')
 
 @section('content')
-
     <!-- Menampilkan pesan error -->
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -24,17 +23,16 @@
         </div>
     @endif
 
-
-
-
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel mb-5">
         @if ($sliders->isEmpty())
             <!-- Default Slider if no data -->
             <div class="header-carousel-item">
-                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid w-100" alt="Default Image">
-                <div class="carousel-caption">
-                    <div class="carousel-caption-content p-3">
+                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid"
+                    style="width: 100%; height: 60%; margin: 0 auto;" alt="Default Image">
+                <div class="carousel-caption"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div class="carousel-caption-content p-3 text-center">
                         <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
                             {{ __('messages.company_name') }}
                         </h5>
@@ -52,9 +50,11 @@
             <!-- Loop through sliders if data exists -->
             @foreach ($sliders as $slider)
                 <div class="header-carousel-item">
-                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
-                    <div class="carousel-caption">
-                        <div class="carousel-caption-content p-3">
+                    <img src="{{ asset($slider->image_url) }}" class="img-fluid"
+                        style="width: 100%; height: 60%; margin: 0 auto;" alt="Image">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        <div class="carousel-caption-content p-3 text-center">
                             <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
                                 {{ $slider->subtitle }}
                             </h5>
@@ -71,6 +71,8 @@
             @endforeach
         @endif
     </div>
+
+
 
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -103,7 +105,8 @@
     <div class="container-fluid py-5 px-4 px-lg-0">
         <div class="row g-0">
             <div class="col-lg-2 d-none d-lg-flex">
-                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100">
+                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100"
+                    style="border-top-right-radius: 100px; border-bottom-right-radius: 100px; overflow: hidden;">
                     <img src="{{ asset('assets/img/Logo2.png') }}" alt="SIMPLAY Logo" class="img-fluid">
                 </div>
             </div>
@@ -199,7 +202,7 @@
     @if ($principals->isNotEmpty())
         <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
             <div class="container">
-               <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
                     <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
                 </div>
@@ -215,9 +218,10 @@
                 </div>
                 @if ($principals->count() > 8)
                     <div class="text-center mt-4">
-                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-principals"
-                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                        <button id="show-more-principals" class="btn btn-primary"
+                            style="border-radius: 30px;">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-principals" class="btn btn-secondary d-none"
+                            style="border-radius: 30px;">{{ __('messages.show_less') }}</button>
                     </div>
                 @endif
             </div>
@@ -263,4 +267,3 @@
         });
     </script>
 @endsection
-

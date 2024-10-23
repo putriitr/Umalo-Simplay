@@ -89,7 +89,7 @@
                                 class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
                                 <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
                                     <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                        width="100%" height="45">
+                                        width="100%" height="80">
                                 </div>
                             </div>
                         @endforeach
@@ -118,7 +118,7 @@
                 </div>
                 <div class="row gy-4">
                     @foreach ($partners as $key => $p)
-                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
+                        <div class="col-6 col-md-4 col-xl-2 text-center partner-item {{ $key >= 10 ? 'd-none' : '' }}">
                             <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
                                 <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
                                     height="80">
@@ -128,8 +128,8 @@
                 </div>
                 @if ($partners->count() > 4)
                     <div class="text-center mt-4">
-                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-principals"
+                        <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-partners"
                             class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                     </div>
                 @endif
@@ -139,40 +139,56 @@
     <!-- User End -->
 
     <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            // Functionality for Principals
+            const showMorePrincipalsBtn = document.getElementById('show-more-principals');
+            const showLessPrincipalsBtn = document.getElementById('show-less-principals');
+            const principalItems = document.querySelectorAll('.principal-item'); // Selecting only principal items
 
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
+            if (showMorePrincipalsBtn && showLessPrincipalsBtn) { // Ensure buttons exist
+                showMorePrincipalsBtn.addEventListener('click', function() {
+                    principalItems.forEach(function(item) {
+                        item.classList.remove('d-none'); // Show all principal items
+                    });
+                    showMorePrincipalsBtn.classList.add('d-none'); // Hide "Show More" button
+                    showLessPrincipalsBtn.classList.remove('d-none'); // Show "Show Less" button
+                });
 
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
+                showLessPrincipalsBtn.addEventListener('click', function() {
+                    principalItems.forEach(function(item, index) {
+                        if (index >= 10) { // Re-hide items after 10th item
+                            item.classList.add('d-none');
+                        }
+                    });
+                    showMorePrincipalsBtn.classList.remove('d-none'); // Show "Show More" button
+                    showLessPrincipalsBtn.classList.add('d-none'); // Hide "Show Less" button
+                });
+            }
 
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 10) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
+            // Functionality for Partners
+            const showMorePartnersBtn = document.getElementById('show-more-partners');
+            const showLessPartnersBtn = document.getElementById('show-less-partners');
+            const partnerItems = document.querySelectorAll('.partner-item');
+
+            if (showMorePartnersBtn && showLessPartnersBtn) { // Make sure buttons exist
+                showMorePartnersBtn.addEventListener('click', function() {
+                    partnerItems.forEach(function(item) {
+                        item.classList.remove('d-none');
+                    });
+                    showMorePartnersBtn.classList.add('d-none');
+                    showLessPartnersBtn.classList.remove('d-none');
+                });
+
+                showLessPartnersBtn.addEventListener('click', function() {
+                    partnerItems.forEach(function(item, index) {
+                        if (index >= 10) { // Adjust the limit as per your logic
+                            item.classList.add('d-none');
+                        }
+                    });
+                    showMorePartnersBtn.classList.remove('d-none');
+                    showLessPartnersBtn.classList.add('d-none');
+                });
+            }
         });
     </script>
 @endsection

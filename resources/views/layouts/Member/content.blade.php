@@ -1,4 +1,1 @@
-<div class="container">
-
-    @yield('content')
-</div>
+@yield('content')

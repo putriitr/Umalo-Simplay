@@ -19,7 +19,7 @@
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category_product') }}</h4>
+                <h4 class="mb-4 text-dark font-weight-bold text-center">{{ __('messages.category_product') }}</h4>
                 <ul class="list-group mb-4 shadow-sm">
                     @foreach ($kategori as $kat)
                         <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
@@ -37,7 +37,17 @@
             <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="font-weight-bold" style="color: #6196FF;">{{ __('messages.explore_product') }}</h3>
+                    <div class="col-lg-6">
+                        <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
+                            @csrf
+                            <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
+                                style="flex-grow: 1; padding: 12px; border: none; border-radius: 10px; background-color: #eee;" />
+                            <button type="submit" class="btn btn-primary ms-2 px-4"
+                                style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: #3CBEEE; color: white;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
                         <option selected>{{ __('messages.sort_by') }}</option>
                         <option value="1">{{ __('messages.newest') }}</option>

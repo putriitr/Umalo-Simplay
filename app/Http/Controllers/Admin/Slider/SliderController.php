@@ -31,14 +31,14 @@ class SliderController extends Controller
             'about' => route('about'),
             // Add other predefined routes as needed
         ];
-    
+
         $metas = Meta::where('start_date', '<=', today())
                      ->where('end_date', '>=', today())
                      ->get();
-    
+
         return view('admin.slider.create', compact('activities', 'routes', 'metas'));
     }
-    
+
 
     // Store new slider
     public function store(Request $request)
@@ -69,7 +69,7 @@ class SliderController extends Controller
         } else {
             $buttonUrl = $request->button_url;
         }
-    
+
 
         Slider::create([
             'image_url' => $imagePath,
@@ -90,7 +90,7 @@ class SliderController extends Controller
         $activities = Activity::all(); // Fetch activities for editing
         $routes = [
             'about' => route('about'),
-            'product' => route('product'),
+            'product' => route('product.index'),
             'portal' => route('portal'),
         ];
 

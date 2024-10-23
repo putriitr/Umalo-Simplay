@@ -28,6 +28,25 @@ class ProdukMemberController extends Controller
         return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
 
+    public function search(Request $request)
+    {
+        // $query = $request->input('search');
+        $kategori = Kategori::all();
+        $keyword = $request->keyword;
+
+        // Validasi atau logika pencarian produk
+        $produks = Produk::where('nama', 'LIKE', '%' . $keyword . '%')->get();
+
+        // Log::channel('stderr')->info("test");
+        // error_log(json_encode($produks));
+        // exit();
+        $selectedCategory = null;
+
+        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+
+        // return response()->json($produks);
+    }
+
     public function filterByCategory($id)
     {
         // Get all categories for the sidebar
