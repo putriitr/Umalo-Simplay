@@ -20,6 +20,8 @@
             <div class="col-lg-3 col-md-12 text-center text-lg-start">
                 <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0">
                     <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid" style="width: 50%;">
+                    <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
+                    style="height: auto; width: 150px; padding-left: 10px;">
                 </a>
             </div>
             <div class="col-lg-9 col-md-12 text-end">
@@ -80,6 +82,8 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
                 <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid"
                     style="max-width: 100px;">
+                    <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
+                    style="height: auto; width: 150px; padding-left: 15px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
