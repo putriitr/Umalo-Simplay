@@ -14,12 +14,12 @@
                 <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ $compro->email }}</p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ $compro->no_telepon }}</p>
                 <p class="mb-2"><i class="fab fa-whatsapp me-3"></i>{{ $compro->no_wa }}</p>
-                {{-- <div class="d-flex pt-2">
+                <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btan-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                </div> --}}
+                </div>
             </div>
             <div class="col-lg-2 col-md-6">
                 <h4 class="text-light mb-4">{{ __('messages.quick_access') }}</h4>

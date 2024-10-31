@@ -9,12 +9,13 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('produk', function (Blueprint $table) {
-            $table->string('link')->nullable()->after('kegunaan'); // Menambahkan kolom link setelah kolom kegunaan
-        });
-    }
+    public function up()
+{
+    Schema::table('produk', function (Blueprint $table) {
+        $table->string('link')->nullable(); // Hapus 'after('kegunaan')' jika tidak diperlukan
+    });
+}
+
 
     /**
      * Reverse the migrations.

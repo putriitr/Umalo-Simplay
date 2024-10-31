@@ -116,5 +116,5 @@ return [
     'specification_product' => 'Specification',
     'click_here' => 'Click Here',
     'search' => 'Type Keywords Here ..',
-
+    'slider_not_available' => 'Slider Not Available.',
 ];

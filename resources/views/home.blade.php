@@ -28,47 +28,48 @@
         @if ($sliders->isEmpty())
             <!-- Default Slider if no data -->
             <div class="header-carousel-item">
-                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid"
-                    style="width: 100%; height: 60%; margin: 0 auto;" alt="Default Image">
-                <div class="carousel-caption"
-                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <img src="{{ asset('assets/img/MAS00029.jpg') }}" class="img-fluid" style="width: 100%; height: 100%;"
+                    alt="Default Image">
+                <div
+                    style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);">
+                </div>
+                <div class="carousel-caption">
                     <div class="carousel-caption-content p-3 text-center">
-                        <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                            {{ __('messages.company_name') }}
-                        </h5>
-                        <h1 class="display-1 text-capitalize text-white mb-4">
-                            {{ __('messages.tagline') }}
-                        </h1>
-                        <p class="mb-5 fs-5">{{ __('messages.description') }}</p>
-                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">
-                            {{ __('messages.about_us') }}
-                        </a>
+                        <h3 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                            {{ __('messages.slider_not_available') }}
+                        </h3>
                     </div>
                 </div>
             </div>
         @else
             <!-- Loop through sliders if data exists -->
             @foreach ($sliders as $slider)
-                <div class="header-carousel-item">
-                    <img src="{{ asset($slider->image_url) }}" class="img-fluid"
-                        style="width: 100%; height: 60%; margin: 0 auto;" alt="Image">
-                    <div class="carousel-caption"
-                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                        <div class="carousel-caption-content p-3 text-center">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                                {{ $slider->subtitle }}
-                            </h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">
-                                {{ $slider->title }}
-                            </h1>
-                            <p class="mb-5 fs-5">{{ $slider->description }}</p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
-                                {{ $slider->button_text }}
-                            </a>
-                        </div>
-                    </div>
+    <div class="header-carousel-item position-relative">
+        <img src="{{ asset($slider->image_url) }}" class="img-fluid"
+             style="width: 100%; height: 700px; object-fit: cover;" alt="Image">
+        <div class="overlay"></div>
+
+        <!-- Center-aligned caption with flex and centered container -->
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center"
+             style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+            <div class="col-lg-12 col-xl-8 text-center">
+                <div class="carousel-caption-content text-center px-3">
+                    <h5 class="text-white text-uppercase fw-bold mb-2">
+                        {{ $slider->subtitle }}
+                    </h5>
+                    <h1 class="display-4 text-capitalize text-white mb-3">
+                        {{ $slider->title }}
+                    </h1>
+                    <p class="mb-4 fs-5 text-white">{{ $slider->description }}</p>
+                    <a class="btn btn-primary rounded-pill text-white py-2 px-4"
+                       href="{{ $slider->button_url }}">
+                        {{ $slider->button_text }}
+                    </a>
                 </div>
-            @endforeach
+            </div>
+        </div>
+    </div>
+@endforeach
         @endif
     </div>
 
@@ -228,6 +229,59 @@
         </div>
     @endif
     <!-- Brand End -->
+
+    <!-- CSS for styling -->
+    <style>
+        .header-carousel-item {
+            height: 700px;
+            position: fixeda;
+        }
+
+        /* Overlay for darkening image */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Centering caption with flexbox */
+        .carousel-caption {
+            position: absolute;
+            width: 100%;
+            padding: 20% 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Caption content styling */
+        .carousel-caption-content {
+            max-width: 700px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-carousel-item {
+                height: 400px;
+            }
+
+            .carousel-caption {
+                padding: 15% 5%;
+            }
+
+            .carousel-caption-content h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-caption-content p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 
     <script>
         document.getElementById('show-more-partners').addEventListener('click', function() {

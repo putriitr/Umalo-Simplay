@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class AddDeskripsiSpesifikasiToProdukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('produk', function (Blueprint $table) {
-            $table->text('deskripsi')->nullable()->after('link');  // Menambahkan kolom deskripsi setelah kolom link
-            $table->text('spesifikasi')->nullable()->after('deskripsi');  // Menambahkan kolom spesifikasi setelah kolom deskripsi
+            // Menambahkan kolom link jika belum ada
+            if (!Schema::hasColumn('produk', 'link')) {
+                $table->string('link')->nullable()->after('id'); // Ganti 'id' dengan nama kolom terakhir yang ada
+            }
+
+            // Menambahkan kolom spesifikasi jika belum ada
+            if (!Schema::hasColumn('produk', 'spesifikasi')) {
+                $table->text('spesifikasi')->nullable()->after('deskripsi');
+            }
         });
     }
 
@@ -23,8 +30,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('produk', function (Blueprint $table) {
-            $table->dropColumn('deskripsi');
-            $table->dropColumn('spesifikasi');
+            $table->dropColumn(['deskripsi', 'spesifikasi']);
+            $table->dropColumn('link');
         });
     }
-};
+}
