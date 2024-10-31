@@ -27,6 +27,7 @@
     use App\Http\Controllers\Member\Brand\BrandController;
     use App\Http\Controllers\Admin\QnaGuest\QnaGuestController;
     use App\Http\Controllers\Guest\Message\GuestMessageController;
+    use App\Http\Controllers\CustomerController;
 
     /*
     |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [HomeController::class, 'about'])->name('about');
         // Rute lainnya
+        Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
         Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
         Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');

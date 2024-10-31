@@ -119,5 +119,6 @@ return [
     'specification_product' => 'Spesifikasi',
     'click_here' => 'Klik Disini',
     'search' => 'Ketik Kata Kunci Disini ..',
-    'slider_not_available' => 'Slider Not Available.',
+    'slider_not_available' => 'Slider tidak tersedia.',
+    'brand_not_available' => 'Merek Produk tidak tersedia',
 ];

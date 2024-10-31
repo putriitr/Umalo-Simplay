@@ -74,121 +74,221 @@
     </div>
     <!-- Legality End -->
 
-    <!-- Brand Start -->
-    @if ($principals->isNotEmpty())
-        <section id="brand">
-            <div class="container-xxl py-5" data-wow-delay="0.1s">
-                <div class="container">
-                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
-                        <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
+    <!-- Service Start -->
+    <div class="container-fluid py-5 px-4 px-lg-0">
+        <div class="row g-0">
+            <div class="col-lg-2 d-none d-lg-flex">
+                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100"
+                    style="border-top-right-radius: 100px; border-bottom-right-radius: 100px; overflow: hidden;">
+                    <img src="{{ asset('assets/img/Logo2.png') }}" alt="SIMPLAY Logo" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-10">
+                <div class="ms-lg-5 ps-lg-5">
+                    <div class="text-center text-lg-start wow fadeInUp" data-wow-delay="0.1s">
+                        <h6 class="text-secondary text-uppercase">{{ __('messages.tujuan_kami') }}</h6>
+                        <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
                     </div>
-                    <div class="row gy-4">
-                        @foreach ($principals as $key => $p)
-                            <div
-                                class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
-                                <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                        width="100%" height="80">
-                                </div>
+                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;"
+                        data-wow-delay="0.1s">
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
+                                <i class="fa fa-handshake fa-2x text-primary"></i>
+                            </div>
+                            <h5 class="mb-3">{{ __('messages.pelayanan') }}</h5>
+                            <p>{{ __('messages.pelayanan_desc') }}</p>
+                        </div>
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
+                                <i class="fa fa-check-circle fa-2x text-primary"></i>
+                            </div>
+                            <h5 class="mb-3">{{ __('messages.kualitas') }}</h5>
+                            <p>{{ __('messages.kualitas_desc') }}</p>
+                        </div>
+                        <div class="bg-light p-4"
+                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
+                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
+                                style="width: 75px; height: 75px;">
+                                <i class="fa fa-star fa-2x text-primary"></i>
+                            </div>
+                            <h5 class="mb-3">{{ __('messages.kepuasan') }}</h5>
+                            <p>{{ __('messages.kepuasan_desc') }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- Brand Start -->
+    <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
+                <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
+            </div>
+            @if ($partners->isEmpty())
+                <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
+                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                            <div>
+                                <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
+                                    {{ __('messages.brand_not_available') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="carousel-container">
+                    <div class="carousel-rows">
+                        @foreach ($partners as $partner)
+                            <div class="brand-item">
+                                <img src="{{ asset($partner->gambar) }}" class="img-fluid" alt="{{ $partner->nama }}">
                             </div>
                         @endforeach
                     </div>
-                    @if ($principals->count() > 8)
-                        <div class="text-center mt-4">
-                            <button id="show-more-principals"
-                                class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-principals"
-                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                        </div>
-                    @endif
                 </div>
-            </div>
-        </section>
-    @endif
+            @endif
+        </div>
+    </div>
     <!-- Brand End -->
 
-    <!-- User Start -->
-    @if ($partners->isNotEmpty())
-        <div id="user" class="container-xxl py-5" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>
-                    <h1 class="mb-5">{{ __('messages.our_customers') }}</h1>
-                </div>
-                <div class="row gy-4">
-                    @foreach ($partners as $key => $p)
-                        <div class="col-6 col-md-4 col-xl-2 text-center partner-item {{ $key >= 10 ? 'd-none' : '' }}">
-                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
-                                    height="80">
+    <!-- Customer Start -->
+    <div class="container-xxl py-5" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>
+                <h1 class="mb-5">{{ __('messages.our_customers') }}</h1>
+            </div>
+            @if ($principals->isEmpty())
+                <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
+                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                            <div>
+                                <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
+                                    {{ __('messages.brand_not_available') }}
+                                </p>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                @if ($partners->count() > 4)
-                    <div class="text-center mt-4">
-                        <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-partners"
-                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
                     </div>
-                @endif
-            </div>
+                </div>
+            @else
+                <div class="carousel-container">
+                    <div class="carousel-rows">
+                        @foreach ($principals as $principal)
+                            <div class="brand-item">
+                                <img src="{{ asset($principal->gambar) }}" class="img-fluid"
+                                    alt="{{ $principal->nama }}">
+                                <p>{{ asset($principal->gambar) }}</p> <!-- Debugging URL gambar -->
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
-    @endif
-    <!-- User End -->
+    </div>
+    <!-- Customer End -->
+
+
+    <style>
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            /* Adjust height for two rows */
+        }
+
+        .carousel-rows {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* 4 images per row */
+            grid-auto-rows: 120px;
+            /* Fixed height for each row */
+            animation: marquee 50s linear infinite;
+            position: relative;
+        }
+
+        .brand-item {
+            margin: 10px;
+            border: 2px solid #ddd;
+            /* Border around each image */
+            border-radius: 5px;
+            /* Rounded corners for the border */
+            display: flex;
+            justify-content: center;
+            /* Center the image inside the item */
+            align-items: center;
+            /* Center the image vertically */
+            overflow: hidden;
+            /* Hide overflow if image is too big */
+        }
+
+        img {
+            width: 100%;
+            /* Make image fill the container */
+            height: 100%;
+            /* Maintain height for uniformity */
+            object-fit: cover;
+            /* Cover the area of the item */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Functionality for Principals
-            const showMorePrincipalsBtn = document.getElementById('show-more-principals');
-            const showLessPrincipalsBtn = document.getElementById('show-less-principals');
-            const principalItems = document.querySelectorAll('.principal-item'); // Selecting only principal items
+            const carouselRows = document.getElementById("carouselRows");
+            const container = document.querySelector('.carousel-container');
 
-            if (showMorePrincipalsBtn && showLessPrincipalsBtn) { // Ensure buttons exist
-                showMorePrincipalsBtn.addEventListener('click', function() {
-                    principalItems.forEach(function(item) {
-                        item.classList.remove('d-none'); // Show all principal items
-                    });
-                    showMorePrincipalsBtn.classList.add('d-none'); // Hide "Show More" button
-                    showLessPrincipalsBtn.classList.remove('d-none'); // Show "Show Less" button
-                });
+            // Clone the carousel rows to create a seamless loop
+            const clonedRows = carouselRows.cloneNode(true);
+            carouselRows.appendChild(clonedRows);
 
-                showLessPrincipalsBtn.addEventListener('click', function() {
-                    principalItems.forEach(function(item, index) {
-                        if (index >= 10) { // Re-hide items after 10th item
-                            item.classList.add('d-none');
-                        }
-                    });
-                    showMorePrincipalsBtn.classList.remove('d-none'); // Show "Show More" button
-                    showLessPrincipalsBtn.classList.add('d-none'); // Hide "Show Less" button
-                });
-            }
+            // Calculate total height after cloning
+            const totalHeight = carouselRows.scrollHeight; // Get the total height of the images
+            const containerHeight = container.clientHeight;
 
-            // Functionality for Partners
-            const showMorePartnersBtn = document.getElementById('show-more-partners');
-            const showLessPartnersBtn = document.getElementById('show-less-partners');
-            const partnerItems = document.querySelectorAll('.partner-item');
+            // Set animation duration based on the total height
+            // The factor of 120 can be adjusted based on the speed you desire
+            const duration = (totalHeight / 120) * 30; // Adjust based on desired speed
 
-            if (showMorePartnersBtn && showLessPartnersBtn) { // Make sure buttons exist
-                showMorePartnersBtn.addEventListener('click', function() {
-                    partnerItems.forEach(function(item) {
-                        item.classList.remove('d-none');
-                    });
-                    showMorePartnersBtn.classList.add('d-none');
-                    showLessPartnersBtn.classList.remove('d-none');
-                });
+            // Ensure the animation runs smoothly
+            carouselRows.style.animation = `marquee ${duration}s linear infinite`;
 
-                showLessPartnersBtn.addEventListener('click', function() {
-                    partnerItems.forEach(function(item, index) {
-                        if (index >= 10) { // Adjust the limit as per your logic
-                            item.classList.add('d-none');
-                        }
-                    });
-                    showMorePartnersBtn.classList.remove('d-none');
-                    showLessPartnersBtn.classList.add('d-none');
-                });
-            }
+            // Initial position for the cloned content
+            carouselRows.style.transform = `translateY(0)`;
+
+            // Function to reset scroll position when reaching the end of the first set
+            const resetScrollPosition = () => {
+                const scrollTop = container.scrollTop;
+
+                // Reset position when the original rows are scrolled out of view
+                if (scrollTop >= totalHeight / 2) {
+                    // Reset the scroll position back to the start
+                    carouselRows.style.transform = `translateY(0)`;
+                    container.scrollTop = 0; // Reset scroll position
+                }
+            };
+
+            // Listen for scroll events to reset position
+            container.addEventListener('scroll', resetScrollPosition);
         });
     </script>
 @endsection

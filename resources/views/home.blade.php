@@ -44,32 +44,32 @@
         @else
             <!-- Loop through sliders if data exists -->
             @foreach ($sliders as $slider)
-    <div class="header-carousel-item position-relative">
-        <img src="{{ asset($slider->image_url) }}" class="img-fluid"
-             style="width: 100%; height: 700px; object-fit: cover;" alt="Image">
-        <div class="overlay"></div>
+                <div class="header-carousel-item position-relative">
+                    <img src="{{ asset($slider->image_url) }}" class="img-fluid"
+                        style="width: 100%; height: 700px; object-fit: cover;" alt="Image">
+                    <div class="overlay"></div>
 
-        <!-- Center-aligned caption with flex and centered container -->
-        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center"
-             style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
-            <div class="col-lg-12 col-xl-8 text-center">
-                <div class="carousel-caption-content text-center px-3">
-                    <h5 class="text-white text-uppercase fw-bold mb-2">
-                        {{ $slider->subtitle }}
-                    </h5>
-                    <h1 class="display-4 text-capitalize text-white mb-3">
-                        {{ $slider->title }}
-                    </h1>
-                    <p class="mb-4 fs-5 text-white">{{ $slider->description }}</p>
-                    <a class="btn btn-primary rounded-pill text-white py-2 px-4"
-                       href="{{ $slider->button_url }}">
-                        {{ $slider->button_text }}
-                    </a>
+                    <!-- Center-aligned caption with flex and centered container -->
+                    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center"
+                        style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+                        <div class="col-lg-12 col-xl-8 text-center">
+                            <div class="carousel-caption-content text-center px-3">
+                                <h5 class="text-white text-uppercase fw-bold mb-2">
+                                    {{ $slider->subtitle }}
+                                </h5>
+                                <h1 class="display-4 text-capitalize text-white mb-3">
+                                    {{ $slider->title }}
+                                </h1>
+                                <p class="mb-4 fs-5 text-white">{{ $slider->description }}</p>
+                                <a class="btn btn-primary rounded-pill text-white py-2 px-4"
+                                    href="{{ $slider->button_url }}">
+                                    {{ $slider->button_text }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-@endforeach
+            @endforeach
         @endif
     </div>
 
@@ -100,59 +100,6 @@
         </div>
     </div>
     <!-- About End -->
-
-
-    <!-- Service Start -->
-    <div class="container-fluid py-5 px-4 px-lg-0">
-        <div class="row g-0">
-            <div class="col-lg-2 d-none d-lg-flex">
-                <div class="d-flex align-items-center justify-content-center bg-primary w-100 h-100"
-                    style="border-top-right-radius: 100px; border-bottom-right-radius: 100px; overflow: hidden;">
-                    <img src="{{ asset('assets/img/Logo2.png') }}" alt="SIMPLAY Logo" class="img-fluid">
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-10">
-                <div class="ms-lg-5 ps-lg-5">
-                    <div class="text-center text-lg-start wow fadeInUp" data-wow-delay="0.1s">
-                        <h6 class="text-secondary text-uppercase">{{ __('messages.tujuan_kami') }}</h6>
-                        <h1 class="mb-5">{{ __('messages.visi_misi_perusahaan') }}</h1>
-                    </div>
-                    <div class="owl-carousel service-carousel position-relative wow fadeInUp" style="text-align: justify;"
-                        data-wow-delay="0.1s">
-                        <div class="bg-light p-4"
-                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-handshake fa-2x text-primary"></i>
-                            </div>
-                            <h5 class="mb-3">{{ __('messages.pelayanan') }}</h5>
-                            <p>{{ __('messages.pelayanan_desc') }}</p>
-                        </div>
-                        <div class="bg-light p-4"
-                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-check-circle fa-2x text-primary"></i>
-                            </div>
-                            <h5 class="mb-3">{{ __('messages.kualitas') }}</h5>
-                            <p>{{ __('messages.kualitas_desc') }}</p>
-                        </div>
-                        <div class="bg-light p-4"
-                            style="display: flex; flex-direction: column; justify-content: space-between; height: 300px;">
-                            <div class="d-flex align-items-center justify-content-center border border-5 border-white mb-4"
-                                style="width: 75px; height: 75px;">
-                                <i class="fa fa-star fa-2x text-primary"></i>
-                            </div>
-                            <h5 class="mb-3">{{ __('messages.kepuasan') }}</h5>
-                            <p>{{ __('messages.kepuasan_desc') }}</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Service End -->
 
     <!-- Product Start -->
     @if (!$produks->isEmpty())
@@ -200,41 +147,150 @@
     <!-- Product End -->
 
     <!-- Brand Start -->
-    @if ($principals->isNotEmpty())
-        <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
-                    <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
-                </div>
-                <div class="row gy-4">
-                    @foreach ($principals as $key => $p)
-                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
-                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                    width="100%" height="45">
+    <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">{{ __('messages.our_brand') }}</h6>
+                <h1 class="mb-5">{{ __('messages.brands_product') }}</h1>
+            </div>
+            @if ($partners->isEmpty())
+                <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
+                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                            <div>
+                                <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
+                                    {{ __('messages.brand_not_available') }}
+                                </p>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                @if ($principals->count() > 8)
-                    <div class="text-center mt-4">
-                        <button id="show-more-principals" class="btn btn-primary"
-                            style="border-radius: 30px;">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-principals" class="btn btn-secondary d-none"
-                            style="border-radius: 30px;">{{ __('messages.show_less') }}</button>
                     </div>
-                @endif
+                </div>
+            @else
+                <div class="carousel-container">
+                    <div class="carousel-rows">
+                        @foreach ($partners as $partner)
+                            <div class="brand-item">
+                                <img src="{{ asset($partner->gambar) }}" class="img-fluid" alt="{{ $partner->nama }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+    <!-- Brand End -->
+
+    <!-- Map Start -->
+    <div id="brand" class="container-xxl py-5" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>
+                <h1 class="mb-5">{{ __('messages.our_customers') }}</h1>
+            </div>
+            <div class="container"
+                style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center; ">
+                <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
             </div>
         </div>
-    @endif
-    <!-- Brand End -->
+    </div><br> <br>
+    <!-- Map End -->
+
+    <!-- Include Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+
+    <script>
+        // Inisialisasi peta
+        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
+
+        //tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Terjemahan dari server untuk konten popup
+        let translationTemplate =
+            `{{ __('messages.members_in_province', ['count' => ':count', 'province' => ':province']) }}`;
+
+        function addMarker(lat, lng, province, userCount, users) {
+            var marker = L.marker([lat, lng]).addTo(map);
+
+            // Buat daftar pengguna
+            let userList = '<ul>';
+            users.forEach(function(user) {
+                userList += `<li>${user.nama_perusahaan} (Became a Member on: ${user.created_at})</li>`;
+            });
+            userList += '</ul>';
+
+            // Terjemahan dinamis
+            let popupText = translationTemplate
+                .replace(':count', userCount)
+                .replace(':province', province);
+
+            // Konten popup untuk marker
+            marker.bindPopup(`
+                <div class="info-window">
+                    <h3 class="popup-title">${province}</h3>
+                    <p class="popup-description">${popupText}</p>
+                    ${userList}
+                </div>
+            `);
+
+            // Tooltip
+            marker.bindTooltip(`<div>${province}</div>`, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -20],
+                className: 'marker-tooltip'
+            });
+
+            marker.on('mouseover', function(e) {
+                this.openTooltip();
+            });
+            marker.on('mouseout', function(e) {
+                this.closeTooltip();
+            });
+        }
+
+        fetch("{{ url('/locations') }}")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Received Data:", data); // Debugging to check data
+                data.forEach(location => {
+                    if (location.user_count > 0) {
+                        console.log("Adding marker for:", location.province, "with", location.user_count,
+                            "users.");
+                        addMarker(location.latitude, location.longitude, location.province, location.user_count,
+                            location.user_data);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+
 
     <!-- CSS for styling -->
     <style>
         .header-carousel-item {
             height: 700px;
             position: fixeda;
+        }
+
+        .brand-item {
+            margin: 10px;
+            border: 2px solid #ddd;
+            /* Border around each image */
+            border-radius: 5px;
+            /* Rounded corners for the border */
+            display: flex;
+            justify-content: center;
+            /* Center the image inside the item */
+            align-items: center;
+            /* Center the image vertically */
+            overflow: hidden;
+            /* Hide overflow if image is too big */
         }
 
         /* Overlay for darkening image */
@@ -283,41 +339,161 @@
         }
     </style>
 
+    <style>
+        .marker-tooltip {
+            background-color: #b3d9ff;
+            border: 1px solid #80b3ff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            font-size: 12px;
+            color: #333;
+        }
+
+        .info-window img.popup-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .popup-title {
+            font-size: 20px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .popup-description,
+        .popup-address {
+            font-size: 12px;
+            color: #333;
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+        /* Media query untuk perangkat dengan lebar maksimal 768px */
+        @media (max-width: 768px) {
+            .info-window {
+                padding: 10px;
+            }
+
+            .popup-title {
+                font-size: 18px;
+            }
+
+            .popup-description,
+            .popup-address {
+                font-size: 10px;a
+            }
+
+            .info-window img.popup-image {
+                margin-bottom: 5px
+            }
+        }
+
+        /* Media query untuk perangkat dengan lebar maksimal 480px */
+        @media (max-width: 480px) {
+            .popup-title {
+                font-size: 16px;
+            }
+
+            .popup-description,
+            .popup-address {
+                font-size: 9px;
+            }
+        }
+    </style>
+
+    <style>
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            /* Adjust height for two rows */
+        }
+
+        .carousel-rows {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* 4 images per row */
+            grid-auto-rows: 120px;
+            /* Fixed height for each row */
+            animation: marquee 50s linear infinite;
+            position: relative;
+        }
+
+        .brand-item {
+            margin: 10px;
+            border: 2px solid #ddd;
+            /* Border around each image */
+            border-radius: 5px;
+            /* Rounded corners for the border */
+            display: flex;
+            justify-content: center;
+            /* Center the image inside the item */
+            align-items: center;
+            /* Center the image vertically */
+            overflow: hidden;
+            /* Hide overflow if image is too big */
+        }
+
+        img {
+            width: 100%;
+            /* Make image fill the container */
+            height: 100%;
+            /* Maintain height for uniformity */
+            object-fit: cover;
+            /* Cover the area of the item */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
+
     <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            const carouselRows = document.getElementById("carouselRows");
+            const container = document.querySelector('.carousel-container');
 
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
+            // Clone the carousel rows to create a seamless loop
+            const clonedRows = carouselRows.cloneNode(true);
+            carouselRows.appendChild(clonedRows);
+
+            // Calculate total height after cloning
+            const totalHeight = carouselRows.scrollHeight; // Get the total height of the images
+            const containerHeight = container.clientHeight;
+
+            // Set animation duration based on the total height
+            // The factor of 120 can be adjusted based on the speed you desire
+            const duration = (totalHeight / 120) * 30; // Adjust based on desired speed
+
+            // Ensure the animation runs smoothly
+            carouselRows.style.animation = `marquee ${duration}s linear infinite`;
+
+            // Initial position for the cloned content
+            carouselRows.style.transform = `translateY(0)`;
+
+            // Function to reset scroll position when reaching the end of the first set
+            const resetScrollPosition = () => {
+                const scrollTop = container.scrollTop;
+
+                // Reset position when the original rows are scrolled out of view
+                if (scrollTop >= totalHeight / 2) {
+                    // Reset the scroll position back to the start
+                    carouselRows.style.transform = `translateY(0)`;
+                    container.scrollTop = 0; // Reset scroll position
                 }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
+            };
 
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 10) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
+            // Listen for scroll events to reset position
+            container.addEventListener('scroll', resetScrollPosition);
         });
     </script>
 @endsection

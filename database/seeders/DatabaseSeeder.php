@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             BidangPerusahaanSeeder::class,
             CategoriesSeeder::class,
             CompanyParameterSeeder::class,
+            BrandPartnerSeeder::class,
+            PrincipalSeeder::class,
         ]);
     }
 }

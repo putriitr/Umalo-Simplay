@@ -117,4 +117,5 @@ return [
     'click_here' => 'Click Here',
     'search' => 'Type Keywords Here ..',
     'slider_not_available' => 'Slider Not Available.',
+    'brand_not_available' => 'Products brand not available.',
 ];
