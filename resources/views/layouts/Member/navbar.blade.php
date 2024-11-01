@@ -117,20 +117,20 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             @if (LaravelLocalization::getCurrentLocale() == 'id')
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 25px; height: auto; margin-right: 5px;">
                             @elseif(LaravelLocalization::getCurrentLocale() == 'en')
-                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 25px; height: auto; margin-right: 5px;">
                             @else
                                 {{ LaravelLocalization::getCurrentLocaleNative() }}
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-end m-0">
                             <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 25px; height: auto; margin-right: 5px;">
                                 {{ __('messages.bahasa') }}
                             </a>
                             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 25px; height: auto; margin-right: 5px;">
                                 {{ __('messages.english') }}
                             </a>
                         </div>

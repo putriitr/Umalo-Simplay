@@ -121,4 +121,5 @@ return [
     'search' => 'Ketik Kata Kunci Disini ..',
     'slider_not_available' => 'Slider tidak tersedia.',
     'brand_not_available' => 'Merek Produk tidak tersedia',
+    'user_not_available' => 'Pelanggan tidak tersedia.',
 ];

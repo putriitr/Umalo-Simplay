@@ -190,7 +190,7 @@
             </div>
             <div class="container"
                 style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center; ">
-                <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
+                <div id="map" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
             </div>
         </div>
     </div><br> <br>
@@ -203,7 +203,7 @@
 
     <script>
         // Inisialisasi peta
-        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
+        var map = L.map('map').setView([-1.8694501185333308, 115.36224445532018], 5);
 
         //tile layer dari OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

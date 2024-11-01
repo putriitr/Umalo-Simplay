@@ -13,6 +13,83 @@ class BrandPartnerSeeder extends Seeder
     public function run(): void
     {
         BrandPartner::create([
+            'gambar' => 'assets/img/users/user (1).png',
+            'type' => 'principal',
+            'url' => 'urlUser1',
+            'nama' => 'user1',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (2).png',
+            'type' => 'principal',
+            'url' => 'urlUser2',
+            'nama' => 'user2',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (3).png',
+            'type' => 'principal',
+            'url' => 'urlUser3',
+            'nama' => 'user3',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (4).png',
+            'type' => 'principal',
+            'url' => 'urlUser4',
+            'nama' => 'user4',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (5).png',
+            'type' => 'principal',
+            'url' => 'urlUser5',
+            'nama' => 'user5',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (6).png',
+            'type' => 'principal',
+            'url' => 'urlUser6',
+            'nama' => 'user6',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (7).png',
+            'type' => 'principal',
+            'url' => 'urlUser7',
+            'nama' => 'user7',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (8).png',
+            'type' => 'principal',
+            'url' => 'urlUser8',
+            'nama' => 'user8',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (9).png',
+            'type' => 'principal',
+            'url' => 'urlUser9',
+            'nama' => 'user9',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (10).png',
+            'type' => 'principal',
+            'url' => 'urlUser10',
+            'nama' => 'user10',
+        ]);
+
+        BrandPartner::create([
+            'gambar' => 'assets/img/users/user (11).png',
+            'type' => 'principal',
+            'url' => 'urlUser11',
+            'nama' => 'user11',
+        ]);
+
+        BrandPartner::create([
             'gambar' => 'assets/img/brands/brand (1).png',
             'type' => 'partner',
             'url' => 'url1',

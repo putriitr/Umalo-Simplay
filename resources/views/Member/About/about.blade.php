@@ -170,12 +170,12 @@
             </div>
             @if ($principals->isEmpty())
                 <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
-                    <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
+                    <div class="carousel-rows1" style="display: flex; flex-direction: column; height: 100%;">
                         <div class="carousel-row"
-                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 20s linear infinite;">
                             <div>
                                 <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
-                                    {{ __('messages.brand_not_available') }}
+                                    {{ __('messages.user_not_available') }}
                                 </p>
                             </div>
                         </div>
@@ -183,12 +183,11 @@
                 </div>
             @else
                 <div class="carousel-container">
-                    <div class="carousel-rows">
+                    <div class="carousel-rows1">
                         @foreach ($principals as $principal)
                             <div class="brand-item">
                                 <img src="{{ asset($principal->gambar) }}" class="img-fluid"
                                     alt="{{ $principal->nama }}">
-                                <p>{{ asset($principal->gambar) }}</p> <!-- Debugging URL gambar -->
                             </div>
                         @endforeach
                     </div>
@@ -209,11 +208,17 @@
 
         .carousel-rows {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            /* 4 images per row */
+            grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: 120px;
-            /* Fixed height for each row */
             animation: marquee 50s linear infinite;
+            position: relative;
+        }
+
+        .carousel-rows1 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 120px;
+            animation: marquee 10s linear infinite;
             position: relative;
         }
 

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             CompanyParameterSeeder::class,
             BrandPartnerSeeder::class,
-            PrincipalSeeder::class,
         ]);
     }
 }
