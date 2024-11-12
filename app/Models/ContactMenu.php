@@ -14,5 +14,5 @@ class ContactMenu extends Model
         'email',
         'subject',
         'message',
-    ];c
+    ];
 }
