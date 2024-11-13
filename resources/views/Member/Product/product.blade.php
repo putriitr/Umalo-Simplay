@@ -1,90 +1,105 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Header Start -->
-    <div class="container-fluid page-header mb-5 py-5" style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/product.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
-        <div class="container">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __('messages.products') }}</h1>
-            <nav aria-label="breadcrumb animated slideInDown">
-                <ol class="breadcrumb text-uppercase">
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">{{ __('messages.products') }}</li>
-                </ol>
-            </nav>
-        </div>
+<!-- Header Start -->
+<div class="container-fluid page-header mb-5 py-5"
+    style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/product.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
+    <div class="container">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __('messages.products') }}</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __('messages.home') }}</a>
+                </li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __('messages.products') }}</li>
+            </ol>
+        </nav>
     </div>
-    <!-- Header End -->
+</div>
+<!-- Header End -->
 
-    <div class="container mt-5">
-        <div class="row">
-            <!-- Sidebar Start -->
-            <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold text-center">{{ __('messages.category_product') }}</h4>
-                <ul class="list-group mb-4 shadow-sm">
-                    @foreach ($kategori as $kat)
-                        <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                            style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
-                            onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                            onmouseout="this.style.backgroundColor='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}'; this.style.color='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }}';"
-                            onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
-                            <strong>{{ $kat->nama }}</strong>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
-            <!-- Sidebar End -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Sidebar Start -->
+        <div class="col-lg-3">
+            <h4 class="mb-4 text-dark font-weight-bold text-center">{{ __('messages.category_product') }}</h4>
+            <ul class="list-group mb-4 shadow-sm">
+                @foreach ($kategori as $kat)
+                    <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
+                        style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
+                        onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
+                        onmouseout="this.style.backgroundColor='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}'; this.style.color='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }}';"
+                        onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                        <strong>{{ $kat->nama }}</strong>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <!-- Sidebar End -->
 
-            <!-- Main Content Start -->
-            <div class="col-lg-9">
-                <div class="d-flex justify-content-between mb-4">
-                    <div class="col-lg-6">
-                        <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
-                            @csrf
-                            <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
-                                style="flex-grow: 1; padding: 12px; border: none; border-radius: 10px; background-color: #eee;" />
-                            <button type="submit" class="btn btn-primary ms-2 px-4"
-                                style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: #3CBEEE; color: white;">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                    <select class="form-select w-25 border-0 bg-light shadow-sm">
-                        <option selected>{{ __('messages.sort_by') }}</option>
-                        <option value="1">{{ __('messages.newest') }}</option>
-                        <option value="2">{{ __('messages.latest') }}</option>
-                    </select>
+        <!-- Main Content Start -->
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between mb-4">
+                <div class="col-lg-6">
+                    <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
+                        @csrf
+                        <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
+                            style="flex-grow: 1; padding: 12px; border: none; border-radius: 10px; background-color: #eee;" />
+                        <button type="submit" class="btn btn-primary ms-2 px-4"
+                            style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: #3CBEEE; color: white;">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
                 </div>
+                <select class="form-select w-25 border-0 bg-light shadow-sm">
+                    <option selected>{{ __('messages.sort_by') }}</option>
+                    <option value="1">{{ __('messages.newest') }}</option>
+                    <option value="2">{{ __('messages.latest') }}</option>
+                </select>
+            </div>
 
-                <div class="row">
-                    @foreach ($produks as $produk)
-                        <div class="col-md-4 mb-4">
-                            <div class="card product-card border-0 shadow-sm"
-                                style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400;">
-                                <a href="{{ route('product.show', $produk->id) }}">
-                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                        class="card-img-top" alt="{{ $produk->nama }}"
-                                        style="object-fit: contain; height: 250; transition: transform 0.3s ease;">
-                                </a>
-                                <div class="card-body text-center">
-                                    @php
-                                        $name = $produk->nama;
-                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                    @endphp
-                                    <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
-                                    <a href="{{ route('product.show', $produk->id) }}"
-                                        class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
-                                        style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
-                                        View Product →
-                                    </a>
+            <div class="row">
+                @foreach ($produks as $produk)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card product-card border-0 shadow-sm"
+                                        style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400;">
+                                        <a href="{{ route('product.show', $produk->id) }}">
+                                            <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                                class="card-img-top" alt="{{ $produk->nama }}"
+                                                style="object-fit: contain; height: 250; transition: transform 0.3s ease;">
+                                        </a>
+                                        <div class="card-body text-center">
+                                            @php
+                                                $name = $produk->nama;
+                                                $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                            @endphp
+                                            <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
+                                            <a href="{{ route('product.show', $produk->id) }}"
+                                                class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
+                                                style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
+                                                View Product →
+                                            </a>
+                                            <!-- Ajukan Quotation Button for Distributor Users Only -->
+                                            @if (auth()->user() && auth()->user()->type === 'distributor')
+                                                <form action="{{ route('Distributor.product.addToQuotation', $produk->id) }}" method="POST"
+                                                    class="mt-2 d-inline">
+                                                    @csrf
+                                                    <!-- Hidden input for quantity -->
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button type="submit" class="btn btn-link p-0" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Ajukan Quotation">
+                                                        <i class="fas fa-file-invoice-dollar" style="font-size: 1.5em; color: #007bff;"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                @endforeach
             </div>
-            <!-- Main Content End -->
         </div>
+        <!-- Main Content End -->
     </div>
+</div>
 @endsection
 
 <!-- Additional Custom CSS -->

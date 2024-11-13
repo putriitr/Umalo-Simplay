@@ -4,69 +4,65 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showDistributorRegistrationForm()
     {
-        $this->middleware('guest');
+        return view('auth.distributor_register');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function registerDistributor(Request $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        // Validate the request fields
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'no_telp' => 'required|string|max:15',
+            'alamat' => 'required|string|max:255',
+            'nama_perusahaan' => 'required|string|max:255',
+            'pic' => 'required|string|max:255',
+            'nomor_telp_pic' => 'required|string|max:15',
+            'akta' => 'required|file|mimes:pdf,jpg,png',
+            'nib' => 'required|file|mimes:pdf,jpg,png',
         ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+    
+        // Custom filename for 'akta' document
+        if ($request->hasFile('akta')) {
+            $aktaFile = $request->file('akta');
+            $aktaFilename = time() . '_' . Str::slug(pathinfo($aktaFile->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $aktaFile->getClientOriginalExtension();
+            $aktaPath = $aktaFile->move(public_path('akta_documents'), $aktaFilename);
+        }
+    
+        // Custom filename for 'nib' document
+        if ($request->hasFile('nib')) {
+            $nibFile = $request->file('nib');
+            $nibFilename = time() . '_' . Str::slug(pathinfo($nibFile->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $nibFile->getClientOriginalExtension();
+            $nibPath = $nibFile->move(public_path('nib_documents'), $nibFilename);
+        }
+    
+        // Store the paths relative to the public directory
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'no_telp' => $request->no_telp,
+            'alamat' => $request->alamat,
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'type' => 2, // Distributor type
+            'pic' => $request->pic,
+            'nomor_telp_pic' => $request->nomor_telp_pic,
+            'akta' => 'akta_documents/' . $aktaFilename,
+            'nib' => 'nib_documents/' . $nibFilename,
+            'verified' => false, // Set to false initially
         ]);
+    
+        return redirect()->route('distributors.waiting')->with('success', 'Registration successful. Please wait for admin approval.');
     }
 }
+

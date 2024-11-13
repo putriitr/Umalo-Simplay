@@ -129,15 +129,7 @@ class PortalController extends Controller
     $userProduk = UserProduk::with(['produk', 'inspeksiMaintenance'])->findOrFail($id);
     
     return view('member.portal.monitoring-detail', compact('userProduk'));
-}
-
-    
-
-
-    
-    
-    
-    
+}  
 
     public function Faq(){
         $faqs = Faq::all();
@@ -145,10 +137,4 @@ class PortalController extends Controller
 
     }
 
-    
-
-
 }
-
-
-

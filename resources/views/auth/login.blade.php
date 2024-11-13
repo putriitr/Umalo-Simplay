@@ -61,6 +61,12 @@
                             <button type="submit" class="btn btn-lg text-white w-100 fs-6" style="background: #5bc0de;">Masuk</button>
                         </div>
 
+                        <!-- Add registration link here -->
+                        <div class="text-center mt-3">
+                            <p>Belum punya akun? <a href="{{ route('distributors.register') }}" style="color: #5bc0de;">Daftar sebagai distributor</a></p>
+                        </div>
+                        <!-- End of registration link -->
+                         
                     </div>
                 </form>
             </div>

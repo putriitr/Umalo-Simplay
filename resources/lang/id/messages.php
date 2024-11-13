@@ -65,7 +65,6 @@ return [
     'brands_product' => 'Merek Produk',
     'our_activity' => 'Aktivitas Kami',
     'find_products' => 'Temukan Produk',
-    'our_products' => 'Produk Kami',
     'explore_products' => 'Lihat lebih banyak produk',
     'member_portal' => 'Masuk Member',
 
@@ -89,7 +88,6 @@ return [
     'your_message' => 'Pesan Anda',
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
-    'company' => 'Perusahaan',
     'see more' => 'Lihat lebih banyak',
     'legality_top' => 'Izin Operasional',
     'legality' => 'Legalitas Perusahaan',
@@ -122,4 +120,6 @@ return [
     'slider_not_available' => 'Slider tidak tersedia.',
     'brand_not_available' => 'Merek Produk tidak tersedia',
     'user_not_available' => 'Pelanggan tidak tersedia.',
+
+    'portal_distibution' => 'Portal Distributor',
 ];

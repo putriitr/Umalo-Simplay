@@ -64,7 +64,6 @@ return [
     'brands_product' => 'Product Brand',
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Product',
-    'our_products' => 'Our Products',
     'explore_products' => 'See More Products',
     'member_portal' => 'Member Portal',
 
@@ -87,7 +86,6 @@ return [
     'phone' => 'Phone',
     'your_message' => 'Your Message',
     'send_message' => 'Send Message',
-    'company' => 'Company',
     'see_more' => 'See More',
     'legality_top' => 'Operational License',
     'legality' => 'Company Legality',
@@ -119,4 +117,6 @@ return [
     'slider_not_available' => 'Slider Not Available.',
     'brand_not_available' => 'Products brand not available.',
     'user_not_available' => 'User not available.',
+
+    'portal_distribution' => 'Distribution Portal',
 ];

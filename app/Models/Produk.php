@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Quotation;
 
 class Produk extends Model
 {
@@ -48,6 +49,9 @@ class Produk extends Model
         return $this->hasMany(Brosur::class); // or use a different relationship type if necessary
     }
 
-
+    public function quotations()
+    {
+        return $this->hasMany(Quotation::class, 'produk_id');
+    }
 
 }

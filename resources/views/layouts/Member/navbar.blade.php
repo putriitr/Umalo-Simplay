@@ -6,7 +6,8 @@
     @endphp
 
     {{-- <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
@@ -19,9 +20,10 @@
         <div class="row align-items-center top-bar">
             <div class="col-lg-3 col-md-12 text-center text-lg-start">
                 <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0">
-                    <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid" style="width: 50%;">
+                    <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid"
+                        style="width: 50%;">
                     <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
-                    style="height: auto; width: 150px; padding-left: 10px;">
+                        style="height: auto; width: 150px; padding-left: 10px;">
                 </a>
             </div>
             <div class="col-lg-9 col-md-12 text-end">
@@ -82,7 +84,7 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
                 <img src="{{ asset('assets/img/Logo.png') }}" alt="SIMPLAY Logo" class="img-fluid"
                     style="max-width: 100px;">
-                    <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
+                <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 150px; padding-left: 15px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -108,7 +110,16 @@
                     @endforeach
 
                     @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
+                        <!-- Dropdown for Portal -->
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Portal</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ route('portal') }}"
+                                    class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
+                                    <a href="{{ route('distribution') }}" class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
+                            </div>
+                        </div>
+                        
                     @endauth
 
                     <a href="{{ route('contact') }}" class="nav-item nav-link">{{ __('messages.contact') }}</a>
@@ -139,8 +150,8 @@
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
                     @if (auth()->check())
                         <div class="dropdown text-light">
-                            <a href="#" class="dropdown-toggle text-light" id="companyDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle text-light" id="companyDropdown" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <small class="text-light"><i
                                         class="fa fa-user text-light text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
                             </a>
@@ -167,8 +178,7 @@
                             @csrf
                         </form>
                     @else
-                        <a href="{{ route('login') }}"><small
-                                class="btn btn-primary rounded-pill text-white py-1 px-1"><i
+                        <a href="{{ route('login') }}"><small class="btn btn-primary rounded-pill text-white py-1 px-1"><i
                                     class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member</small></a>
                     @endif
                 </div>
@@ -204,60 +214,60 @@
         }
     </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const links = document.querySelectorAll('.navbar-nav .nav-link');
-        const metaDropdownItems = document.querySelectorAll('.dropdown-item'); // Hanya targetkan .dropdown-item dalam meta
-        const currentUrl = window.location.href;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const links = document.querySelectorAll('.navbar-nav .nav-link');
+            const metaDropdownItems = document.querySelectorAll('.dropdown-item'); // Hanya targetkan .dropdown-item dalam meta
+            const currentUrl = window.location.href;
 
-        // Set the active link on page load
-        function setActiveLink() {
-            let foundActive = false;
+            // Set the active link on page load
+            function setActiveLink() {
+                let foundActive = false;
 
-            // Untuk semua .nav-link
-            links.forEach(link => {
-                if (link.href === currentUrl) {
-                    link.classList.add('active');
-                    foundActive = true;
-                } else {
-                    link.classList.remove('active');
+                // Untuk semua .nav-link
+                links.forEach(link => {
+                    if (link.href === currentUrl) {
+                        link.classList.add('active');
+                        foundActive = true;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Jika tidak ada yang aktif, bisa aktifkan link pertama (opsional)
+                if (!foundActive && links.length > 0) {
+                    links[0].classList.add('active');
                 }
-            });
-
-            // Jika tidak ada yang aktif, bisa aktifkan link pertama (opsional)
-            if (!foundActive && links.length > 0) {
-                links[0].classList.add('active');
             }
-        }
 
-        // Event listener untuk dropdown meta items (hanya untuk link di dalam meta)
-        metaDropdownItems.forEach(item => {
-            item.addEventListener('click', function(event) {
-                event.preventDefault(); // Hentikan navigasi default
+            // Event listener untuk dropdown meta items (hanya untuk link di dalam meta)
+            metaDropdownItems.forEach(item => {
+                item.addEventListener('click', function (event) {
+                    event.preventDefault(); // Hentikan navigasi default
 
-                // Hapus kelas 'active' dari semua nav-link di dropdown meta
-                links.forEach(link => link.classList.remove('active'));
+                    // Hapus kelas 'active' dari semua nav-link di dropdown meta
+                    links.forEach(link => link.classList.remove('active'));
 
-                // Tambahkan kelas 'active' ke nav-link tipe meta yang relevan
-                const dropdownType = this.closest('.dropdown').querySelector('.nav-link');
-                dropdownType.classList.add('active');
+                    // Tambahkan kelas 'active' ke nav-link tipe meta yang relevan
+                    const dropdownType = this.closest('.dropdown').querySelector('.nav-link');
+                    dropdownType.classList.add('active');
 
-                // Lakukan redirect ke URL yang diklik setelah penundaan kecil
-                setTimeout(() => {
-                    window.location.href = this.href;
-                }, 100);
+                    // Lakukan redirect ke URL yang diklik setelah penundaan kecil
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 100);
+                });
             });
-        });
 
-        // On click, set the clicked nav-link as active
-        links.forEach(link => {
-            link.addEventListener('click', function() {
-                links.forEach(link => link.classList.remove('active'));
-                this.classList.add('active');
+            // On click, set the clicked nav-link as active
+            links.forEach(link => {
+                link.addEventListener('click', function () {
+                    links.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
             });
-        });
 
-        // Initial check on page load
-        setActiveLink();
-    });
-</script>
+            // Initial check on page load
+            setActiveLink();
+        });
+    </script>
