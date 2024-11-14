@@ -97,6 +97,16 @@
                                     <span class="sub-item">Quotation</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.quotations.negotiations.index') }}">
+                                    <span class="sub-item">Lihat Negosiasi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.purchase-orders.index') }}">
+                                    <span class="sub-item">Lihat Purchase Orders</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

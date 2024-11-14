@@ -54,4 +54,10 @@ class Produk extends Model
         return $this->hasMany(Quotation::class, 'produk_id');
     }
 
+    public function quotationProducts()
+    {
+        return $this->hasMany(QuotationProduct::class, 'produk_id'); // Sesuaikan jika kolomnya adalah 'product_id'
+    }
+
+
 }

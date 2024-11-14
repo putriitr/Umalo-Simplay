@@ -80,15 +80,13 @@
                                             </a>
                                             <!-- Ajukan Quotation Button for Distributor Users Only -->
                                             @if (auth()->user() && auth()->user()->type === 'distributor')
-                                                <form action="{{ route('Distributor.product.addToQuotation', $produk->id) }}" method="POST"
-                                                    class="mt-2 d-inline">
+                                                <form action="{{ route('quotations.add_to_cart') }}" method="POST"
+                                                    class="d-inline-flex align-items-center">
                                                     @csrf
-                                                    <!-- Hidden input for quantity -->
-                                                    <input type="hidden" name="quantity" value="1">
-                                                    <button type="submit" class="btn btn-link p-0" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Ajukan Quotation">
-                                                        <i class="fas fa-file-invoice-dollar" style="font-size: 1.5em; color: #007bff;"></i>
-                                                    </button>
+                                                    <input type="hidden" name="produk_id" value="{{ $produk->id }}">
+                                                    <input type="number" name="quantity" min="1" value="1"
+                                                        class="form-control form-control-sm me-2" style="width: 70px;">
+                                                    <button type="submit" class="btn btn-primary btn-sm px-3">Tambah</button>
                                                 </form>
                                             @endif
                                         </div>
