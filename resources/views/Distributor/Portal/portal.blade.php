@@ -66,11 +66,30 @@
                     </div>
                 </div>
             </div>
+            <!-- Kelola Proforma Invoice -->
+            <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item rounded">
+                    <div class="service-img rounded-top"
+                        style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                        <i class='bx bx-file' style="font-size: 200px; color: #fff;"></i>
+                    </div>
+                    <div class="service-content rounded-bottom bg-light p-4">
+                        <div class="service-content-inner">
+                            <h5 class="mb-4">Proforma Invoice</h5>
+                            <a href="{{ route('distributor.proforma-invoices.index') }}"
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat Proforma
+                                Invoice</a>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
-                    <div class="service-img rounded-top"
-                        style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; margin: 0 auto; background-color: #f8f9fa;">
-                        <i class='bx bx-file' style="font-size: 200px; color: #000000;"></i> <!-- Icon PO -->
+                <div class="service-img rounded-top"
+                        style="display: flex; justify-content: center; align-items: center; height: 200px; width: 250px; margin: 0 auto; background-color: #1E60AA;">
+                        <i class='bx bx-cart' style="font-size: 200px; color: #fff;"></i>
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">

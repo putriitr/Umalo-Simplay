@@ -107,6 +107,16 @@
                                     <span class="sub-item">Lihat Purchase Orders</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('admin.proforma-invoices.index') }}">
+                                    <span class="sub-item">Lihat Proforma Invoices</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('invoices.index') }}">
+                                    <span class="sub-item">Lihat Invoices</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

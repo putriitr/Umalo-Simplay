@@ -1,15 +1,10 @@
 @extends('layouts.Member.master')
 @section('content')
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Buat Tiket Layanan Baru</h3>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{url('/portal')}}">Portal Member</a></li>
-            <li class="breadcrumb-item active text-primary">Buat Tiket Layanan Baru</li>
-        </ol>
-    </div>
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Buat Tiket Layanan Baru</h1>
 </div>
+
 
 <div class="container py-5">
     <div class="card shadow-sm border-0 rounded">
@@ -42,13 +37,29 @@
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ route('tickets.index') }}" class="btn btn-danger me-md-2">
-                        <i class="fas fa-times-circle me-2"></i>Batal
+                    <a href="{{ route('tickets.index') }}" class="btn btn-danger me-md-2" data-bs-toggle="tooltip"
+                        title="Batal">
+                        <i class="fas fa-times-circle"></i>
                     </a>
 
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Kirim</button>
+                    <button type="submit" class="btn btn-primary" data-bs-toggle="tooltip" title="Kirim">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
+
+
             </form>
         </div>
     </div>
+    <script>
+// Aktifkan tooltip di seluruh halaman
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+
+
+    </script>
     @endsection

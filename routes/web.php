@@ -31,15 +31,19 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Admin\Ticket\TicketController;
 use App\Http\Controllers\Member\Ticket\TicketMemberController;
 use App\Http\Controllers\Admin\Distributor\DistributorApprovalController;
-use App\Http\Controllers\Distribution\Portal\DistributionController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Distribution\Portal\TicketDistributorController;
 use App\Http\Controllers\Distribution\Portal\QuotationController;
 use App\Http\Controllers\Admin\Quotation\QuotationAdminController;
-use App\Http\Controllers\Admin\PurchaseOrder\PurchaseOrderAdminController;
 use App\Http\Controllers\Admin\Quotation\QuotationNegotiationController;
 use App\Http\Controllers\Distribution\Portal\DistributorQuotationNegotiationController;
 use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
+use App\Http\Controllers\Admin\Invoice\InvoiceAdminController;
+use App\Http\Controllers\Admin\ProformaInvoice\ProformaInvoiceAdminController;
+use App\Http\Controllers\Admin\PurchaseOrder\PurchaseOrderAdminController;
+use App\Http\Controllers\Distribution\Portal\DistributionController;
+use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -154,7 +158,8 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         // Route untuk menyimpan negosiasi
         Route::post('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'store'])->name('distributor.quotations.negotiations.store');
         Route::get('/distributor/quotations/negotiations', [DistributorQuotationNegotiationController::class, 'index'])->name('distributor.quotations.negotiations.index');
-
+        Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
+        Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
         
         // Quotation Routes
         Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
@@ -217,6 +222,17 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::put('/purchase-orders/{id}/approve', [PurchaseOrderAdminController::class, 'approve'])->name('admin.purchase-orders.approve');
         Route::put('/purchase-orders/{id}/reject', [PurchaseOrderAdminController::class, 'reject'])->name('admin.purchase-orders.reject');
         
+
+        Route::get('/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
+        Route::post('/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');
+        Route::get('/admin/proforma-invoices', [ProformaInvoiceAdminController::class, 'index'])->name('admin.proforma-invoices.index');
+        // Route untuk index dan pembuatan invoice
+        Route::get('/invoices', [InvoiceAdminController::class, 'index'])->name('invoices.index');
+        Route::get('/invoices/create/{proformaInvoiceId}', [InvoiceAdminController::class, 'create'])->name('invoices.create');
+        Route::post('/invoices/store/{proformaInvoiceId}', [InvoiceAdminController::class, 'store'])->name('invoices.store');
+        Route::get('/invoices/{id}', [InvoiceAdminController::class, 'show'])->name('invoices.show');
+
+
         Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
             Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
             Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');

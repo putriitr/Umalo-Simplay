@@ -26,19 +26,25 @@
                     <td>{{ ucfirst($po->status) }}</td>
                     <td>
                         <a href="{{ route('admin.purchase-orders.show', $po->id) }}" class="btn btn-info btn-sm">View</a>
-                        
+
                         @if($po->status === 'pending')
-                            <form action="{{ route('admin.purchase-orders.approve', $po->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.purchase-orders.approve', $po->id) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="btn btn-success btn-sm">Approve</button>
                             </form>
-                            
-                            <form action="{{ route('admin.purchase-orders.reject', $po->id) }}" method="POST" style="display:inline;">
+
+                            <form action="{{ route('admin.purchase-orders.reject', $po->id) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit" class="btn btn-danger btn-sm">Reject</button>
                             </form>
+                        @elseif($po->status === 'approved' && !$po->proformaInvoice)
+                            <!-- Tampilkan tombol Create Proforma Invoice jika status approved dan belum ada Proforma Invoice -->
+                            <a href="{{ route('admin.proforma-invoices.create', $po->id) }}"
+                                class="btn btn-primary btn-sm">Create Proforma Invoice</a>
                         @endif
                     </td>
                 </tr>

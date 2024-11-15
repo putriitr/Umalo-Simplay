@@ -3,14 +3,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Produk; 
+use App\Models\Produk;
 class Quotation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id', 
-        'produk_id', 
-        'quantity', 
+        'user_id',
+        'produk_id',
+        'quantity',
         'status',
         'recipient_company',
         'recipient_contact_person',
@@ -25,7 +25,7 @@ class Quotation extends Model
         'terms_conditions',
         'authorized_person_name',
         'authorized_person_position',
-        'pdf_path' 
+        'pdf_path'
     ];
     // Define relationships
     public function user()
@@ -46,5 +46,10 @@ class Quotation extends Model
     public function negotiations()
     {
         return $this->hasMany(QuotationNegotiation::class);
+    }
+
+    public function purchaseOrder()
+    {
+        return $this->hasOne(PurchaseOrder::class);
     }
 }

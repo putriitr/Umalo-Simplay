@@ -31,56 +31,60 @@
                 </thead>
                 <tbody>
                     @forelse($quotations as $key => $quotation)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <!-- Menampilkan Nama Produk -->
-                                        <td>
-                                            @foreach ($quotation->quotationProducts as $product)
-                                                - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
-                                            @endforeach
-                                        </td>
-                                        <!-- Menampilkan Distributor -->
-                                        <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-                                        <!-- Menampilkan Quantity untuk setiap produk -->
-                                        <td>
-                                            @foreach ($quotation->quotationProducts as $product)
-                                                {{ $product->quantity }} <br>
-                                            @endforeach
-                                        </td>
-                                        <!-- Status berdasarkan status di database -->
-                                        <td>
-                                            <span class="badge 
-                        @if ($quotation->status === 'cancelled') bg-danger
-                        @elseif($quotation->status === 'quotation') bg-success
-                        @else bg-warning @endif">
-                                                {{ ucfirst($quotation->status) }}
-                                            </span>
-                                        </td>
-                                        <!-- Menampilkan Dokumen PDF jika ada -->
-                                        <td>
-                                            @if ($quotation->pdf_path)
-                                                <p>
-                                                    <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary">
-                                                        <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
-                                                    </a>
-                                                </p>
-                                                <p>
-                                                    <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
-                                                        <i class="fas fa-download me-2"></i>Download PDF
-                                                    </a>
-                                                </p>
-                                            @else
-                                                <span class="text-muted">No file</span>
-                                            @endif
-                                        </td>
-                                        <!-- Actions -->
-                                        <td>
-                                            <a href="{{ route('admin.quotations.show', $quotation->id) }}"
-                                                class="btn btn-primary btn-sm">View</a>
-                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
-                                                class="btn btn-secondary btn-sm">Edit</a>
-                                        </td>
-                                    </tr>
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <!-- Menampilkan Nama Produk -->
+                            <td>
+                                @foreach ($quotation->quotationProducts as $product)
+                                    <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
+                                @endforeach
+                            </td>
+                            <!-- Menampilkan Distributor -->
+                            <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
+                            <!-- Menampilkan Quantity untuk setiap produk -->
+                            <td>
+                                @foreach ($quotation->quotationProducts as $product)
+                                    <div>{{ $product->quantity }}</div>
+                                @endforeach
+                            </td>
+                            <!-- Status berdasarkan status di database -->
+                            <td>
+                                <span class="badge 
+                                            @if ($quotation->status === 'cancelled') bg-danger
+                                            @elseif($quotation->status === 'quotation') bg-success
+                                                @else bg-warning 
+                                            @endif">
+                                    {{ ucfirst($quotation->status) }}
+                                </span>
+                            </td>
+                            <!-- Menampilkan Dokumen PDF jika ada -->
+                            <td>
+                                @if ($quotation->pdf_path)
+                                    <div class="d-flex flex-column">
+                                        <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary mb-1">
+                                            <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
+                                        </a>
+
+                                        <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
+                                            <i class="fas fa-download me-2"></i>Download PDF
+                                        </a>
+                                    </div>
+                                @else
+                                    <span class="text-muted">No file</span>
+                                @endif
+                            </td>
+                            <!-- Actions -->
+                            <td>
+                                <div class="d-flex gap-2">
+                                    <a href="{{ route('admin.quotations.show', $quotation->id) }}"
+                                        class="btn btn-primary btn-sm">View</a>
+                                    @if ($quotation->status !== 'cancelled')
+                                        <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
+                                            class="btn btn-secondary btn-sm">Edit</a>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
                     @empty
                         <tr>
                             <td colspan="7" class="text-center text-muted">Belum ada permintaan quotation.</td>

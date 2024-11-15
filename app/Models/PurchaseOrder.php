@@ -23,4 +23,9 @@ class PurchaseOrder extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function proformaInvoice()
+    {
+        return $this->hasOne(ProformaInvoice::class);
+    }
 }
