@@ -72,21 +72,38 @@ class QuotationController extends Controller
             return redirect()->route('quotations.cart')->with('error', 'Keranjang kosong.');
         }
         $quotationNumber = 'Q-' . now()->format('YmdHis') . '-' . auth()->id();
-        // Buat quotation baru
+
+        // Hitung nomor pengajuan berdasarkan bulan dan tahun ini
+        $currentMonth = now()->format('m');
+        $currentYear = now()->format('Y');
+
+        $lastQuotation = Quotation::whereYear('created_at', $currentYear)
+            ->whereMonth('created_at', $currentMonth)
+            ->orderBy('id', 'desc')
+            ->first();
+        
+            // Tentukan nomor pengajuan berikutnya
+        $nextNumber = $lastQuotation ? intval(explode('/', $lastQuotation->nomor_pengajuan)[0]) + 1 : 1;
+        $nomorPengajuan = str_pad($nextNumber, 2, '0', STR_PAD_LEFT) . '/' . $currentMonth . '/' . $currentYear;
+        
+        // Buat quotation baru dengan nomor pengajuan
         $quotation = Quotation::create([
             'user_id' => auth()->id(),
             'status' => 'pending',
+            'nomor_pengajuan' => $nomorPengajuan,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         // Simpan setiap produk di quotation_product
         foreach ($cartItems as $item) {
-            // Ambil data produk berdasarkan produk_id
+            
+            
             $produk = Produk::find($item['produk_id']);
             if (!$produk) {
-                continue; // Lewati jika produk tidak ditemukan
+                continue; 
             }
-            // Hitung total price untuk setiap produk (quantity x unit_price)
+            
+            
             $unitPrice = $item['unit_price'] ?? 0;
             $totalPrice = $item['quantity'] * $unitPrice;
             QuotationProduct::create([
@@ -95,15 +112,15 @@ class QuotationController extends Controller
                 'quantity' => $item['quantity'],
                 'created_at' => now(),
                 'updated_at' => now(),
-                'equipment_name' => $produk->nama, // Mengambil nama dari produk
-                'merk_type' => $produk->merk,      // Mengambil merk dari produk
+                'equipment_name' => $produk->nama, 
+                'merk_type' => $produk->merk,      
                 'unit_price' => $unitPrice,
                 'total_price' => $totalPrice,
             ]);
         }
         // Kosongkan keranjang setelah submit
         session()->forget('quotation_cart');
-        return redirect()->route('distribution.request-quotation')->with('success', 'Permintaan quotation berhasil diajukan.');
+        return redirect()->route('distribution.request-quotation')->with('success', 'Permintaan quotation berhasil diajukan dengan nomor pengajuan: ' . $nomorPengajuan);
     }
     public function updateCart(Request $request)
     {

@@ -27,7 +27,7 @@ class PurchaseOrderController extends Controller
     $request->validate([
         'po_number' => 'required|unique:purchase_orders',
         'po_date' => 'required|date',
-        'file_path' => 'nullable|file|mimes:pdf,doc,docx', // Validasi untuk file upload jika diperlukan
+        'file_path' => 'required|file|mimes:pdf,doc,docx|max:10048', // Validasi agar file wajib diisi
     ]);
     // Menentukan path file untuk disimpan di direktori public
     $filePath = null;

@@ -45,17 +45,17 @@
         <h4>Vendor Information</h4>
         <div class="mb-3">
             <label for="vendor_name" class="form-label">Vendor Name</label>
-            <input type="text" class="form-control" id="vendor_name" name="vendor_name" required>
+            <input type="text" class="form-control" id="vendor_name" name="vendor_name" value="{{ $user->name }}" readonly>
         </div>
         
         <div class="mb-3">
             <label for="vendor_address" class="form-label">Vendor Address</label>
-            <textarea class="form-control" id="vendor_address" name="vendor_address" rows="2" required></textarea>
+            <textarea class="form-control" id="vendor_address" name="vendor_address" rows="2" readonly>{{ $user->alamat }}</textarea>
         </div>
         
         <div class="mb-3">
             <label for="vendor_phone" class="form-label">Vendor Phone</label>
-            <input type="text" class="form-control" id="vendor_phone" name="vendor_phone" required>
+            <input type="text" class="form-control" id="vendor_phone" name="vendor_phone" value="{{ $user->no_telp }}" readonly>
         </div>
         <button type="submit" class="btn btn-primary">Simpan Invoice</button>
     </form>

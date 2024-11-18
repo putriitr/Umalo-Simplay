@@ -78,7 +78,47 @@ class QuotationAdminController extends Controller
             'products.*.unit_price' => 'required|numeric',
             'products.*.produk_id' => 'required|integer', // Produk ID harus ada dan integer
         ]);
-        $quotation = Quotation::findOrFail($id);
+        $quotation = Quotation::with('user')->findOrFail($id);
+        // Ambil singkatan dari nama perusahaan tanpa "PT" atau "CV"
+        $namaPerusahaan = $quotation->user->nama_perusahaan ?? 'Perusahaan';
+        $kataPerusahaan = explode(' ', $namaPerusahaan);
+        // Abaikan "PT" atau "CV" jika ada di awal nama perusahaan
+        if (in_array(strtoupper($kataPerusahaan[0]), ['PT', 'CV'])) {
+            array_shift($kataPerusahaan); // Hapus kata pertama jika itu "PT" atau "CV"
+        }
+        // Ambil singkatan dari kata-kata yang tersisa
+        $singkatanNamaPerusahaan = strtoupper(implode('', array_map(function ($kata) {
+            return $kata[0];
+        }, $kataPerusahaan)));
+        // Tahun
+        $tahun = now()->format('Y');
+        // Tanggal ke Romawi langsung di dalam kode
+        $tanggal = now()->format('j'); // Ambil angka tanggal (1-31)
+        $romawiMap = [
+            'M' => 1000,
+            'CM' => 900,
+            'D' => 500,
+            'CD' => 400,
+            'C' => 100,
+            'XC' => 90,
+            'L' => 50,
+            'XL' => 40,
+            'X' => 10,
+            'IX' => 9,
+            'V' => 5,
+            'IV' => 4,
+            'I' => 1
+        ];
+        $tanggalRomawi = '';
+        foreach ($romawiMap as $roman => $value) {
+            while ($tanggal >= $value) {
+                $tanggalRomawi .= $roman;
+                $tanggal -= $value;
+            }
+        }
+        // Nomor Referensi
+        $referenceNumber = sprintf("%s/SPPH/%s/%s/%s", $quotation->quotation_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
+
         // Initialize subtotal
         $subtotal = 0;
         // Loop through products to calculate subtotal and save them
@@ -130,7 +170,7 @@ class QuotationAdminController extends Controller
             'status' => $status, // Tambahkan status
         ]);
         // Generate the PDF
-        $pdf = PDF::loadView('Admin.Quotation.pdf', compact('quotation'));
+        $pdf = PDF::loadView('Admin.Quotation.pdf', compact('quotation', 'referenceNumber'));   
         // Create a filename based on the current time and the original file name
         $filename = time() . '_' . Str::slug('Quotation_' . $quotation->id) . '.pdf';
         // Define the path where the PDF will be saved

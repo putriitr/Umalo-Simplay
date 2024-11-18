@@ -25,6 +25,7 @@ class Quotation extends Model
         'terms_conditions',
         'authorized_person_name',
         'authorized_person_position',
+        'nomor_pengajuan',
         'pdf_path'
     ];
     // Define relationships

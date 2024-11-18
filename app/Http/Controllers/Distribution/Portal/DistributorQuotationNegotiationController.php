@@ -17,14 +17,14 @@ class DistributorQuotationNegotiationController extends Controller
             $query->where('user_id', $userId);
         })->with('quotation')->get();
         // Mengirim data negosiasi ke tampilan
-        return view('Distributor.Portal.Negotiation.index', compact('negotiations'));
+        return view('Distributor.Portal.Negotiations.index', compact('negotiations'));
     }
     
     // Menampilkan form untuk negosiasi
     public function create($quotationId)
     {
         $quotation = Quotation::findOrFail($quotationId);
-        return view('Distributor.Portal.negotiation.create', compact('quotation'));
+        return view('Distributor.Portal.negotiations.create', compact('quotation'));
     }
     // Menyimpan negosiasi baru
     public function store(Request $request, $quotationId)

@@ -116,7 +116,8 @@
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('portal') }}"
                                     class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
-                                    <a href="{{ route('distribution') }}" class="dropdown-item">{{ __('messages.portal_distribution') }}</a>
+                                    <a href="{{ route('distribution') }}" 
+                                    class="nav-item nav-link">{{ __('messages.portal_distribution') }}</a>
                             </div>
                         </div>
                         

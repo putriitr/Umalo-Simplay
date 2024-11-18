@@ -28,7 +28,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="file_path">Upload PO File (optional)</label>
-            <input type="file" class="form-control" id="file_path" name="file_path" accept=".pdf,.doc,.docx">
+            <input type="file" class="form-control" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
         </div>
         <button type="submit" class="btn btn-primary">Create PO</button>
     </form>
