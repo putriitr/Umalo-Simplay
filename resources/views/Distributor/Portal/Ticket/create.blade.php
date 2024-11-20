@@ -1,25 +1,26 @@
 @extends('layouts.Member.master')
+
 @section('content')
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Buat Tiket Layanan Baru</h3>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-            <li class="breadcrumb-item active text-primary">Buat Tiket Layanan Baru</li>
-        </ol>
-    </div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Buat Tiket Layanan Baru</h1>
+    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
+        <li class="breadcrumb-item active text-primary">Isi Formulir Layanan Tiket </li>
+    </ol>
 </div>
-<div class="container py-5">
-    <div class="card shadow-sm border-0 rounded">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Formulir Pengajuan Tiket Layanan</h4>
-        </div>
+
+<div class="container mt-5">
+
+    <!-- Form Card -->
+    <div class="card shadow-lg border-light rounded">
         <div class="card-body">
             <form action="{{ route('distribution.tickets.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="jenis_layanan" class="form-label"><i class="fas fa-cogs me-2"></i>Jenis Layanan</label>
+
+                <!-- Jenis Layanan -->
+                <div class="mb-4">
+                    <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
                     <select name="jenis_layanan" id="jenis_layanan" class="form-control">
                         <option value="Permintaan Data">Permintaan Data</option>
                         <option value="Maintanance">Maintanance</option>
@@ -27,23 +28,82 @@
                         <option value="Installasi">Installasi</option>
                     </select>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="keterangan_layanan" class="form-label"><i class="fas fa-info-circle me-2"></i>Keterangan Pengajuan</label>
-                    <textarea name="keterangan_layanan" id="keterangan_layanan" class="form-control" rows="4" placeholder="Deskripsikan layanan yang Anda butuhkan..."></textarea>
+
+                <!-- Keterangan Layanan -->
+                <div class="mb-4">
+                    <label for="keterangan_layanan" class="form-label">Keterangan Pengajuan</label>
+                    <textarea name="keterangan_layanan" id="keterangan_layanan" class="form-control" rows="4"
+                        placeholder="Deskripsikan layanan yang Anda butuhkan..."></textarea>
                 </div>
-                <div class="form-group mb-4">
-                    <label for="file_pendukung_layanan" class="form-label"><i class="fas fa-paperclip me-2"></i>Dokumen Pendukung (Opsional)</label>
+
+                <!-- Dokumen Pendukung -->
+                <div class="mb-4">
+                    <label for="file_pendukung_layanan" class="form-label">Dokumen Pendukung (Opsional)</label>
                     <input type="file" name="file_pendukung_layanan" id="file_pendukung_layanan" class="form-control">
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ route('distribution.tickets.index') }}" class="btn btn-danger me-md-2">
-                        <i class="fas fa-times-circle me-2"></i>Batal
+
+                <!-- Action Buttons -->
+                <div class="d-flex gap-3 justify-content-start">
+                    <a href="{{ route('distribution.tickets.index') }}" class="btn btn-outline-secondary btn-sm">
+                        <i class="bx bx-x-circle me-2"></i>Batal
                     </a>
-                    
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Kirim</button>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="bx bx-paper-plane me-2"></i>Kirim
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 @endsection
+
+<!-- Custom Styles -->
+<style>
+    /* Minimalistic Form Styling */
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .btn-outline-secondary {
+        border-radius: 10px;
+        border: 1px solid #6c757d;
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        color: white;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    /* Adjust spacing for inputs */
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+</style>

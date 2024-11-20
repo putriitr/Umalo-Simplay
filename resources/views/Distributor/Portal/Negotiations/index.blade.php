@@ -1,25 +1,29 @@
-@extends('layouts.Member.master')  
+@extends('layouts.Member.master')
+
 @section('content')
 
-
-<!-- Header Start -->
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h2 class="text-center mb-4">Daftar Negosiasi</h2>
-    </div>
+<div class="container mt-5"></div>
+<h1 class="text-center mb-4">Daftar Negosiasi</h1>
+    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
+        <li class="breadcrumb-item active text-primary">List Daftar Negosiasi</li>
+    </ol>
 </div>
-<!-- Header End -->
+
+
 
 <div class="container mt-5">
     <div class="container py-5">
-        <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-left mb-4">List Daftar Negosiasi</h3>
-        </div>
+        
 
-        <div class="card shadow border-0 rounded custom-card">
+        <div class="card shadow-lg border-light rounded">
             <div class="card-body p-4">
-                <table class="table custom-table">
-                    <thead>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-left mb-4 text-secondary">List Daftar Negosiasi</h3>
+        </div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-light">
                         <tr>
                             <th style="width: 10%;">ID</th>
                             <th style="width: 20%;">Quotation Number</th>
@@ -58,45 +62,44 @@
 @endsection
 
 <style>
-    .custom-card {
-        max-width: 1400px; /* Adjusted max width for better responsiveness */
+    .card {
+        max-width: 1200px;
         margin: auto;
         background-color: #f8f9fa;
-        border-radius: 20px; /* Reduced border-radius for cleaner look */
+        border-radius: 20px;
     }
 
-    .custom-table {
-        border-collapse: collapse;
+    .table {
         width: 100%;
-        font-size: 1.2rem;  /* Slightly reduced font size for better readability */
+        font-size: 1rem;
+        text-align: center;
+        border-collapse: collapse;
     }
 
-    .custom-table th {
+    .table th {
         background-color: #e0e0e0;
         color: #333;
         font-weight: bold;
-        text-align: center;
-        padding: 20px;  /* Reduced padding for cleaner table */
-        border: 1px solid #bbb;  /* Reduced border thickness */
+        padding: 15px;
+        border: 1px solid #bbb;
     }
 
-    .custom-table td {
+    .table td {
         background-color: #ffffff;
         color: #555;
-        padding: 20px;  /* Reduced padding for a more compact layout */
-        text-align: center;
-        border: 1px solid #ddd;  /* Reduced border thickness */
+        padding: 15px;
+        border: 1px solid #ddd;
     }
 
-    .custom-table tbody tr:hover {
+    .table tbody tr:hover {
         background-color: #f3f3f3;
     }
 
     /* Badge color styles */
     .badge {
-        padding: 10px 20px;  /* Adjusted padding */
-        border-radius: 10px;  /* Slightly reduced radius */
-        font-size: 1.2rem;  /* Slightly reduced font size for badges */
+        padding: 8px 16px;
+        border-radius: 10px;
+        font-size: 1rem;
         font-weight: 600;
     }
 
@@ -113,5 +116,18 @@
     .bg-danger {
         background-color: #dc3545 !important;
         color: white;
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .table th, .table td {
+            padding: 8px;
+        }
     }
 </style>

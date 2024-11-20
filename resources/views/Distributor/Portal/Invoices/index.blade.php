@@ -1,125 +1,142 @@
 @extends('layouts.Member.master')
+
 @section('content')
 
-
-<!-- Main Content -->
+<div class="container mt-5"></div>
+<h1 class="text-center mb-4">Daftar Invoice Anda</h1>
+    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
+        <li class="breadcrumb-item active text-primary">Daftar Invoice</li>
+    </ol>
+</div>
 <div class="container mt-5">
-    <h1 class="text-center text-dark mb-4">Daftar Invoice Anda</h1> <BR> <BR>
 
-    @if ($invoices->isEmpty())
-        <div class="alert alert-info text-center">
-            <p>Belum ada Invoice tersedia.</p>
+
+    <!-- Tabel Invoices -->
+    <div class="card shadow-lg border-light rounded">
+        <div class="card-body">
+            <h3 class="mb-4 text-secondary">Daftar Invoice</h3>
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if ($invoices->isEmpty())
+                <div class="alert alert-info">
+                    <p>Belum ada Invoice tersedia.</p>
+                </div>
+            @else
+                <div class="mb-3">
+                    <a href="{{ route('distributor.proforma-invoices.index') }}" class="btn btn-dark rounded-3">
+                        <i class="fas fa-file-invoice"></i> Lihat Proforma Invoices
+                    </a>
+                </div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Invoice Number</th>
+                            <th class="text-center">Invoice Date</th>
+                            <th class="text-center">Due Date</th>
+                            <th class="text-center">Subtotal</th>
+                            <th class="text-center">PPN</th>
+                            <th class="text-center">Grand Total</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($invoices as $invoice)
+                            <tr>
+                                <td class="text-center">{{ $invoice->id }}</td>
+                                <td class="text-center">{{ $invoice->invoice_number }}</td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}</td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}</td>
+                                <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
+                                <td class="text-center">{{ number_format($invoice->ppn, 2) }}</td>
+                                <td class="text-center">{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
+                                <td class="text-center">
+                                    <span class="badge 
+                                        @if($invoice->status == 'paid') badge-success 
+                                        @elseif($invoice->status == 'unpaid') badge-danger 
+                                        @elseif($invoice->status == 'partial') badge-warning
+                                        @else badge-secondary @endif">
+                                        {{ ucfirst($invoice->status) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-start gap-2">
+                                        <!-- Tombol untuk melihat PDF Invoice -->
+                                        <a href="{{ asset($invoice->file_path) }}" target="_blank" class="btn btn-info btn-sm w-100 mb-2">
+                                            <i class="fas fa-eye"></i> View PDF
+                                        </a>
+                                        <!-- Tombol untuk mengunduh PDF Invoice -->
+                                        <a href="{{ asset($invoice->file_path) }}" download class="btn btn-success btn-sm w-100 mb-2">
+                                            <i class="fas fa-download"></i> Download PDF
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
-    @else
-        <table class="table table-bordered table-hover table-striped">
-            <thead class="bg-lightblue text-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Invoice Number</th>
-                    <th>Invoice Date</th>
-                    <th>Due Date</th>
-                    <th>Subtotal</th>
-                    <th>PPN</th>
-                    <th>Grand Total</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($invoices as $invoice)
-                    <tr>
-                        <td>{{ $invoice->id }}</td>
-                        <td>{{ $invoice->invoice_number }}</td>
-                        <td>{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}</td>
-                        <td>{{ number_format($invoice->subtotal, 2) }}</td>
-                        <td>{{ number_format($invoice->ppn, 2) }}</td>
-                        <td>{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
-                        <td>
-                            <!-- Badge untuk Status -->
-                            <span class="badge 
-                                @if($invoice->status == 'paid') badge-success 
-                                @elseif($invoice->status == 'unpaid') badge-danger 
-                                @elseif($invoice->status == 'partial') badge-warning
-                                @else badge-secondary @endif">
-                                {{ ucfirst($invoice->status) }}
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex justify-content-start gap-2">
-                                <!-- Tombol untuk melihat PDF Invoice -->
-                                <a href="{{ asset($invoice->file_path) }}" target="_blank" class="btn btn-softblue btn-sm">
-                                    <i class="fas fa-eye"></i> View PDF
-                                </a>
-                                <!-- Tombol untuk mengunduh PDF Invoice -->
-                                <a href="{{ asset($invoice->file_path) }}" download class="btn btn-success btn-sm">
-                                    <i class="fas fa-download"></i> Download PDF
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+    </div>
 </div>
 
-<!-- Styling Tambahan -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+@endsection
+
 <style>
-    .bg-breadcrumb {
-        background-color: #17a2b8;
+    /* Styling Table */
+    .table {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+        border-collapse: collapse;
     }
 
-    .breadcrumb-item a {
-        color: #fff;
-    }
-
-    .breadcrumb-item.active {
-        color: #fff;
+    .table th,
+    .table td {
+        padding: 15px;
+        border: 1px solid #ddd;
     }
 
     .table th {
-        text-align: center;
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: bold;
     }
 
-    .table td {
-        vertical-align: middle;
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
     }
 
-    .table th, .table td {
-        padding: 15px;
+    /* Button Styles */
+    .btn-dark:hover {
+        background-color: #343a40;
+        color: #fff;
     }
 
-    /* Styling untuk tombol */
-    .btn-softblue {
-        background-color: #b3d9ff; /* Biru soft */
-        color: #333;
-        font-size: 14px;
-        padding: 8px 16px;
-        border-radius: 5px;
-        width: 150px; /* Membuat lebar tombol konsisten */
-        text-align: center;
-    }
-
-    .btn-softblue:hover {
-        background-color: #99c2ff;
-    }
-
-    .btn-success {
-        background-color: #28a745; /* Hijau */
-        color: white;
-        font-size: 14px;
-        padding: 8px 16px;
-        border-radius: 5px;
-        width: 150px;
-        text-align: center;
+    .btn-info:hover {
+        background-color: #17a2b8;
+        color: #fff;
     }
 
     .btn-success:hover {
-        background-color: #218838;
+        background-color: #28a745;
+        color: #fff;
     }
 
-    /* Badge untuk status invoice */
+    /* Title Styles */
+    h3.text-secondary {
+        font-weight: 600;
+        color: #6c757d;
+    }
+
+    /* Badge for invoice status */
     .badge {
         font-size: 14px;
         padding: 5px 10px;
@@ -141,25 +158,21 @@
         background-color: #6c757d;
     }
 
-    /* Mengganti warna background header tabel menjadi biru muda soft */
-    .bg-lightblue {
-        background-color: #b3d9ff; /* Soft light blue */
+    /* Styling button view/download */
+    .btn-info, .btn-success {
+        font-size: 14px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
     }
 
-    /* Untuk tombol-tombol supaya tetap rata kiri dan konsisten */
     .d-flex {
         display: flex;
         justify-content: start;
     }
 
-    /* Margin pada tabel */
-    .table {
-        margin-top: 20px;
+    /* Space between buttons */
+    .gap-2 {
+        gap: 10px;
     }
-
 </style>
-
-<!-- FontAwesome CDN untuk ikon tombol -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-@endsection

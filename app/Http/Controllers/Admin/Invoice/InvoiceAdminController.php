@@ -62,7 +62,7 @@ class InvoiceAdminController extends Controller
         $tahun = $hariIni->year;
         // Format nomor PO dan nomor Invoice
         $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $proformaInvoice->purchaseOrder->po_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
-        $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+        $piNumberFormatted = sprintf("%s/INV-SIMPLAY-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
 
         // Buat data invoice dan simpan ke database
         $invoice = Invoice::create([

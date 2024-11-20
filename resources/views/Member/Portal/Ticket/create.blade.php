@@ -1,21 +1,23 @@
 @extends('layouts.Member.master')
+
 @section('content')
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Buat Tiket Layanan Baru</h1>
-</div>
+    <!-- Title -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">Buat Tiket Layanan Baru</h2>
+        <p class="text-muted">Isi formulir berikut untuk mengajukan tiket layanan yang Anda butuhkan.</p>
+    </div>
 
-
-<div class="container py-5">
-    <div class="card shadow-sm border-0 rounded">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Formulir Pengajuan Tiket Layanan</h4>
-        </div>
+    <!-- Form Card -->
+    <div class="card shadow-lg border-light rounded">
         <div class="card-body">
             <form action="{{ route('tickets.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group mb-3">
-                    <label for="jenis_layanan" class="form-label"><i class="fas fa-cogs me-2"></i>Jenis Layanan</label>
+
+                <!-- Jenis Layanan -->
+                <div class="mb-4">
+                    <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
                     <select name="jenis_layanan" id="jenis_layanan" class="form-control">
                         <option value="Permintaan Data">Permintaan Data</option>
                         <option value="Maintanance">Maintanance</option>
@@ -24,42 +26,81 @@
                     </select>
                 </div>
 
-                <div class="form-group mb-3">
-                    <label for="keterangan_layanan" class="form-label"><i class="fas fa-info-circle me-2"></i>Keterangan
-                        Pengajuan</label>
+                <!-- Keterangan Layanan -->
+                <div class="mb-4">
+                    <label for="keterangan_layanan" class="form-label">Keterangan Pengajuan</label>
                     <textarea name="keterangan_layanan" id="keterangan_layanan" class="form-control" rows="4"
                         placeholder="Deskripsikan layanan yang Anda butuhkan..."></textarea>
                 </div>
-                <div class="form-group mb-4">
-                    <label for="file_pendukung_layanan" class="form-label"><i class="fas fa-paperclip me-2"></i>Dokumen
-                        Pendukung (Opsional)</label>
+
+                <!-- Dokumen Pendukung -->
+                <div class="mb-4">
+                    <label for="file_pendukung_layanan" class="form-label">Dokumen Pendukung (Opsional)</label>
                     <input type="file" name="file_pendukung_layanan" id="file_pendukung_layanan" class="form-control">
                 </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{{ route('tickets.index') }}" class="btn btn-danger me-md-2" data-bs-toggle="tooltip"
-                        title="Batal">
-                        <i class="fas fa-times-circle"></i>
+                <!-- Action Buttons -->
+                <div class="d-flex gap-3 justify-content-start">
+                    <a href="{{ route('tickets.index') }}" class="btn btn-outline-secondary btn-sm">
+                        <i class="bx bx-x-circle me-2"></i>Batal
                     </a>
-
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="tooltip" title="Kirim">
-                        <i class="fas fa-paper-plane"></i>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="bx bx-paper-plane me-2"></i>Kirim
                     </button>
                 </div>
-
-
             </form>
         </div>
     </div>
-    <script>
-// Aktifkan tooltip di seluruh halaman
-document.addEventListener('DOMContentLoaded', function () {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-});
+</div>
 
+@endsection
 
-    </script>
-    @endsection
+<!-- Custom Styles -->
+<style>
+    /* Minimalistic Form Styling */
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-control {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .btn-outline-secondary {
+        border-radius: 10px;
+        border: 1px solid #6c757d;
+        color: #6c757d;
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        color: white;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+
+    /* Adjust spacing for inputs */
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+</style>

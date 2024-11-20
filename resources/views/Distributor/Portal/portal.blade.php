@@ -1,16 +1,21 @@
 @extends('layouts.Member.master')
 @section('content')
 <!-- Header Start -->
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Distributor Portal</h3>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-            <li class="breadcrumb-item active text-primary">Distributor Portal</li>
-        </ol>
+<div class="container-fluid page-header mb-5 py-5"
+    style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/member.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
+    <div class="container">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Member Distributor</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __('messages.home') }}</a>
+                </li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Distributor Portal
+                </li>
+            </ol>
+        </nav>
     </div>
 </div>
-<!-- Header End --><br><br>
+
 <!-- Services Start -->
 <div class="container-fluid service py-5">
     <div class="container py-5">
