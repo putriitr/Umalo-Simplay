@@ -3,46 +3,45 @@
 @section('content')
 
 <div class="container mt-5"></div>
-<h1 class="text-center mb-4">Daftar Invoice Anda</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-        <li class="breadcrumb-item active text-primary">Daftar Invoice</li>
-    </ol>
-</div>
-<div class="container mt-5">
+<h1 class="text-center mb-4">{{ __('messages.invoice_list') }}</h1>
+<ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+    <li class="breadcrumb-item active text-primary">{{ __('messages.invoice_list') }}</li>
+</ol>
 
+<div class="container mt-5">
 
     <!-- Tabel Invoices -->
     <div class="card shadow-lg border-light rounded">
         <div class="card-body">
-            <h3 class="mb-4 text-secondary">Daftar Invoice</h3>
+            <h3 class="mb-4 text-secondary">{{ __('messages.invoice_list') }}</h3>
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
 
             @if ($invoices->isEmpty())
                 <div class="alert alert-info">
-                    <p>Belum ada Invoice tersedia.</p>
+                    <p>{{ __('messages.no_invoices_available') }}</p>
                 </div>
             @else
                 <div class="mb-3">
                     <a href="{{ route('distributor.proforma-invoices.index') }}" class="btn btn-dark rounded-3">
-                        <i class="fas fa-file-invoice"></i> Lihat Proforma Invoices
+                        <i class="fas fa-file-invoice"></i> {{ __('messages.view_proforma_invoices') }}
                     </a>
                 </div>
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-light">
                         <tr>
-                            <th class="text-center">ID</th>
-                            <th class="text-center">Invoice Number</th>
-                            <th class="text-center">Invoice Date</th>
-                            <th class="text-center">Due Date</th>
-                            <th class="text-center">Subtotal</th>
-                            <th class="text-center">PPN</th>
-                            <th class="text-center">Grand Total</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Actions</th>
+                            <th class="text-center">{{ __('messages.id') }}</th>
+                            <th class="text-center">{{ __('messages.invoice_number') }}</th>
+                            <th class="text-center">{{ __('messages.invoice_date') }}</th>
+                            <th class="text-center">{{ __('messages.due_date') }}</th>
+                            <th class="text-center">{{ __('messages.subtotal') }}</th>
+                            <th class="text-center">{{ __('messages.ppn') }}</th>
+                            <th class="text-center">{{ __('messages.grand_total') }}</th>
+                            <th class="text-center">{{ __('messages.status') }}</th>
+                            <th class="text-center">{{ __('messages.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,11 +67,11 @@
                                     <div class="d-flex justify-content-start gap-2">
                                         <!-- Tombol untuk melihat PDF Invoice -->
                                         <a href="{{ asset($invoice->file_path) }}" target="_blank" class="btn btn-info btn-sm w-100 mb-2">
-                                            <i class="fas fa-eye"></i> View PDF
+                                            <i class="fas fa-eye"></i> {{ __('messages.view_pdf') }}
                                         </a>
                                         <!-- Tombol untuk mengunduh PDF Invoice -->
                                         <a href="{{ asset($invoice->file_path) }}" download class="btn btn-success btn-sm w-100 mb-2">
-                                            <i class="fas fa-download"></i> Download PDF
+                                            <i class="fas fa-download"></i> {{ __('messages.download_pdf') }}
                                         </a>
                                     </div>
                                 </td>

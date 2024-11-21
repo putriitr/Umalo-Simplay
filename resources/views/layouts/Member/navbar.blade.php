@@ -116,12 +116,19 @@
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('portal') }}"
                                     class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
-                                    <a href="{{ route('distribution') }}" 
+                                <a href="{{ route('distribution') }}"
                                     class="nav-item nav-link">{{ __('messages.portal_distribution') }}</a>
                             </div>
                         </div>
-                        
+
                     @endauth
+
+                    @if (session('error'))
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Peringatan:</strong> {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
 
                     <a href="{{ route('contact') }}" class="nav-item nav-link">{{ __('messages.contact') }}</a>
 
@@ -129,20 +136,24 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             @if (LaravelLocalization::getCurrentLocale() == 'id')
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 25px; height: auto; margin-right: 5px;">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                    style="width: 25px; height: auto; margin-right: 5px;">
                             @elseif(LaravelLocalization::getCurrentLocale() == 'en')
-                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 25px; height: auto; margin-right: 5px;">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English"
+                                    style="width: 25px; height: auto; margin-right: 5px;">
                             @else
                                 {{ LaravelLocalization::getCurrentLocaleNative() }}
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-end m-0">
                             <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 25px; height: auto; margin-right: 5px;">
+                                <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                    style="width: 25px; height: auto; margin-right: 5px;">
                                 {{ __('messages.bahasa') }}
                             </a>
                             <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 25px; height: auto; margin-right: 5px;">
+                                <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English"
+                                    style="width: 25px; height: auto; margin-right: 5px;">
                                 {{ __('messages.english') }}
                             </a>
                         </div>

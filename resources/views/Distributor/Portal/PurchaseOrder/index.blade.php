@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="container mt-5"></div>
-<h1 class="text-center mb-4">Purchase Orders</h1>
+<h1 class="text-center mb-4">{{ __('messages.purchase_orders') }}</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-        <li class="breadcrumb-item active text-primary">Daftar Purchase Orders</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.purchase_orders') }}</li>
     </ol>
 </div>  
 
@@ -15,22 +15,22 @@
     <!-- Tombol Navigasi -->
     <div class="d-flex justify-content-center justify-content-md-between mb-4 flex-wrap gap-3">
         <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary btn-lg shadow-sm">
-            <i class="bx bx-search"></i> Lihat Quotation
+            <i class="bx bx-search"></i> {{ __('messages.view_quotation') }}
         </a>
     </div>
 
     <!-- Tabel Daftar Purchase Orders -->
     <div class="card shadow-lg border-light rounded">
         <div class="card-body">
-            <h3 class="mb-4 text-secondary">Daftar Purchase Orders</h3>
+            <h3 class="mb-4 text-secondary">{{ __('messages.purchase_orders') }}</h3>
             <table class="table table-bordered table-striped table-hover">
                 <thead class="table-light">
                     <tr>
-                        <th>ID</th>
-                        <th>PO Number</th>
-                        <th>PO Date</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
+                        <th>{{ __('messages.id') }}</th>
+                        <th>{{ __('messages.po_number') }}</th>
+                        <th>{{ __('messages.po_date') }}</th>
+                        <th>{{ __('messages.status') }}</th>
+                        <th>{{ __('messages.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,31 +45,31 @@
                                     @elseif ($po->status === 'approved') bg-success
                                     @elseif ($po->status === 'rejected') bg-danger
                                     @endif text-white">
-                                    {{ ucfirst($po->status) }}
+                                    {{ ucfirst(__('messages.' . $po->status)) }}
                                 </span>
                             </td>
                             <td class="d-flex justify-content-center gap-2">
                                 <a href="{{ route('quotations.show', $po->quotation_id) }}" class="btn btn-outline-primary btn-sm">
-                                    <i class="bx bx-show"></i> Lihat
+                                    <i class="bx bx-show"></i> {{ __('messages.view') }}
                                 </a>
 
                                 @if ($po->status === 'pending')
-                                    <span class="text-muted">PO masih dalam peninjauan</span>
+                                    <span class="text-muted">{{ __('messages.po_pending') }}</span>
                                 @elseif ($po->status === 'approved')
                                     @if ($po->proformaInvoice)
                                         <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
                                             class="btn btn-info btn-sm">
-                                            <i class="bx bx-file"></i> Lihat Proforma Invoice
+                                            <i class="bx bx-file"></i> {{ __('messages.proforma_invoice') }}
                                         </a>
                                     @else
-                                        <span class="text-muted">Proforma Invoice akan segera dikirim</span>
+                                        <span class="text-muted">{{ __('messages.proforma_invoice_pending') }}</span>
                                     @endif
                                 @endif
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted">Belum ada Purchase Order.</td>
+                            <td colspan="5" class="text-center text-muted">{{ __('messages.no_purchase_orders') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

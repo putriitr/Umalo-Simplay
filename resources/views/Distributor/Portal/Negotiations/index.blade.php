@@ -2,35 +2,33 @@
 
 @section('content')
 
-<div class="container mt-5"></div>
-<h1 class="text-center mb-4">Daftar Negosiasi</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ __('messages.list_negotiation') }}</h1>
+
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-        <li class="breadcrumb-item active text-primary">List Daftar Negosiasi</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.list_negotiation') }}</li>
     </ol>
 </div>
 
-
-
 <div class="container mt-5">
     <div class="container py-5">
-        
-
         <div class="card shadow-lg border-light rounded">
             <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="text-left mb-4 text-secondary">List Daftar Negosiasi</h3>
-        </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="text-left mb-4 text-secondary">{{ __('messages.list_negotiation') }}</h3>
+                </div>
+
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="table-light">
                         <tr>
-                            <th style="width: 10%;">ID</th>
-                            <th style="width: 20%;">Quotation Number</th>
-                            <th style="width: 20%;">Negotiated Price</th>
-                            <th style="width: 15%;">Status</th>
-                            <th style="width: 20%;">Notes</th>
-                            <th style="width: 15%;">Admin Notes</th>
+                            <th style="width: 10%;">{{ __('messages.id') }}</th>
+                            <th style="width: 20%;">{{ __('messages.quotation_number') }}</th>
+                            <th style="width: 20%;">{{ __('messages.negotiated_price') }}</th>
+                            <th style="width: 15%;">{{ __('messages.status') }}</th>
+                            <th style="width: 20%;">{{ __('messages.notes') }}</th>
+                            <th style="width: 15%;">{{ __('messages.admin_notes') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,15 +39,15 @@
                                 <td class="text-center">{{ number_format($negotiation->negotiated_price, 2) }}</td>
                                 <td class="text-center">
                                     <span class="badge 
-                                    @if($negotiation->status == 'approved') bg-success 
-                                    @elseif($negotiation->status == 'pending') bg-warning 
-                                    @else bg-danger 
-                                    @endif">
-                                    {{ ucfirst($negotiation->status) }}
+                                        @if($negotiation->status == 'approved') bg-success 
+                                        @elseif($negotiation->status == 'pending') bg-warning 
+                                        @else bg-danger 
+                                        @endif">
+                                        {{ ucfirst($negotiation->status) }}
                                     </span>
                                 </td>
                                 <td class="text-center">{{ $negotiation->notes }}</td>
-                                <td class="text-center">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
+                                <td class="text-center">{{ $negotiation->admin_notes ?? __('messages.not_available') }}</td>
                             </tr>
                         @endforeach
                     </tbody>

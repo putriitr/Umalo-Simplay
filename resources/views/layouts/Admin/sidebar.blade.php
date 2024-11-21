@@ -73,6 +73,9 @@
                     <a data-bs-toggle="collapse" href="#product-management">
                         <i class="fas fa-shopping-cart"></i>
                         <p>Produk</p>
+                        @if($totalPendingProducts > 0)
+                            <span class="badge bg-danger">{{ $totalPendingProducts }}</span>
+                        @endif
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="product-management">
@@ -82,39 +85,49 @@
                                     <span class="sub-item">Semua Produk</span>
                                 </a>
                             </li>
-                            {{-- <li>
-                                <a href="{{ route('admin.monitoring.index') }}">
-                                    <span class="sub-item">Monitoring</span>
-                                </a>
-                            </li> --}}
                             <li>
                                 <a href="{{ route('admin.tickets.index') }}">
                                     <span class="sub-item">Tiketing Layanan</span>
+                                    @if($openTickets > 0)
+                                        <span class="badge bg-danger">{{ $openTickets }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.quotations.index') }}">
                                     <span class="sub-item">Quotation</span>
+                                    @if($pendingCount > 0)
+                                        <span class="badge bg-danger">{{ $pendingCount }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.quotations.negotiations.index') }}">
-                                    <span class="sub-item">Lihat Negosiasi</span>
+                                    <span class="sub-item">Negosiasi</span>
+                                    @if($pendingNegotiations > 0)
+                                        <span class="badge bg-danger">{{ $pendingNegotiations }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.purchase-orders.index') }}">
-                                    <span class="sub-item">Lihat Purchase Orders</span>
+                                    <span class="sub-item">Purchase Orders</span>
+                                    @if($pendingPOs > 0)
+                                        <span class="badge bg-danger">{{ $pendingPOs }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.proforma-invoices.index') }}">
-                                    <span class="sub-item">Lihat Proforma Invoices</span>
+                                    <span class="sub-item">Proforma Invoices</span>
+                                    @if($pendingPIs > 0)
+                                        <span class="badge bg-danger">{{ $pendingPIs }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('invoices.index') }}">
-                                    <span class="sub-item">Lihat Invoices</span>
+                                    <span class="sub-item">Invoices</span>
                                 </a>
                             </li>
                         </ul>

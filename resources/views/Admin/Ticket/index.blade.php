@@ -1,6 +1,7 @@
 @extends('layouts.Admin.master')
 @section('content')
 <div class="container py-5">
+    
     <h2 class="mb-4">Daftar Tiket Layanan</h2>
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

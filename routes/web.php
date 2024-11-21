@@ -64,7 +64,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
     Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
     Route::get('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
-    Route::post('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
+    Route::post('/products/search/store', [ProdukMemberController::class, 'search'])->name('products.search.store');
     Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
     Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
     Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');

@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Buat Tiket Layanan Baru</h1>
+    <h1 class="text-center mb-4">{{ __('messages.create_ticket') }}</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-        <li class="breadcrumb-item active text-primary">Isi Formulir Layanan Tiket </li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.service_type') }}</li>
     </ol>
 </div>
 
@@ -20,35 +20,35 @@
 
                 <!-- Jenis Layanan -->
                 <div class="mb-4">
-                    <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
+                    <label for="jenis_layanan" class="form-label">{{ __('messages.service_type') }}</label>
                     <select name="jenis_layanan" id="jenis_layanan" class="form-control">
-                        <option value="Permintaan Data">Permintaan Data</option>
-                        <option value="Maintanance">Maintanance</option>
-                        <option value="Visit">Visit</option>
-                        <option value="Installasi">Installasi</option>
+                        <option value="Permintaan Data">{{ __('messages.service_type_options.data_request') }}</option>
+                        <option value="Maintanance">{{ __('messages.service_type_options.maintenance') }}</option>
+                        <option value="Visit">{{ __('messages.service_type_options.visit') }}</option>
+                        <option value="Installasi">{{ __('messages.service_type_options.installation') }}</option>
                     </select>
                 </div>
 
                 <!-- Keterangan Layanan -->
                 <div class="mb-4">
-                    <label for="keterangan_layanan" class="form-label">Keterangan Pengajuan</label>
+                    <label for="keterangan_layanan" class="form-label">{{ __('messages.service_description') }}</label>
                     <textarea name="keterangan_layanan" id="keterangan_layanan" class="form-control" rows="4"
-                        placeholder="Deskripsikan layanan yang Anda butuhkan..."></textarea>
+                        placeholder="{{ __('messages.service_description') }}..."></textarea>
                 </div>
 
                 <!-- Dokumen Pendukung -->
                 <div class="mb-4">
-                    <label for="file_pendukung_layanan" class="form-label">Dokumen Pendukung (Opsional)</label>
+                    <label for="file_pendukung_layanan" class="form-label">{{ __('messages.supporting_document') }}</label>
                     <input type="file" name="file_pendukung_layanan" id="file_pendukung_layanan" class="form-control">
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="d-flex gap-3 justify-content-start">
                     <a href="{{ route('distribution.tickets.index') }}" class="btn btn-outline-secondary btn-sm">
-                        <i class="bx bx-x-circle me-2"></i>Batal
+                        <i class="bx bx-x-circle me-2"></i>{{ __('messages.cancel') }}
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="bx bx-paper-plane me-2"></i>Kirim
+                        <i class="bx bx-paper-plane me-2"></i>{{ __('messages.submit') }}
                     </button>
                 </div>
             </form>

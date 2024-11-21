@@ -5,36 +5,35 @@
 <!-- Main Content -->
 <div class="container my-5">
 
-    <h1 class="text-center mb-4">Detail Permintaan Quotation</h1>
+    <h1 class="text-center mb-4">{{ __('messages.quotation_request_detail') }}</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
-        <li class="breadcrumb-item active text-primary">Detail Permintaan Quotation</li>
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.quotation_request_detail') }}</li>
     </ol>
 </div>
 
 <div class="container mt-5">
-    <!-- Menampilkan Daftar Produk dalam Quotation -->
+    <!-- Display List of Products in Quotation -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="card shadow-lg border-light rounded">
                 <div class="card-body">
-                    <!-- Informasi Umum Quotation -->
+                    <!-- General Quotation Information -->
                     <div class="row mb-4">
                         <div class="col-12">
-
                             <div class="card shadow-sm border-light rounded">
                                 <div class="card-body">
-                                    <h5 class="text-primary mb-3">Informasi Permintaan</h5>
+                                    <h5 class="text-primary mb-3">{{ __('messages.quotation_info') }}</h5>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <p class="mb-0" style="font-size: 1rem;"><strong>Status:</strong>
+                                        <p class="mb-0" style="font-size: 1rem;"><strong>{{ __('messages.status') }}:</strong>
                                             <span
                                                 class="badge bg-{{ $quotation->status == 'approved' ? 'success' : ($quotation->status == 'pending' ? 'warning' : 'danger') }}">
                                                 {{ ucfirst($quotation->status) }}
                                             </span>
                                         </p>
                                     </div>
-                                    <p class="mb-0" style="font-size: 1rem;"><strong>Tanggal Permintaan:</strong>
+                                    <p class="mb-0" style="font-size: 1rem;"><strong>{{ __('messages.request_date') }}:</strong>
                                         {{ $quotation->created_at->format('d M Y') }}</p>
                                 </div>
                             </div>
@@ -46,37 +45,32 @@
 
                             <div class="card shadow-sm border-light rounded">
                                 <div class="card-body">
-                                    <h5 class="text-primary mb-3">Produk dalam Quotation:</h5>
+                                    <h5 class="text-primary mb-3">{{ __('messages.products_in_quotation') }}:</h5>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th>Nama Produk</th>
-                                                    <th>Merk</th>
-                                                    <th>Quantity</th>
-                                                    <th>Harga Satuan</th>
-                                                    <th>Total Harga</th>
+                                                    <th class="text-center">{{ __('messages.no') }}</th>
+                                                    <th>{{ __('messages.product_name') }}</th>
+                                                    <th>{{ __('messages.brand') }}</th>
+                                                    <th>{{ __('messages.quantity') }}</th>
+                                                    <th>{{ __('messages.unit_price') }}</th>
+                                                    <th>{{ __('messages.total_price') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse($quotation->quotationProducts as $index => $product)
                                                     <tr>
                                                         <td class="text-primary text-center">{{ $index + 1 }}</td>
-                                                        <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
-                                                        <td>{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
+                                                        <td>{{ $product->equipment_name ?? __('messages.product_unavailable') }}</td>
+                                                        <td>{{ $product->merk_type ?? __('messages.unavailable') }}</td>
                                                         <td class="text-center">{{ $product->quantity }}</td>
-                                                        <td class="text-center">{{ number_format($product->unit_price, 2) }}
-                                                        </td>
-                                                        <td class="text-center">
-                                                            {{ number_format($product->total_price, 2) }}
-                                                        </td>
+                                                        <td class="text-center">{{ number_format($product->unit_price, 2) }}</td>
+                                                        <td class="text-center">{{ number_format($product->total_price, 2) }}</td>
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="6" class="text-center text-muted">Tidak ada produk
-                                                            dalam permintaan
-                                                            quotation ini.</td>
+                                                        <td colspan="6" class="text-center text-muted">{{ __('messages.no_products_in_quotation') }}</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
@@ -88,28 +82,26 @@
                         </div>
                     </div>
 
-
-
-                    <!-- Menampilkan file PDF jika ada -->
+                    <!-- Display PDF file if available -->
                     <div class="row mb-4">
                         <div class="col-12">
 
                             <div class="card shadow-sm border-light rounded">
                                 <div class="card-body">
-                                    <h5 class="text-primary mb-3">Dokumen PDF:</h5>
+                                    <h5 class="text-primary mb-3">{{ __('messages.pdf_document') }}:</h5>
                                     @if($quotation->pdf_path)
                                         <div class="d-flex gap-3">
                                             <a href="{{ asset($quotation->pdf_path) }}" target="_blank"
                                                 class="btn btn-primary rounded-3">
-                                                <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
+                                                <i class="fas fa-file-alt me-2"></i>{{ __('messages.view_pdf') }}
                                             </a>
                                             <a href="{{ asset($quotation->pdf_path) }}" download
                                                 class="btn btn-secondary rounded-3">
-                                                <i class="fas fa-download me-2"></i>Download PDF
+                                                <i class="fas fa-download me-2"></i>{{ __('messages.download_pdf') }}
                                             </a>
                                         </div>
                                     @else
-                                        <p class="text-muted">Tidak ada file yang tersedia.</p>
+                                        <p class="text-muted">{{ __('messages.no_file_available') }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -119,8 +111,6 @@
             </div>
         </div>
     </div>
-
-
 
 </div>
 

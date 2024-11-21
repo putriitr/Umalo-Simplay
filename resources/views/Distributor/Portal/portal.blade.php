@@ -4,13 +4,12 @@
 <div class="container-fluid page-header mb-5 py-5"
     style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .1)), url('{{ asset('assets/img/member.jpg') }}') center center no-repeat; background-size: cover; height: 300px;">
     <div class="container">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">Member Distributor</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __('messages.distributor_portal') }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb text-uppercase">
                 <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __('messages.home') }}</a>
                 </li>
-                <li class="breadcrumb-item text-white active" aria-current="page">Distributor Portal
-                </li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __('messages.distributor_portal') }}</li>
             </ol>
         </nav>
     </div>
@@ -29,16 +28,15 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Pilih Produk & Quotation</h5>
+                            <h5 class="mb-4">{{ __('messages.product_quotation') }}</h5>
                             <a href="{{ route('distribution.request-quotation') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Ajukan Quotation</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_quotation') }}</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Kelola Invoice -->
-            <!-- Pilih Produk & Minta Quotation -->
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
                     <div class="service-img rounded-top"
@@ -47,16 +45,15 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Invoice</h5>
+                            <h5 class="mb-4">{{ __('messages.invoice') }}</h5>
                             <a href="{{ route('distributor.invoices.index') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat Invoice</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_invoice') }}</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-
+            <!-- Lihat Negosiasi -->
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
                     <div class="service-img rounded-top"
@@ -65,13 +62,14 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Lihat Negosiasi</h5>
+                            <h5 class="mb-4">{{ __('messages.negotiations') }}</h5>
                             <a href="{{ route('distributor.quotations.negotiations.index') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_details') }}</a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Kelola Proforma Invoice -->
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
@@ -81,16 +79,15 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Proforma Invoice</h5>
+                            <h5 class="mb-4">{{ __('messages.proforma_invoice') }}</h5>
                             <a href="{{ route('distributor.proforma-invoices.index') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat Proforma
-                                Invoice</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_proforma_invoice') }}</a>
                         </div>
-
                     </div>
                 </div>
             </div>
 
+            <!-- Lihat PO -->
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
                     <div class="service-img rounded-top"
@@ -99,13 +96,14 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Lihat PO</h5>
+                            <h5 class="mb-4">{{ __('messages.view_po') }}</h5>
                             <a href="{{ route('distributor.purchase-orders.index') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Lihat PO</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_po') }}</a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <!-- Ticketing -->
             <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item rounded">
@@ -115,9 +113,9 @@
                     </div>
                     <div class="service-content rounded-bottom bg-light p-4">
                         <div class="service-content-inner">
-                            <h5 class="mb-4">Ticketing</h5>
+                            <h5 class="mb-4">{{ __('messages.ticketing') }}</h5>
                             <a href="{{ route('distribution.tickets.index') }}"
-                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">Selengkapnya</a>
+                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2">{{ __('messages.view_details') }}</a>
                         </div>
                     </div>
                 </div>
