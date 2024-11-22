@@ -115,11 +115,6 @@
         <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <img src="{{ public_path('pdfquo/footer.png') }}" alt="Footer Logo">
-    </div>
-
     <!-- Content -->
     <div class="content">
         <!-- Title Section -->

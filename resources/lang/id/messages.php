@@ -284,4 +284,41 @@ return [
     'ticket_status_completed' => 'Selesai',
     'not_assigned_yet' => 'Belum ditentukan',
     'view_document' => 'Lihat Document',
+    'description_ticket' => 'Isi formulir berikut untuk mengajukan tiket layanan yang Anda butuhkan.',
+    
+
+    'title' => 'Buat Tiket Layanan Baru',
+    'supporting_documents' => 'Dokumen Pendukung (Opsional)',
+    'title_edit' => 'Edit Tiket Layanan',
+    'description_edit' => 'Perbarui informasi tiket layanan yang Anda ajukan.',
+    'form_title' => 'Formulir Edit Tiket Layanan',
+
+    'ticket_list' => 'Daftar Tiket Layanan',
+    'status_open' => 'Open',
+    'status_progress' => 'Progress',
+    'status_closed' => 'Closed',
+    'start_date' => 'Tanggal Mulai',
+    'end_date' => 'Tanggal Selesai',
+
+    'ticket_detail' => 'Detail Tiket Layanan',
+    'attached_document' => 'Dokumen Pendukung',
+    'action_document' => 'Dokumen Tindakan',
+    'not_assigned' => 'Belum ditentukan',
+    'action_date' => 'Tanggal Tindakan', 
+    'not_processed' => 'Belum Diproses',
+    'progress' => 'Sedang Diproses',
+    'open' => 'Terbuka',
+    'view_ticket_info' => 'Lihat Informasi Tiket',
+    'no_action_document' => 'Dokumen Tindakan Tidak Tersedia',
+    'batal' => 'Batal',
+
+    'error_message' => 'Terjadi kesalahan!',
+    'success_message' => 'Operasi berhasil!',
+
+    'admin_access' => 'Halaman ini hanya dapat diakses oleh Admin. Silakan hubungi admin untuk pendaftaran.',
+    'member_access' => 'Halaman ini hanya dapat diakses oleh Member. Jika Anda belum menjadi member, silakan daftar melalui admin.',
+    'distributor_access' => 'Halaman ini hanya dapat diakses oleh Distributor. Silakan lakukan registrasi sebagai distributor.',
+    'no_permission' => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
+    
+    'po_pending'=> 'PO Tertunda',
 ];

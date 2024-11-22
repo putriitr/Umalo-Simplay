@@ -14,6 +14,7 @@ use App\Http\Controllers\Member\Portal\PortalController;
 use App\Http\Controllers\Member\Produk\ProdukMemberController;
 use App\Http\Controllers\Admin\Slider\SliderController;
 use App\Http\Controllers\Admin\Activity\ActivityController;
+use App\Http\Controllers\Admin\Admin\AdminController;
 use App\Http\Controllers\Member\Activity\ActivityMemberController;
 use App\Http\Controllers\Admin\BrandPartner\BrandPartnerController;
 use App\Http\Controllers\Admin\Meta\MetaController;
@@ -153,7 +154,7 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         Route::delete('/quotations/remove-from-cart', [QuotationController::class, 'removeFromCart'])->name('quotations.cart.remove');
         // Rute untuk negosiasi quotation
         Route::get('/quotations/{id}/nego', [QuotationController::class, 'nego'])->name('quotations.nego');
-       
+
         // Route untuk menampilkan form negosiasi
         Route::get('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'create'])->name('distributor.quotations.negotiations.create');
         // Route untuk menyimpan negosiasi
@@ -162,7 +163,7 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
         Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
         Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
-        
+
         // Quotation Routes
         Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
         Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel'); // Cancel quotation
@@ -189,6 +190,14 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
         Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
         Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show');
+
+        Route::get('/admin', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
+        Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
+        Route::post('/admin', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
+        Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
+        Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
+        Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
+
 
         // Routes Tiketing Layanan untuk Admin
         Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets.index');
@@ -223,7 +232,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/purchase-orders/{id}', [PurchaseOrderAdminController::class, 'show'])->name('admin.purchase-orders.show');
         Route::put('/purchase-orders/{id}/approve', [PurchaseOrderAdminController::class, 'approve'])->name('admin.purchase-orders.approve');
         Route::put('/purchase-orders/{id}/reject', [PurchaseOrderAdminController::class, 'reject'])->name('admin.purchase-orders.reject');
-        
+
 
         Route::get('/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
         Route::post('/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');

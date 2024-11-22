@@ -31,7 +31,7 @@
                             <tr>
                                 <th scope="row">Kategori</th>
                                 <td>{{ $produk->kategori->nama }}</td>
-                            </tr>p
+                            </tr>
                             <tr>
                                 <th scope="row">Deskripsi</th>
                                 <td>{{ $produk->deskripsi }}</td>

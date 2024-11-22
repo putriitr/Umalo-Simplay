@@ -125,10 +125,11 @@
 
                     @if (session('error'))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Peringatan:</strong> {{ session('error') }}
+                            <strong>{{ __('messages.error_message') }}</strong> {{ session('error') }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
+                    
 
                     <a href="{{ route('contact') }}" class="nav-item nav-link">{{ __('messages.contact') }}</a>
 

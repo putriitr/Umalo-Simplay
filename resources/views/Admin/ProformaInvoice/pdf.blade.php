@@ -198,10 +198,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <img src="{{ public_path('pdfquo/footer.png') }}" alt="Footer Image">
-    </div>
+    
 </body>
 
 </html>

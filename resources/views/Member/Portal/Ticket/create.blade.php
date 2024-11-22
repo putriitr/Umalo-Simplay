@@ -1,12 +1,12 @@
-@extends('layouts.Member.master')
+@extends('layouts.Member.master') 
 
 @section('content')
 
 <div class="container mt-5">
     <!-- Title -->
     <div class="text-center mb-5">
-        <h2 class="fw-bold text-primary">Buat Tiket Layanan Baru</h2>
-        <p class="text-muted">Isi formulir berikut untuk mengajukan tiket layanan yang Anda butuhkan.</p>
+        <h2 class="fw-bold text-primary">{{ __('messages.title') }}</h2>
+        <p class="text-muted">{{ __('messages.description_ticket') }}</p>
     </div>
 
     <!-- Form Card -->
@@ -17,35 +17,35 @@
 
                 <!-- Jenis Layanan -->
                 <div class="mb-4">
-                    <label for="jenis_layanan" class="form-label">Jenis Layanan</label>
+                    <label for="jenis_layanan" class="form-label">{{ __('messages.service_type') }}</label>
                     <select name="jenis_layanan" id="jenis_layanan" class="form-control">
-                        <option value="Permintaan Data">Permintaan Data</option>
-                        <option value="Maintanance">Maintanance</option>
-                        <option value="Visit">Visit</option>
-                        <option value="Installasi">Installasi</option>
+                        <option value="Permintaan Data">{{ __('messages.service_type') }} 1</option>
+                        <option value="Maintanance">{{ __('messages.service_type') }} 2</option>
+                        <option value="Visit">{{ __('messages.service_type') }} 3</option>
+                        <option value="Installasi">{{ __('messages.service_type') }} 4</option>
                     </select>
                 </div>
 
                 <!-- Keterangan Layanan -->
                 <div class="mb-4">
-                    <label for="keterangan_layanan" class="form-label">Keterangan Pengajuan</label>
+                    <label for="keterangan_layanan" class="form-label">{{ __('messages.service_description') }}</label>
                     <textarea name="keterangan_layanan" id="keterangan_layanan" class="form-control" rows="4"
-                        placeholder="Deskripsikan layanan yang Anda butuhkan..."></textarea>
+                        placeholder="{{ __('messages.service_description') }}..."></textarea>
                 </div>
 
                 <!-- Dokumen Pendukung -->
                 <div class="mb-4">
-                    <label for="file_pendukung_layanan" class="form-label">Dokumen Pendukung (Opsional)</label>
+                    <label for="file_pendukung_layanan" class="form-label">{{ __('messages.supporting_documents') }}</label>
                     <input type="file" name="file_pendukung_layanan" id="file_pendukung_layanan" class="form-control">
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="d-flex gap-3 justify-content-start">
                     <a href="{{ route('tickets.index') }}" class="btn btn-outline-secondary btn-sm">
-                        <i class="bx bx-x-circle me-2"></i>Batal
+                        <i class="bx bx-x-circle me-2"></i>{{ __('messages.cancel') }}
                     </a>
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="bx bx-paper-plane me-2"></i>Kirim
+                        <i class="bx bx-paper-plane me-2"></i>{{ __('messages.submit') }}
                     </button>
                 </div>
             </form>

@@ -1,6 +1,7 @@
 @extends('layouts.admin.master')
 @section('content')
 <div class="container mt-5">
+
     <!-- Tampilkan pesan error jika ada -->
     @if ($errors->any())
         <div class="alert alert-danger">

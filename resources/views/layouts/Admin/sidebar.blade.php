@@ -37,25 +37,32 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Kelola Member & Distributor</h4>
+                    <h4 class="text-section">Kelola User</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member & Distributor</p>
+                        <p>User</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="member-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
-                                    <span class="sub-item">Semua Member</span>
+                                    <i class="fas fa-users"></i>
+                                    <p>Semua Member</p>
                                 </a>
                             </li>
-                            <!-- Approve Distributor Link -->
                             <li>
                                 <a href="{{ route('admin.distributors.index') }}">
-                                    <span class="sub-item">Semua Distributor</span>
+                                    <i class="fas fa-warehouse"></i>
+                                    <p>Semua Distributor</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.index') }}">
+                                    <i class="fas fa-user-shield"></i>
+                                    <p>Kelola Admin</p>
                                 </a>
                             </li>
                         </ul>

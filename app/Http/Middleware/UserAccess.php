@@ -19,13 +19,14 @@ class UserAccess
             return $next($request);
         }
 
-        // Tambahkan pesan yang disesuaikan untuk setiap role
+        // Use match expression for role-based messages with translation
         $message = match ($userType) {
-            'admin' => 'Halaman ini hanya dapat diakses oleh Admin. Silakan hubungi admin untuk pendaftaran.',
-            'member' => 'Halaman ini hanya dapat diakses oleh Member. Jika Anda belum menjadi member, silakan daftar melalui admin.',
-            'distributor' => 'Halaman ini hanya dapat diakses oleh Distributor. Silakan lakukan registrasi sebagai distributor.',
-            default => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
+            'admin' => __('messages.admin_access'),
+            'member' => __('messages.member_access'),
+            'distributor' => __('messages.distributor_access'),
+            default => __('messages.no_permission'),
         };
-        return redirect()->back()->with('error', $message);
+        // Redirect with the error message
+return redirect()->back()->with('error', $message);
     }
 }

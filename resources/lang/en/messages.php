@@ -278,4 +278,40 @@ return [
     'ticket_status_completed' => 'Completed',
     'not_assigned_yet' => 'Not Assigned Yet',
     'view_document' => 'View Document',
+    'description_ticket' => 'Fill out the form below to submit a service ticket request.',
+
+    'title' => 'Create a New Service Ticket',
+    'supporting_documents' => 'Supporting Documents (Optional)',
+    'title_edit' => 'Edit Service Ticket',
+    'description_edit' => 'Update the service ticket information you have submitted.',
+    'form_title' => 'Service Ticket Edit Form',
+
+    'ticket_list' => 'Service Ticket List',
+    'status_open' => 'Open',
+    'status_progress' => 'In Progress',
+    'status_closed' => 'Closed',
+    'start_date' => 'Start Date',
+    'end_date' => 'End Date',
+
+    'ticket_detail' => 'Service Ticket Details',
+    'attached_document' => 'Attached Document',
+    'action_document' => 'Action Document',
+    'not_assigned' => 'Not Assigned',
+    'action_date' => 'Action Date',
+    'not_processed' => 'Not Processed',
+    'progress' => 'In Progress',
+    'open' => 'Open',
+    'view_ticket_info' => 'View Ticket Information',
+    'no_action_document' => 'No Action Document Available', 
+    'batal' => 'Cancel',
+
+    'error_message' => 'Something went wrong!',
+    'success_message' => 'Operation was successful!',
+
+    'admin_access' => 'This page can only be accessed by Admin. Please contact the admin for registration.',
+    'member_access' => 'This page can only be accessed by Member. If you are not a member yet, please register through the admin.',
+    'distributor_access' => 'This page can only be accessed by Distributor. Please register as a distributor.',
+    'no_permission' => 'You do not have permission to access this page.',
+    'po_pending'=> 'PO Pending',
+    
 ];
