@@ -1,28 +1,39 @@
 @extends('layouts.Member.master')   
 @section('content')
 
-<div class="container-fluid bg-breadcrumb">
-    <div class="container text-center py-5" style="max-width: 1200px;">
-        <h2 class="text-primary mb-4">{{ __('messages.create_negotiation') }}</h2>
-    </div>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{{ __('messages.create_negotiation') }}</h1>
+    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.breadcrumb_home') }}</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{ route('distribution') }}">{{ __('messages.breadcrumb_distributor') }}</a></li>
+        <li class="breadcrumb-item"><a
+                href="{{ route('distribution.request-quotation') }}">{{ __('messages.request-quotation') }}</a></li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.create_negotiation') }}</li>
+    </ol>
 </div>
+
 
 <div class="container mt-5">
     <div class="card shadow-lg border-light rounded" style="max-width: 1200px; margin: auto;">
         <div class="card-body">
-            <h3 class="text-left mb-4 text-secondary">{{ __('messages.negotiate_quotation') }} {{ $quotation->quotation_number }}</h3>
+            <h3 class="text-left mb-4 text-secondary">{{ __('messages.negotiate_quotation') }}
+                {{ $quotation->quotation_number }}
+            </h3>
 
             <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="negotiated_price" class="form-label">{{ __('messages.negotiated_price') }}</label>
-                    <input type="number" step="0.01" class="form-control form-control-lg bg-gray-light" id="negotiated_price"
-                        name="negotiated_price" placeholder="{{ __('messages.enter_negotiated_price') }}" required>
+                    <input type="number" step="0.01" class="form-control form-control-lg bg-gray-light"
+                        id="negotiated_price" name="negotiated_price"
+                        placeholder="{{ __('messages.enter_negotiated_price') }}" required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="notes" class="form-label">{{ __('messages.notes') }}</label>
-                    <textarea class="form-control form-control-lg bg-gray-light" id="notes" name="notes" rows="4" placeholder="{{ __('messages.enter_notes') }}"></textarea>
+                    <textarea class="form-control form-control-lg bg-gray-light" id="notes" name="notes" rows="4"
+                        placeholder="{{ __('messages.enter_notes') }}"></textarea>
                 </div>
 
                 <div class="text-center">

@@ -6,17 +6,13 @@
     <h1 class="text-center mb-4">{{ __('messages.submit_quotation_request') }}</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a>
+        </li>
         <li class="breadcrumb-item active text-primary">{{ __('messages.cart_quotation_request') }}</li>
     </ol>
     <div class="container mt-5">
         <!-- Navigation Button -->
-        <div class="d-flex justify-content-center justify-content-md-between mb-4 flex-wrap gap-3">
-            <a href="{{ url('/en/products') }}" class="btn btn-primary btn-lg shadow-sm">
-                <i class="bx bx-file"></i> {{ __('messages.submit_quotation') }}
-            </a>
-        </div>
-
+        
         <!-- Card for Cart Table -->
         <div class="card shadow-lg border-light rounded">
             <div class="card-body">
@@ -36,20 +32,26 @@
                                 <td class="text-center">{{ $key + 1 }}</td>
                                 <td class="text-center">{{ $item['nama'] }}</td>
                                 <td class="text-center">
-                                    <form action="{{ route('quotations.cart.update') }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('quotations.cart.update') }}" method="POST"
+                                        style="display: inline;">
                                         @csrf
                                         <input type="hidden" name="_method" value="PUT">
                                         <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" class="form-control form-control-sm text-center" style="width: 60px; display: inline-block;">
-                                        <button type="submit" class="btn btn-outline-primary btn-sm">{{ __('messages.update') }}</button>
+                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1"
+                                            class="form-control form-control-sm text-center"
+                                            style="width: 60px; display: inline-block;">
+                                        <button type="submit"
+                                            class="btn btn-outline-primary btn-sm">{{ __('messages.update') }}</button>
                                     </form>
                                 </td>
                                 <td class="text-center">
-                                    <form action="{{ route('quotations.cart.remove') }}" method="POST" style="display: inline;">
+                                    <form action="{{ route('quotations.cart.remove') }}" method="POST"
+                                        style="display: inline;">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">{{ __('messages.remove') }}</button>
+                                        <button type="submit"
+                                            class="btn btn-outline-danger btn-sm">{{ __('messages.remove') }}</button>
                                     </form>
                                 </td>
                             </tr>
@@ -60,6 +62,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <div style="display: flex; justify-content: flex-end;">
+                    <a href="{{ url('/en/products') }}" class="btn btn-outline-primary btn-sm"> Add More Product </a>
+                </div>
             </div>
         </div>
 
@@ -68,7 +73,8 @@
             <div class="d-flex justify-content-center mt-4">
                 <form action="{{ route('quotations.submit') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-primary btn-lg shadow-sm">{{ __('messages.submit_quotation_request') }}</button>
+                    <button type="submit"
+                        class="btn btn-primary btn-lg shadow-sm">{{ __('messages.submit_quotation_request') }}</button>
                 </form>
             </div>
         @endif
@@ -92,7 +98,8 @@
         border-collapse: collapse;
     }
 
-    .table th, .table td {
+    .table th,
+    .table td {
         text-align: center;
         padding: 12px;
     }

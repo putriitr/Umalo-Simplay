@@ -11,12 +11,12 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::all();
-        return view('admin.location.index', compact('locations'));
+        return view('Admin.Location.index', compact('locations'));
     }
 
     public function create()
     {
-        return view('admin.location.create');
+        return view('Admin.Location.create');
     }
 
     public function store(Request $request)
@@ -29,12 +29,12 @@ class LocationController extends Controller
 
         Location::create($request->all());
 
-        return redirect()->route('admin.location.index')->with('success', 'Location added successfully.');
+        return redirect()->route('Admin.Location.index')->with('success', 'Location added successfully.');
     }
 
     public function edit(Location $location)
     {
-        return view('admin.location.edit', compact('location'));
+        return view('Admin.Location.edit', compact('location'));
     }
 
     public function update(Request $request, Location $location)
@@ -47,18 +47,18 @@ class LocationController extends Controller
 
         $location->update($request->all());
 
-        return redirect()->route('admin.location.index')->with('success', 'Location updated successfully.');
+        return redirect()->route('Admin.Location.index')->with('success', 'Location updated successfully.');
     }
 
     public function destroy(Location $location)
     {
         $location->delete();
 
-        return redirect()->route('admin.location.index')->with('success', 'Location deleted successfully.');
+        return redirect()->route('Admin.Location.index')->with('success', 'Location deleted successfully.');
     }
 
     public function show(Location $location)
     {
-        return view('admin.location.show', compact('location'));
+        return view('Admin.Location.show', compact('location'));
     }
 }

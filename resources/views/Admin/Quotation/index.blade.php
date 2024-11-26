@@ -25,14 +25,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
+                
 
                 <div class="card-body">
+                    <!-- Search Form -->
+                <form action="{{ route('admin.quotations.index') }}" method="GET" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control"
+                            placeholder="Cari berdasarkan nomor pengajuan, distributor, produk, atau status..."
+                            value="{{ request()->input('search') }}">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
                     <div class="row">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th>No</th>
+                                        <th>Nomor Pengajuan</th>
                                         <th>Nama Produk</th>
                                         <th>Distributor</th>
                                         <th>Quantity</th>
@@ -42,48 +53,60 @@
                                 </thead>
                                 <tbody>
                                     @forelse($quotations as $key => $quotation)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
-                                            <td>
-                                                @foreach ($quotation->quotationProducts as $product)
-                                                    <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                @foreach ($quotation->quotationProducts as $product)
-                                                    <div>{{ $product->quantity }}</div>
-                                                @endforeach
-                                            </td>
-                                            <td>
-                                                <span class="badge 
-                                                    @if ($quotation->status === 'cancelled') bg-danger 
-                                                    @elseif($quotation->status === 'quotation') bg-success
-                                                        @else bg-warning 
-                                                    @endif">
-                                                    {{ ucfirst($quotation->status) }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <div class="d-flex gap-2">
-                                                    <a href="{{ route('admin.quotations.show', $quotation->id) }}"
-                                                        class="btn btn-info btn-sm">
-                                                        <i class="fas fa-eye me-1"></i> View
-                                                    </a>
-                                                    @if ($quotation->status !== 'cancelled')
-                                                        <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
-                                                            class="btn btn-secondary btn-sm">Edit</a>
-                                                    @endif
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{ $quotations->firstItem() + $key }}</td>
+                                                            <td>{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
+                                                            <td>
+                                                                @if ($quotation->quotationProducts)
+                                                                    @foreach ($quotation->quotationProducts as $product)
+                                                                        <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <div>Produk tidak tersedia</div>
+                                                                @endif
+                                                            </td>
+                                                            <td class="text-center">{{ $quotation->user->name ?? 'Tidak ada pengguna' }}
+                                                            </td>
+                                                            <td>
+                                                                @if ($quotation->quotationProducts)
+                                                                    @foreach ($quotation->quotationProducts as $product)
+                                                                        <div class="text-center">{{ $product->quantity }}</div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <div>0</div>
+                                                                @endif
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <span class="badge 
+                                        @if ($quotation->status === 'cancelled') bg-danger
+                                        @elseif($quotation->status === 'quotation') bg-success
+                                        @else bg-warning @endif">
+                                                                    {{ ucfirst($quotation->status) }}
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d-flex gap-2">
+                                                                    <a href="{{ route('admin.quotations.show', $quotation->id) }}"
+                                                                        class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                                                        <i class="fas fa-eye me-1"></i> View
+                                                                    </a>
+                                                                    @if ($quotation->status !== 'cancelled')
+                                                                        <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
+                                                                            class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                                                                            <i class="fas fa-edit"></i> Edit
+                                                                        </a>
+                                                                    @endif
+                                                                </div>
+                                                            </td>
+                                                        </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="6" class="text-center text-muted">Belum ada permintaan quotation.
+                                            <td colspan="7" class="text-center text-muted">Belum ada permintaan quotation.
                                             </td>
                                         </tr>
                                     @endforelse
                                 </tbody>
+
                             </table>
                         </div>
                     </div>

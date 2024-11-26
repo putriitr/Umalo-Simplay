@@ -65,7 +65,7 @@ class GuestMessageController extends Controller
         $messages = GuestMessage::all();
 
         // Return ke view admin
-        return view('admin.guest.index', compact('messages'));
+        return view('Admin.Guest.index', compact('messages'));
     }
 
 }

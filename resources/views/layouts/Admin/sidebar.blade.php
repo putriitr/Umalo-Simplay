@@ -50,7 +50,7 @@
                             <li>
                                 <a href="{{ route('members.index') }}">
                                     <i class="fas fa-users"></i>
-                                    <p>Semua Member</p>
+                                    <p>Kelola Member</p>
                                 </a>
                             </li>
                             <li>
@@ -74,7 +74,7 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Kelola Produk</h4>
+                    <h4 class="text-section">Semua Produk</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#product-management">
@@ -89,7 +89,7 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.produk.index') }}">
-                                    <span class="sub-item">Semua Produk</span>
+                                    <span class="sub-item">Kelola Produk</span>
                                 </a>
                             </li>
                             <li>

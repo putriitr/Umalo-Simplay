@@ -11,12 +11,12 @@ class FAQController extends Controller
     public function index()
     {
         $faqs = Faq::all();
-        return view('admin.faq.index', compact('faqs'));
+        return view('Admin.Faq.index', compact('faqs'));
     }
 
     public function create()
     {
-        return view('admin.faq.create');
+        return view('Admin.Faq.create');
     }
 
     public function store(Request $request)
@@ -28,19 +28,19 @@ class FAQController extends Controller
 
         Faq::create($request->all());
 
-        return redirect()->route('admin.faq.index')->with('success', 'FAQ created successfully.');
+        return redirect()->route('Admin.Faq.index')->with('success', 'FAQ created successfully.');
     }
 
     public function show($faq_id)
     {
         $faq = Faq::findOrFail($faq_id);
-        return view('admin.faq.show', compact('faq'));
+        return view('Admin.Faq.show', compact('faq'));
     }
 
     public function edit($faq_id)
     {
         $faq = Faq::findOrFail($faq_id);
-        return view('admin.faq.edit', compact('faq'));
+        return view('Admin.Faq.edit', compact('faq'));
     }
 
     public function update(Request $request, $faq_id)
@@ -54,7 +54,7 @@ class FAQController extends Controller
 
         $faq->update($request->all());
 
-        return redirect()->route('admin.faq.index')->with('success', 'FAQ updated successfully.');
+        return redirect()->route('Admin.Faq.index')->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy($faq_id)
@@ -62,6 +62,6 @@ class FAQController extends Controller
         $faq = Faq::findOrFail($faq_id);
         $faq->delete();
 
-        return redirect()->route('admin.faq.index')->with('success', 'FAQ deleted successfully.');
+        return redirect()->route('Admin.Faq.index')->with('success', 'FAQ deleted successfully.');
     }
 }

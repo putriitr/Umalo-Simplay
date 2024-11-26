@@ -13,13 +13,13 @@ class FAQController extends Controller
     {
         $produk = Produk::findOrFail($produk_id);
         $faqs = $produk->faqs;
-        return view('admin.faq.index', compact('faqs', 'produk'));
+        return view('Admin.Faq.index', compact('faqs', 'produk'));
     }
 
     public function create($produk_id)
     {
         $produk = Produk::findOrFail($produk_id);
-        return view('admin.faq.create', compact('produk'));
+        return view('Admin.Faq.create', compact('produk'));
     }
 
     public function store(Request $request, $produk_id)
@@ -33,21 +33,21 @@ class FAQController extends Controller
 
         $produk->faqs()->create($request->all());
 
-        return redirect()->route('admin.faq.index', $produk_id)->with('success', 'FAQ created successfully.');
+        return redirect()->route('Admin.Faq.index', $produk_id)->with('success', 'FAQ created successfully.');
     }
 
     public function show($produk_id, $faq_id)
     {
         $produk = Produk::findOrFail($produk_id);
         $faq = ProdukFAQ::where('produk_id', $produk_id)->findOrFail($faq_id);
-        return view('admin.faq.show', compact('faq','produk'));
+        return view('Admin.Faq.show', compact('faq','produk'));
     }
 
     public function edit($produk_id, $faq_id)
     {
         $produk = Produk::findOrFail($produk_id);
         $faq = ProdukFAQ::where('produk_id', $produk_id)->findOrFail($faq_id);
-        return view('admin.faq.edit', compact('faq','produk'));
+        return view('Admin.Faq.edit', compact('faq','produk'));
     }
 
     public function update(Request $request, $produk_id, $faq_id)
@@ -61,7 +61,7 @@ class FAQController extends Controller
 
         $faq->update($request->all());
 
-        return redirect()->route('admin.faq.index', $produk_id)->with('success', 'FAQ updated successfully.');
+        return redirect()->route('Admin.Faq.index', $produk_id)->with('success', 'FAQ updated successfully.');
     }
 
     public function destroy($produk_id, $faq_id)
@@ -69,6 +69,6 @@ class FAQController extends Controller
         $faq = ProdukFAQ::where('produk_id', $produk_id)->findOrFail($faq_id);
         $faq->delete();
 
-        return redirect()->route('admin.faq.index', $produk_id)->with('success', 'FAQ deleted successfully.');
+        return redirect()->route('Admin.Faq.index', $produk_id)->with('success', 'FAQ deleted successfully.');
     }
 }

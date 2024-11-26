@@ -1,19 +1,8 @@
-<body>
-
+<body> 
     @php
         // Fetch the first record from the compro_parameter table
         $compro = \App\Models\CompanyParameter::first();
     @endphp
-
-    {{-- <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End --> --}}
-
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-light d-none d-lg-block">
@@ -73,9 +62,6 @@
             ->where('end_date', '>=', today())
             ->get()
             ->groupBy('type');
-
-        $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
-
     @endphp
 
     <!-- Navbar Start -->
@@ -129,7 +115,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    
+
 
                     <a href="{{ route('contact') }}" class="nav-item nav-link">{{ __('messages.contact') }}</a>
 
@@ -160,41 +146,45 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Profile and Logout for Members -->
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
                     @if (auth()->check())
                         <div class="dropdown text-light">
-                            <a href="#" class="dropdown-toggle text-light" id="companyDropdown" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <small class="text-light"><i
-                                        class="fa fa-user text-light text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                            <a href="#" class="dropdown-toggle text-light d-flex align-items-center" id="companyDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <small class="text-light d-flex align-items-center">
+                                    <i class="fa fa-user text-primary me-2"></i> {{ auth()->user()->nama_perusahaan }}
+                                </small>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="companyDropdown">
-                                <!-- Show Profile -->
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="companyDropdown">
+                                <!-- Profile -->
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                        <i class="fa fa-user me-2"></i>Profil
+                                    <a class="dropdown-item d-flex align-items-center gap-2"
+                                        href="{{ auth()->user()->type === 'member' ? route('profile.show') : route('distributor.profile.show') }}">
+                                        <i class="fa fa-user me-2"></i> Profil
                                     </a>
                                 </li>
-
                                 <!-- Logout -->
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out-alt me-2"></i>Keluar
+                                        <i class="fa fa-sign-out-alt me-2"></i> Keluar
                                     </a>
                                 </li>
                             </ul>
                         </div>
-
                         <!-- Logout Form -->
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     @else
-                        <a href="{{ route('login') }}"><small class="btn btn-primary rounded-pill text-white py-1 px-1"><i
-                                    class="fa fa-sign-in-alt text-white me-2"></i>Masuk Member</small></a>
+                        <a href="{{ route('login') }}" class="btn btn-primary rounded-pill text-white py-1 px-3">
+                            <i class="fa fa-sign-in-alt text-white me-2"></i> Masuk Member
+                        </a>
                     @endif
                 </div>
+
             </div>
         </nav>
     </div>
@@ -204,16 +194,12 @@
         .navbar-nav .nav-link.active {
             color: #6196FF !important;
             border-bottom: 2px solid #6196FF;
-            /* Garis bawah */
             padding-bottom: 5px;
-            /* Ruang antara teks dan garis */
         }
 
         .navbar-nav .nav-link:hover {
             border-bottom: 2px solid #6196FF;
-            /* Garis bawah saat hover */
             padding-bottom: 5px;
-            /* Ruang antara teks dan garis */
         }
 
         .nav-item .dropdown-item.active {
@@ -225,19 +211,29 @@
             color: #6196FF !important;
             border-bottom: 2px solid #6196FF;
         }
+
+        .nav-item .dropdown-menu {
+            min-width: 220px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .nav-item .dropdown-menu .dropdown-item {
+            padding-left: 15px;
+        }
     </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const links = document.querySelectorAll('.navbar-nav .nav-link');
-            const metaDropdownItems = document.querySelectorAll('.dropdown-item'); // Hanya targetkan .dropdown-item dalam meta
+            const metaDropdownItems = document.querySelectorAll('.dropdown-item'); 
             const currentUrl = window.location.href;
 
             // Set the active link on page load
             function setActiveLink() {
                 let foundActive = false;
 
-                // Untuk semua .nav-link
+                // Iterate through .nav-link to check for the active URL
                 links.forEach(link => {
                     if (link.href === currentUrl) {
                         link.classList.add('active');
@@ -247,40 +243,35 @@
                     }
                 });
 
-                // Jika tidak ada yang aktif, bisa aktifkan link pertama (opsional)
                 if (!foundActive && links.length > 0) {
                     links[0].classList.add('active');
                 }
             }
 
-            // Event listener untuk dropdown meta items (hanya untuk link di dalam meta)
+            // Event listener for dropdown meta items
             metaDropdownItems.forEach(item => {
                 item.addEventListener('click', function (event) {
-                    event.preventDefault(); // Hentikan navigasi default
+                    event.preventDefault();
 
-                    // Hapus kelas 'active' dari semua nav-link di dropdown meta
+                    // Remove active class from all links
                     links.forEach(link => link.classList.remove('active'));
 
-                    // Tambahkan kelas 'active' ke nav-link tipe meta yang relevan
-                    const dropdownType = this.closest('.dropdown').querySelector('.nav-link');
-                    dropdownType.classList.add('active');
+                    // Add active class to the parent dropdown link
+                    const dropdownElement = this.closest('.dropdown');
+                    if (dropdownElement) {
+                        const dropdownLink = dropdownElement.querySelector('.nav-link');
+                        dropdownLink.classList.add('active');
+                    }
 
-                    // Lakukan redirect ke URL yang diklik setelah penundaan kecil
+                    // Navigate to the clicked URL after a short delay
                     setTimeout(() => {
                         window.location.href = this.href;
                     }, 100);
                 });
             });
 
-            // On click, set the clicked nav-link as active
-            links.forEach(link => {
-                link.addEventListener('click', function () {
-                    links.forEach(link => link.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Initial check on page load
+            // Ensure the active link is set when the page loads
             setActiveLink();
         });
     </script>
+</body>

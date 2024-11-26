@@ -16,7 +16,7 @@ class ProfileMemberController extends Controller
         $bidangPerusahaan = BidangPerusahaan::all();
 
         // Ensure the user is a member (type 0)
-        return view('member.profile.show', compact('user','bidangPerusahaan'));  // Pass the user data to the view
+        return view('Member.Profile.show', compact('user','bidangPerusahaan'));  // Pass the user data to the view
     }
 
     public function edit()
@@ -27,7 +27,7 @@ class ProfileMemberController extends Controller
 
         // Ensure the user is a member (type 0)
 
-        return view('member.profile.edit', compact('user','bidangPerusahaan'));  // Pass the user data to the view
+        return view('Member.Profile.edit', compact('user','bidangPerusahaan'));  // Pass the user data to the view
     }
 
     /**

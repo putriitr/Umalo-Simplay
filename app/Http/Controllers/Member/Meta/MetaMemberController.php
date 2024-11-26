@@ -15,7 +15,7 @@ class MetaMemberController extends Controller
                   ->where('end_date', '>=', now())
                   ->get();
 
-    return view('member.meta.index', compact('metas'));
+    return view('Member.Meta.index', compact('metas'));
 }
 
 public function showMetaBySlug($slug)
@@ -23,7 +23,7 @@ public function showMetaBySlug($slug)
         // Retrieve the meta entry based on the slug
         $meta = Meta::where('slug', $slug)->firstOrFail();
 
-        return view('member.meta.show', compact('meta'));
+        return view('Member.Meta.show', compact('meta'));
     }
 
     public function getActiveMetas()

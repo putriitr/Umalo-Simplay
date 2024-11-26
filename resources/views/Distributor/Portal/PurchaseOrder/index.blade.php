@@ -2,9 +2,9 @@
 
 @section('content')
 
-<div class="container mt-5"></div>
+<div class="container mt-5">
 <h1 class="text-center mb-4">{{ __('messages.purchase_orders') }}</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+    <ol>
         <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
         <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
         <li class="breadcrumb-item active text-primary">{{ __('messages.purchase_orders') }}</li>

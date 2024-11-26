@@ -9,12 +9,25 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\File;
 class ProformaInvoiceAdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Mengambil semua Proforma Invoices dengan relasi ke PurchaseOrder dan User
-        $proformaInvoices = ProformaInvoice::with('purchaseOrder', 'purchaseOrder.user')->get();
-        return view('Admin.ProformaInvoice.index', compact('proformaInvoices'));
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
+        // Query Proforma Invoices dengan pencarian dan pagination
+        $proformaInvoices = ProformaInvoice::with('purchaseOrder', 'purchaseOrder.user')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('pi_number', 'like', "%{$keyword}%")
+                    ->orWhereHas('purchaseOrder', function ($q) use ($keyword) {
+                        $q->where('po_number', 'like', "%{$keyword}%")
+                            ->orWhereHas('user', function ($qUser) use ($keyword) {
+                                $qUser->where('name', 'like', "%{$keyword}%");
+                            });
+                    });
+            })
+            ->paginate(10); // Menampilkan 10 item per halaman
+        return view('Admin.ProformaInvoice.index', compact('proformaInvoices', 'keyword'));
     }
+    
     // Menampilkan form untuk membuat Proforma Invoice
     public function create($purchaseOrderId)
     {
@@ -72,7 +85,7 @@ class ProformaInvoiceAdminController extends Controller
         $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $purchaseOrder->po_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
         $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $request->pi_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
 
-        
+
 
 
         // Buat Proforma Invoice

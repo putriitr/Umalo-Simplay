@@ -4,11 +4,11 @@
 
 <div class="container mt-5"></div>
 <h1 class="text-center mb-4">{{ __('messages.proforma_invoices_list') }}</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
-        <li class="breadcrumb-item active text-primary">{{ __('messages.proforma_invoices') }}</li>
-    </ol>
+<ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a></li>
+    <li class="breadcrumb-item active text-primary">{{ __('messages.proforma_invoices') }}</li>
+</ol>
 </div>
 
 <div class="container mt-5">
@@ -25,7 +25,8 @@
                 <div class="alert alert-info">
                     <p>{{ __('messages.no_proforma_invoices') }}</p>
                     <p>{{ __('messages.create_po_first') }}</p>
-                    <a href="{{ route('distributor.purchase-orders.index') }}" class="btn btn-warning w-100">{{ __('messages.view_purchase_orders') }}</a>
+                    <a href="{{ route('distributor.purchase-orders.index') }}"
+                        class="btn btn-warning w-100">{{ __('messages.view_purchase_orders') }}</a>
                 </div>
             @else
                         <div class="mb-3">
@@ -89,7 +90,8 @@
                                                                 <input type="file" name="payment_proof" class="form-control mb-2"
                                                                     accept=".pdf,.jpg,.jpeg,.png" required>
                                                                 <button type="submit" class="btn btn-warning btn-sm mb-2 w-100">
-                                                                    <i class="fas fa-upload"></i> {{ __('messages.upload_remaining_payment_proof') }}
+                                                                    <i class="fas fa-upload"></i>
+                                                                    {{ __('messages.upload_remaining_payment_proof') }}
                                                                 </button>
                                                                 <p class="text-muted">{{ __('messages.remaining_payment') }}
                                                                     Rp{{ number_format($invoice->remaining_payment, 2) }}</p>
@@ -116,7 +118,8 @@
                                                         @if($invoice->second_payment_proof_path)
                                                             <a href="{{ asset($invoice->second_payment_proof_path) }}" download
                                                                 class="btn btn-success btn-sm mb-2 w-100">
-                                                                <i class="fas fa-download"></i> {{ __('messages.download_remaining_payment_proof') }}
+                                                                <i class="fas fa-download"></i>
+                                                                {{ __('messages.download_remaining_payment_proof') }}
                                                             </a>
                                                         @else
                                                             <form action="{{ route('distributor.proforma-invoices.upload', $invoice->id) }}"
@@ -127,7 +130,8 @@
                                                                 <button type="submit" class="btn btn-success btn-sm mb-2 w-100">
                                                                     <i class="fas fa-upload"></i> {{ __('messages.upload_dp_proof') }}
                                                                 </button>
-                                                                <p class="text-muted">{{ __('messages.dp') }}: Rp{{ number_format($invoice->dp, 2) }}
+                                                                <p class="text-muted">{{ __('messages.dp') }}:
+                                                                    Rp{{ number_format($invoice->dp, 2) }}
                                                                     ({{ $invoice->dp_percent }}%)</p>
                                                             </form>
                                                         @endif
@@ -140,7 +144,8 @@
                                                             <button type="submit" class="btn btn-success btn-sm mb-2 w-100">
                                                                 <i class="fas fa-upload"></i> {{ __('messages.upload_dp_proof') }}
                                                             </button>
-                                                            <p class="text-muted">{{ __('messages.dp') }}: Rp{{ number_format($invoice->dp, 2) }}
+                                                            <p class="text-muted">{{ __('messages.dp') }}:
+                                                                Rp{{ number_format($invoice->dp, 2) }}
                                                                 ({{ $invoice->dp_percent }}%)</p>
                                                         </form>
                                                     @endif
@@ -154,6 +159,8 @@
                     </div>
                 </div>
             @endif
+</div>
+</div>
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">

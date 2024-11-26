@@ -6,45 +6,57 @@
         <div class="col-md-8">
             <!-- Card Wrapper for User Profile -->
             <div class="card shadow-lg border-0 rounded-lg">
-                <div class="card-header bg-primary text-white text-center py-4">
+                <!-- Card Header -->
+                <div class="card-header bg-light text-dark text-center py-4 rounded-top d-flex align-items-center justify-content-center gap-2">
+                    <i class="fa fa-user-circle text-primary fs-1"></i>
                     <h2 class="mb-0">Profil Pengguna</h2>
                 </div>
-                <div class="card-body p-4">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nama :</label>
-                            <p class="text-muted">{{ $user->name }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Email :</label>
-                            <p class="text-muted">{{ $user->email }}</p>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nama Perusahaan :</label>
-                            <p class="text-muted">{{ $user->nama_perusahaan ?? 'N/A' }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Bidang Perusahaan :</label>
-                            <p class="text-muted">{{ $user->bidangPerusahaan->name ?? 'N/A' }}</p>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nomor Telepon :</label>
-                            <p class="text-muted">{{ $user->no_telp ?? 'N/A' }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Alamat :</label>
-                            <p class="text-muted">{{ $user->alamat ?? 'N/A' }}</p>
-                        </div>
+                <!-- Card Body -->
+                <div class="card-body p-5">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="text-center text-dark bg-light">Informasi Profil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold text-dark">Nama:</td>
+                                    <td class="text-muted">{{ $user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">Email:</td>
+                                    <td class="text-muted">{{ $user->email }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">Nama Perusahaan:</td>
+                                    <td class="text-muted">{{ $user->nama_perusahaan ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">Bidang Perusahaan:</td>
+                                    <td class="text-muted">{{ $user->bidangPerusahaan->name ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">Nomor Telepon:</td>
+                                    <td class="text-muted">{{ $user->no_telp ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold text-dark">Alamat:</td>
+                                    <td class="text-muted">{{ $user->alamat ?? 'N/A' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="card-footer text-center bg-light py-3">
-                    <a href="{{ route('profile.edit') }}" class="btn btn-primary px-4 py-2">Edit Profil</a>
+                <!-- Card Footer -->
+                <div class="card-footer text-center bg-light py-4 rounded-bottom">
+                    @if (auth()->check())
+                        <a href="{{ auth()->user()->type === 'member' ? route('profile.edit') : route('distributor.profile.edit') }}" 
+                           class="btn btn-outline-primary px-4 py-2 rounded-pill shadow-sm transition-all duration-300 hover:bg-primary">
+                           <i class="fa fa-edit me-2"></i>Edit Profil
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

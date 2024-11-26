@@ -26,7 +26,7 @@ class ProdukMemberController extends Controller
             $selectedCategory = null;
         }
 
-        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+        return view('Member.Product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
 
 
@@ -40,7 +40,7 @@ class ProdukMemberController extends Controller
 
         $selectedCategory = null;
 
-        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+        return view('Member.Product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
 
 
@@ -53,7 +53,7 @@ class ProdukMemberController extends Controller
 
         $selectedCategory = Kategori::find($id);
 
-        return view('member.product.product', compact('produks', 'kategori', 'selectedCategory'));
+        return view('Member.Product.product', compact('produks', 'kategori', 'selectedCategory'));
     }
 
 
@@ -68,7 +68,7 @@ class ProdukMemberController extends Controller
             ->take(4) // Limit to 4 similar products
             ->get();
 
-        return view('member.product.detail', compact('produk', 'produkSerupa'));
+        return view('Member.Product.detail', compact('produk', 'produkSerupa'));
     }
     public function addToQuotation(Request $request, $id)
 {

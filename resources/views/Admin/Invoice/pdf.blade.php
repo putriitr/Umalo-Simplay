@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
@@ -6,13 +6,13 @@
     <title>Invoice #{{ $invoice->invoice_number }}</title>
     <style>
         @page {
-            size: A4;
+            size: A4 portrait; /* Ensures A4 in portrait orientation */
             margin: 20px;
         }
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 10px;
+            font-size: 12px; /* Increased font size */
             margin: 0;
             padding: 0;
         }
@@ -21,12 +21,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Increased margin for better spacing */
             padding: 0 20px;
         }
 
         .header img {
-            width: 120px;
+            width: 200px; /* Increased width */
             height: auto;
         }
 
@@ -35,7 +35,7 @@
         }
 
         .invoice-info h1 {
-            font-size: 16px;
+            font-size: 18px; /* Increased font size */
             color: #b89222;
             margin: 0;
         }
@@ -45,19 +45,19 @@
         }
 
         .client-info p {
-            margin: 2px 0;
+            margin: 4px 0; /* Increased margin for better spacing */
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 9px;
+            font-size: 12px; /* Increased font size */
         }
 
         .table th,
         .table td {
             border: 1px solid #ddd;
-            padding: 6px;
+            padding: 8px; /* Increased padding for better readability */
             text-align: center;
         }
 
@@ -70,13 +70,13 @@
         }
 
         .payment-info {
-            margin-top: 10px;
-            font-size: 9px;
+            margin-top: 20px; /* Increased margin */
+            font-size: 12px; /* Increased font size */
         }
 
         .signature {
-            margin-top: 10px;
-            font-size: 9px;
+            margin-top: 20px; /* Increased margin */
+            font-size: 12px; /* Increased font size */
         }
 
         .footer {
@@ -84,7 +84,7 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            font-size: 8px;
+            font-size: 10px; /* Slightly larger footer font */
             color: #666;
         }
     </style>

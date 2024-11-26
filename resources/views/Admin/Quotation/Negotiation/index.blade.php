@@ -15,6 +15,16 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
+                <!-- Search Form -->
+                <form action="{{ route('admin.quotations.negotiations.index') }}" method="GET" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control"
+                            placeholder="Cari berdasarkan nomor quotation, harga negosiasi, atau status..."
+                            value="{{ request()->input('search') }}">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
+
                 <div class="card-body">
                     <div class="row">
                         <div class="table-responsive">
@@ -29,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($negotiations as $negotiation)
+                                    @forelse($negotiations as $negotiation)
                                         <tr>
                                             <td>{{ $negotiation->id }}</td>
                                             <td>{{ $negotiation->quotation->quotation_number }}</td>
@@ -44,9 +54,17 @@
                                                     onclick="openModal({{ $negotiation->id }}, 'reject')">Reject</button>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">Belum ada negosiasi.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $negotiations->links('pagination::bootstrap-4') }}
                         </div>
                         <!-- Modal untuk Accept/Reject Notes -->
                         <div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel"
@@ -82,7 +100,7 @@
             </div>
         </div>
     </div>
-</div>  
+</div>
 
 <script>
     function openModal(id, action) {

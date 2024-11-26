@@ -15,6 +15,15 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
+                <!-- Search Form -->
+                <form action="{{ route('admin.purchase-orders.index') }}" method="GET" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control"
+                            placeholder="Cari berdasarkan nomor PO, distributor, atau status..."
+                            value="{{ request()->input('search') }}">
+                        <button class="btn btn-primary" type="submit">Cari</button>
+                    </div>
+                </form>
                 <div class="card-body">
                     <div class="row">
                         <div class="table-responsive">
@@ -30,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($purchaseOrders as $po)
+                                    @forelse($purchaseOrders as $po)
                                         <tr>
                                             <td>{{ $po->id }}</td>
                                             <td>{{ $po->po_number }}</td>
@@ -62,9 +71,23 @@
                                                 @endif
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr>
+                                            <td colspan="9" class="text-center text-muted">
+                                                @if(request()->has('search'))
+                                                    Data tidak ditemukan.
+                                                @else
+                                                    Belum ada Purchase Order.
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center mt-4">
+                            {{ $purchaseOrders->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
                 </div>

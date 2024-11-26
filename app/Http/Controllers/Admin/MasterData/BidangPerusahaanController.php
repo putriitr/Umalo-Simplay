@@ -14,7 +14,7 @@ class BidangPerusahaanController extends Controller
     public function index()
     {
         $bidangPerusahaans = BidangPerusahaan::all();
-        return view('admin.masterdata.bidang.index', compact('bidangPerusahaans'));
+        return view('Admin.MasterData.bidang.index', compact('bidangPerusahaans'));
     }
 
     /**
@@ -22,7 +22,7 @@ class BidangPerusahaanController extends Controller
      */
     public function create()
     {
-        return view('admin.masterdata.bidang.create');
+        return view('Admin.MasterData.bidang.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class BidangPerusahaanController extends Controller
     {
         $bidang = BidangPerusahaan::findOrFail($id);
 
-        return view('admin.masterdata.bidang.show', compact('bidang'));
+        return view('Admin.MasterData.bidang.show', compact('bidang'));
 
     }
 
@@ -57,7 +57,7 @@ class BidangPerusahaanController extends Controller
     public function edit(string $id)
     {
         $bidang = BidangPerusahaan::findOrFail($id);
-        return view('admin.masterdata.bidang.edit', compact('bidang'));
+        return view('Admin.MasterData.bidang.edit', compact('bidang'));
     }
 
     /**
@@ -72,7 +72,7 @@ class BidangPerusahaanController extends Controller
         $bidangPerusahaan = BidangPerusahaan::findOrFail($id);
         $bidangPerusahaan->update($request->all());
 
-        return redirect()->route('admin.masterdata.index')
+        return redirect()->route('Admin.MasterData.index')
             ->with('success', 'Bidang Perusahaan updated successfully.');
     }
 

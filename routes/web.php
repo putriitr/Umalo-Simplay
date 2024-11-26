@@ -45,6 +45,7 @@ use App\Http\Controllers\Admin\PurchaseOrder\PurchaseOrderAdminController;
 use App\Http\Controllers\Distribution\Portal\DistributionController;
 use App\Http\Controllers\Distribution\Portal\InvoiceController;
 use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
+use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
 
 
 /*
@@ -172,6 +173,10 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         Route::post('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'store'])->name('quotations.store_po');
         Route::get('/distributor/purchase-orders', [PurchaseOrderController::class, 'index'])->name('distributor.purchase-orders.index');
 
+        //routes profile
+        Route::get('/distributor/profile', [ProfileDistributorController::class, 'show'])->name('distributor.profile.show');
+        Route::get('/distributor/profile/edit', [ProfileDistributorController::class, 'edit'])->name('distributor.profile.edit');
+        Route::put('/distributor/profile/update', [ProfileDistributorController::class, 'update'])->name('distributor.profile.update');
     });
 });
 

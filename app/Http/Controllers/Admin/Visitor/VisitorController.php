@@ -37,6 +37,6 @@ class VisitorController extends Controller
         $weeklyVisits = $weeklyVisitorData->pluck('total_visits')->toArray();
 
         // Pass data to view
-        return view('admin.visitor.index', compact('visitors', 'dates', 'visits', 'weeks', 'weeklyVisits'));
+        return view('Admin.Visitor.index', compact('visitors', 'dates', 'visits', 'weeks', 'weeklyVisits'));
     }
 }

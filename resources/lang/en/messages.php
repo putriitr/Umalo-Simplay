@@ -136,7 +136,7 @@ return [
     'choose_product_quotation' => 'Select Product & Quotation Request',
     'breadcrumb_home' => 'Home',
     'breadcrumb_distributor' => 'Distributor Portal',
-    'breadcrumb_choose_quotation' => 'Select Product & Quotation',
+    'request-quotation' => 'Request Quotation',
     'cart_view' => 'View Cart',
     'quotation_list' => 'Quotation Request List',
     'no_submission_number' => 'Submission number not available',
@@ -155,7 +155,7 @@ return [
     'negotiate' => 'Negotiate',
     'create_po' => 'Create PO',
     'no_quotation_request' => 'No quotation request available.',
-    'create_quotation' => 'Submit Quotation',
+    'create_quotation' => 'Request Quotation',
     'quantity' => 'Quantity',
     'canceled' => 'Canceled',
 
@@ -313,5 +313,9 @@ return [
     'distributor_access' => 'This page can only be accessed by Distributor. Please register as a distributor.',
     'no_permission' => 'You do not have permission to access this page.',
     'po_pending'=> 'PO Pending',
+
+    'po_number_placeholder' => 'Enter PO Number',
+    'upload_po_file' => 'Upload PO File (optional)',
+    'create_po_button' => 'Create Purchase Order'
     
 ];

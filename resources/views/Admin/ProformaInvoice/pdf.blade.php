@@ -6,7 +6,8 @@
     <title>Proforma Invoice #{{ $proformaInvoice->pi_number }}</title>
     <style>
         @page {
-            margin: 50px 40px 80px;
+            margin: 20px 40px;
+            size: A4 portrait;
         }
 
         body {
@@ -18,73 +19,71 @@
 
         /* Header */
         .header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
 
         .header img {
-            width: 200px;
+            width: 150px;
             height: auto;
+        }
+
+        .invoice-info {
+            text-align: right;
+        }
+
+        .invoice-info h1 {
+            font-size: 24px;
+            color: #b89222;
+        }
+
+        .invoice-info p {
+            margin: 3px 0;
+            font-size: 10px;
         }
 
         /* Footer */
         .footer {
             text-align: center;
             margin-top: 30px;
+            font-size: 10px;
         }
 
         .footer img {
-            width: 200px;
+            width: 150px;
             height: auto;
         }
 
         /* Content */
         .content {
-            margin-top: 30px;
-        }
-
-        .invoice-info {
-            text-align: right;
-            margin-bottom: 30px;
-        }
-
-        .invoice-info h1 {
-            font-size: 30px;
-            color: #b89222;
-        }
-
-        .invoice-info p {
-            margin: 5px 0;
-            font-size: 12px;
+            margin-top: 10px;
         }
 
         .section-title {
             font-weight: bold;
-            margin-top: 10px;
-            font-size: 14px;
+            margin-top: 5px;
+            font-size: 12px;
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .table th,
         .table td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 6px;
             text-align: center;
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .table th {
             background-color: #f9f9f9;
             font-weight: bold;
-        }
-
-        .table td {
-            font-size: 12px;
         }
 
         .right-align {
@@ -94,17 +93,22 @@
 
         .payment-terms,
         .signature {
-            margin-top: 20px;
-            font-size: 12px;
+            margin-top: 10px;
+            font-size: 10px;
         }
 
         .payment-terms p {
-            margin: 5px 0;
+            margin: 3px 0;
         }
 
         .signature img {
-            height: 40px;
+            height: 30px;
             width: auto;
+        }
+
+        .signature p {
+            margin-top: 10px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -113,17 +117,14 @@
     <!-- Header -->
     <div class="header">
         <img src="{{ public_path('pdfquo/header.png') }}" alt="Company Logo">
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-        <!-- Proforma Invoice Information -->
         <div class="invoice-info">
             <h1>PROFORMA INVOICE</h1>
             <p>Number: {{ $piNumberFormatted }}</p>
             <p>Date: {{ \Carbon\Carbon::parse($proformaInvoice->pi_date)->format('F d, Y') }}</p>
         </div>
-
+    </div>
+    <!-- Content -->
+    <div class="content">
         <!-- Vendor Information -->
         <div>
             <p class="section-title">Billed To:</p>
@@ -131,20 +132,19 @@
             <p>{{ $vendorAddress }}</p>
             <p>Phone: {{ $vendorPhone }}</p>
         </div>
-
         <!-- Introduction -->
         <p>Dear {{ $vendorName }},</p>
-        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following proforma invoice:</p>
-
+        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following proforma
+            invoice:</p>
         <!-- Product Table -->
         <table class="table">
             <thead>
                 <tr>
-                    <th style="width: 5%;">No.</th>
-                    <th style="width: 40%;">Description</th>
-                    <th style="width: 10%;">QTY</th>
-                    <th style="width: 20%;">Satuan</th>
-                    <th style="width: 25%;">Unit Price</th>
+                    <th>No.</th>
+                    <th>Description</th>
+                    <th>QTY</th>
+                    <th>Satuan</th>
+                    <th>Unit Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -176,7 +176,6 @@
                 </tr>
             </tbody>
         </table>
-
         <!-- Payment Terms -->
         <div class="payment-terms">
             <p class="section-title">Term Payment:</p>
@@ -184,9 +183,9 @@
             <p><strong>PT. Simplay Abyakta Mediatek</strong></p>
             <p>Phone: (021) 22097542</p>
             <p>Mobile: +62 821-69998-0001</p>
-            <p>Address: Rajawali Selatan Raya Blok A No.33, Gunung Sahari Utara, Sawah Besar, Jakarta Pusat, DKI Jakarta 10720</p>
+            <p>Address: Rajawali Selatan Raya Blok A No.33, Gunung Sahari Utara, Sawah Besar, Jakarta Pusat, DKI Jakarta
+                10720</p>
         </div>
-
         <!-- Signature Section -->
         <div class="signature">
             <p>Should you require further information, please do not hesitate to contact the undersigned.</p>
@@ -197,8 +196,11 @@
             <p><strong>PT. Simplay Abyakta Mediatek</strong><br>Director</p>
         </div>
     </div>
-
-    
+    <!-- Footer -->
+    <div class="footer">
+        <p>PT. Simplay Abyakta Mediatek, Rajawali Selatan Raya Blok A No.33, Jakarta 10720</p>
+        <p>Email: <a href="mailto:info@simplay.co.id">info@simplay.co.id</a>, Phone: (021) 22097542</p>
+    </div>
 </body>
 
 </html>

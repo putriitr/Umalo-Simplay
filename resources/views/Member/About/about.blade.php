@@ -162,7 +162,7 @@
     <!-- Brand End -->
 
     <!-- Customer Start -->
-    <div class="container-xxl py-5" data-wow-delay="0.1s">
+    <div id="user" class="container-xxl py-5" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="text-secondary text-uppercase">{{ __('messages.our_loyal_customers') }}</h6>

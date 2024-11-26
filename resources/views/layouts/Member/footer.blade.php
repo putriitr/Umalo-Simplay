@@ -10,10 +10,65 @@
         <div class="row g-5">
             <div class="col-lg-4 col-md-6">
                 <h4 class="text-light mb-4">{{ __('messages.contact_info') }}</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ $compro->alamat }}</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ $compro->email }}</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>{{ $compro->no_telepon }}</p>
-                <p class="mb-2"><i class="fab fa-whatsapp me-3"></i>{{ $compro->no_wa }}</p>
+
+                <!-- Alamat -->
+                <p class="mb-2">
+                    <i class="fa fa-map-marker-alt me-3"></i>
+                    <a href="https://www.google.com/maps?q={{ urlencode($compro->alamat) }}" target="_blank"
+                        class="contact-link">
+                        {{ $compro->alamat }}
+                    </a>
+                </p>
+
+                <!-- Email -->
+                <p class="mb-2">
+                    <i class="fa fa-envelope me-3"></i>
+                    <a href="mailto:{{ $compro->email }}" class="contact-link">
+                        {{ $compro->email }}
+                    </a>
+                </p>
+
+                <!-- Nomor Telepon -->
+                <p class="mb-2">
+                    <i class="fa fa-phone-alt me-3"></i>
+                    <a href="tel:{{ preg_replace('/\D/', '', $compro->no_telepon) }}" class="contact-link">
+                        {{ $compro->no_telepon }}
+                    </a>
+                </p>
+
+                <!-- WhatsApp -->
+                <p class="mb-2">
+                    <i class="fab fa-whatsapp me-3"></i>
+                    <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->no_wa) }}" target="_blank"
+                        class="contact-link">
+                        {{ $compro->no_wa }}
+                    </a>
+                </p>
+
+                <!-- CSS -->
+                <style>
+                    .contact-link {
+                        color: #f8f9fa;
+                        /* Warna teks awal */
+                        text-decoration: none;
+                        /* Hilangkan garis bawah */
+                        transition: color 0.3s ease;
+                        /* Animasi transisi warna */
+                    }
+
+                    .contact-link:hover {
+                        color: #00aaff;
+                        /* Warna biru terang saat ditunjuk */
+                        cursor: pointer;
+                        /* Ubah kursor menjadi jari menunjuk */
+                    }
+
+                    .contact-link:focus {
+                        outline: none;
+                        /* Hilangkan outline saat link difokuskan */
+                    }
+                </style>
+
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btan-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>

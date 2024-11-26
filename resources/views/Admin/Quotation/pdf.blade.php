@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Quotation Letter #{{ $quotation->quotation_number }}</title>
     <style>
         @page {
-            margin: 150px 50px 100px; /* Top, Right, Bottom, Left */
+            margin: 0px 50px;
+            /* No margins on top, bottom, and left, right */
         }
 
         body {
@@ -17,38 +19,22 @@
 
         /* Header */
         .header {
-            position: fixed;
-            top: -120px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            /* Add padding to create space on both sides */
         }
 
         .header img {
-            width: 100%;
+            width: 150px;
             height: auto;
         }
 
-        /* Footer */
-        .footer {
-            position: fixed;
-            bottom: -100px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            text-align: center;
-        }
-
-        .footer img {
-            width: 100%;
-            height: auto;
-        }
-
-        /* Content */
         .title {
             text-align: right;
-            margin-top: 5px;
+            flex-grow: 1;
         }
 
         .title h1 {
@@ -61,8 +47,24 @@
             font-size: 12px;
         }
 
-        .content p {
-            margin: 10px 0;
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Main Content */
+        .content {
+            padding: 0 50px;
         }
 
         .highlighted {
@@ -73,10 +75,11 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        table th, table td {
+        table th,
+        table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
@@ -87,15 +90,10 @@
             font-weight: bold;
         }
 
-        .terms {
+        .terms,
+        .notes {
             font-size: 12px;
             margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        .terms ol {
-            padding-left: 20px;
         }
 
         .signature {
@@ -109,30 +107,28 @@
         }
     </style>
 </head>
+
 <body>
+
     <!-- Header -->
     <div class="header">
         <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-        <!-- Title Section -->
         <div class="title">
             <h1>QUOTATION LETTER</h1>
             <p><strong>Number:</strong> {{ $quotation->quotation_number }}</p>
             <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($quotation->quotation_date)->format('F d, Y') }}</p>
         </div>
+    </div>
 
-        <!-- Body Section -->
-        <p><strong>To:</strong> <span class="highlighted">{{ $quotation->user->nama_perusahaan ?? 'Company Name' }}</span></p>
-        <p style="margin-bottom: 20px;"></p> <!-- Spacing after 'To' -->
-
+    <!-- Content -->
+    <div class="content">
+        <!-- To Section -->
+        <p><strong>To:</strong> <span
+                class="highlighted">{{ $quotation->user->nama_perusahaan ?? 'Company Name' }}</span></p>
         <p>Dear {{ $quotation->recipient_contact_person }},</p>
-        <p style="margin-bottom: 20px;"></p> <!-- Spacing after 'Dear' -->
+        <p>With reference to your letter number <span class="highlighted">{{ $referenceNumber }}</span>, PT. Simplay
+            Abyakta Mediatek is pleased to submit our quotation with the following terms & conditions:</p>
 
-        <p>With reference to your letter number <span class="highlighted">{{ $referenceNumber }}</span>, PT. Simplay Abyakta Mediatek is pleased to submit our quotation with the following terms & conditions:</p>
-        
         <!-- Equipment Details Table -->
         <table>
             <thead>
@@ -182,10 +178,9 @@
         </table>
 
         <!-- Notes Section -->
-        <div class="terms">
+        <div class="notes">
             <h3>Notes:</h3>
             @php
-                // Convert string to array if needed
                 $notes = is_array($quotation->notes) ? $quotation->notes : explode("\n", $quotation->notes);
             @endphp
             @if (!empty($notes))
@@ -201,7 +196,6 @@
             <!-- Terms & Conditions Section -->
             <h3>Terms & Conditions:</h3>
             @php
-                // Convert string to array if needed
                 $terms_conditions = is_array($quotation->terms_conditions) ? $quotation->terms_conditions : explode("\n", $quotation->terms_conditions);
             @endphp
             @if (!empty($terms_conditions))
@@ -224,5 +218,12 @@
             <p>{{ $quotation->authorized_person_position ?? 'Position' }}</p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>PT. Simplay Abyakta Mediatek, Rajawali Selatan Raya Blok A No.33, Jakarta 10720</p>
+        <p>Email: <a href="mailto:info@simplay.co.id">info@simplay.co.id</a>, Phone: (021) 22097542</p>
+    </div>
 </body>
+
 </html>

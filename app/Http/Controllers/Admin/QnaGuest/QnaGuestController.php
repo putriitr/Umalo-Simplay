@@ -11,13 +11,13 @@ class QnaGuestController extends Controller
     public function index()
     {
         $qnaguests = QnaGuest::all();
-        return view('admin.qnaguest.index', compact('qnaguests'));
-        return view('member.qna-guest.qna-guest');
+        return view('Admin.Qnaguest.index', compact('qnaguests'));
+        return view('Member.qna-guest.qna-guest');
     }
 
     public function create()
     {
-        return view('admin.qnaguest.create');
+        return view('Admin.Qnaguest.create');
     }
 
     public function store(Request $request)
@@ -34,12 +34,12 @@ class QnaGuestController extends Controller
 
         QnaGuest::create($data);
 
-        return redirect()->route('admin.qnaguest.index')->with('success', 'Qna Guest created successfully');
+        return redirect()->route('Admin.Qnaguest.index')->with('success', 'Qna Guest created successfully');
     }
 
     public function edit(QnaGuest $qnaguest)
     {
-        return view('admin.qnaguest.edit', compact('qnaguest'));
+        return view('Admin.Qnaguest.edit', compact('qnaguest'));
     }
 
     public function update(Request $request, QnaGuest $qnaguest)
@@ -56,12 +56,12 @@ class QnaGuestController extends Controller
 
         $qnaguest->update($data);
 
-        return redirect()->route('admin.qnaguest.index')->with('success', 'Qna Guest updated successfully');
+        return redirect()->route('Admin.Qnaguest.index')->with('success', 'Qna Guest updated successfully');
     }
 
     public function destroy(QnaGuest $qnaguest)
     {
         $qnaguest->delete();
-        return redirect()->route('admin.qnaguest.index')->with('success', 'Qna Guest deleted successfully');
+        return redirect()->route('Admin.Qnaguest.index')->with('success', 'Qna Guest deleted successfully');
     }
 }

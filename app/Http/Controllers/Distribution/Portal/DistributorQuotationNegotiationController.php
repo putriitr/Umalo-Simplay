@@ -24,7 +24,7 @@ class DistributorQuotationNegotiationController extends Controller
     public function create($quotationId)
     {
         $quotation = Quotation::findOrFail($quotationId);
-        return view('Distributor.Portal.negotiations.create', compact('quotation'));
+        return view('Distributor.Portal.Negotiations.create', compact('quotation'));
     }
     // Menyimpan negosiasi baru
     public function store(Request $request, $quotationId)

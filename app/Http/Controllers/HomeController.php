@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AfterSales;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\TranslateHelper;
 use App\Models\Activity;
@@ -73,12 +74,13 @@ class HomeController extends Controller
         $totalProducts = Produk::count(); // Assuming Product model
         $totalMonitoredProducts = Monitoring::count(); // Assuming Monitoring model
         $totalActivities = Activity::count(); // Assuming Activity model
+        $totalTickets = AfterSales::count();
     
         
     
 
         // Return the view with data
-        return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities'));
+        return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities','totalTickets'));
     }
 
     public function about()

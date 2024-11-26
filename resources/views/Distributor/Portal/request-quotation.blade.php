@@ -6,7 +6,7 @@
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.breadcrumb_home') }}</a></li>
         <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.breadcrumb_distributor') }}</a></li>
-        <li class="breadcrumb-item active text-primary">{{ __('messages.breadcrumb_choose_quotation') }}</li>
+        <li class="breadcrumb-item active text-primary">{{ __('messages.request-quotation') }}</li>
     </ol>
 </div>
 
@@ -45,7 +45,7 @@
                             </td>
                             <td>
                                 @foreach ($quotation->quotationProducts as $product)
-                                    <span class="d-block">{{ $product->quantity ?? __('messages.no_quantity') }}</span>
+                                    <span class="text-center d-block">{{ $product->quantity ?? __('messages.no_quantity') }}</span>
                                 @endforeach
                             </td>
                             <td>

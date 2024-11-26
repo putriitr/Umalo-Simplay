@@ -140,6 +140,7 @@ return [
     'breadcrumb_home' => 'Beranda',
     'breadcrumb_distributor' => 'Portal Distributor',
     'breadcrumb_choose_quotation' => 'Pilih Produk & Quotation',
+    'request-quotation' => 'Minta PenaWaran',
     'cart_view' => 'Lihat Keranjang',
     'quotation_list' => 'Daftar Permintaan Quotation',
     'no_submission_number' => 'Nomor pengajuan tidak tersedia',
@@ -321,4 +322,8 @@ return [
     'no_permission' => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
     
     'po_pending'=> 'PO Tertunda',
+
+    'po_number_placeholder' => 'Masukkan Nomor PO',
+    'upload_po_file' => 'Unggah File PO (opsional)',
+    'create_po_button' => 'Buat Pesanan Pembelian',
 ];

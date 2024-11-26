@@ -25,6 +25,7 @@
                             <div class="card shadow-sm border-light rounded">
                                 <div class="card-body">
                                     <h5 class="text-primary mb-3">{{ __('messages.quotation_info') }}</h5>
+                                    <p><strong>Number:</strong> {{ $quotation->quotation_number }}</p>
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <p class="mb-0" style="font-size: 1rem;"><strong>{{ __('messages.status') }}:</strong>
                                             <span

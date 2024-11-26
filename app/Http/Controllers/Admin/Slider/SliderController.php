@@ -18,7 +18,7 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('admin.slider.index', compact('sliders'));
+        return view('Admin.Slider.index', compact('sliders'));
     }
 
     // Show form to create a new slider
@@ -36,7 +36,7 @@ class SliderController extends Controller
                      ->where('end_date', '>=', today())
                      ->get();
 
-        return view('admin.slider.create', compact('activities', 'routes', 'metas'));
+        return view('Admin.Slider.create', compact('activities', 'routes', 'metas'));
     }
 
 
@@ -80,7 +80,7 @@ class SliderController extends Controller
             'button_url' => $buttonUrl, // Dynamic button URL
         ]);
 
-        return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
+        return redirect()->route('Admin.Slider.index')->with('success', 'Slider created successfully.');
     }
 
     // Show form to edit an existing slider
@@ -98,7 +98,7 @@ class SliderController extends Controller
                      ->where('end_date', '>=', today())
                      ->get();
 
-        return view('admin.slider.edit', compact('slider', 'routes', 'activities','metas'));
+        return view('Admin.Slider.edit', compact('slider', 'routes', 'activities','metas'));
     }
 
     // Update slider
@@ -142,7 +142,7 @@ class SliderController extends Controller
         $slider->button_text = $request->button_text;
         $slider->save();
 
-        return redirect()->route('admin.slider.index')->with('success', 'Slider updated successfully.');
+        return redirect()->route('Admin.Slider.index')->with('success', 'Slider updated successfully.');
     }
 
     // Delete slider
@@ -157,6 +157,6 @@ class SliderController extends Controller
 
         $slider->delete();
 
-        return redirect()->route('admin.slider.index')->with('success', 'Slider deleted successfully.');
+        return redirect()->route('Admin.Slider.index')->with('success', 'Slider deleted successfully.');
     }
 }
