@@ -1,152 +1,123 @@
 @extends('layouts.Member.master')
 
 @section('content')
-
-<div class="container mt-5">
-    <h1 class="text-center mb-4">{{ __('messages.submit_quotation_request') }}</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.distributor_portal') }}</a>
-        </li>
-        <li class="breadcrumb-item active text-primary">{{ __('messages.cart_quotation_request') }}</li>
-    </ol>
-    <div class="container mt-5">
-        <!-- Navigation Button -->
-        
-        <!-- Card for Cart Table -->
-        <div class="card shadow-lg border-light rounded">
-            <div class="card-body">
-                <h3 class="mb-4 text-secondary">{{ __('messages.cart_quotation_request') }}</h3>
-                <table class="table table-bordered table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th>No</th>
-                            <th>{{ __('messages.product_name') }}</th>
-                            <th>{{ __('messages.quantity') }}</th>
-                            <th>{{ __('messages.action') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($cartItems as $key => $item)
-                            <tr>
-                                <td class="text-center">{{ $key + 1 }}</td>
-                                <td class="text-center">{{ $item['nama'] }}</td>
-                                <td class="text-center">
-                                    <form action="{{ route('quotations.cart.update') }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="PUT">
-                                        <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                        <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1"
-                                            class="form-control form-control-sm text-center"
-                                            style="width: 60px; display: inline-block;">
-                                        <button type="submit"
-                                            class="btn btn-outline-primary btn-sm">{{ __('messages.update') }}</button>
-                                    </form>
-                                </td>
-                                <td class="text-center">
-                                    <form action="{{ route('quotations.cart.remove') }}" method="POST"
-                                        style="display: inline;">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                        <button type="submit"
-                                            class="btn btn-outline-danger btn-sm">{{ __('messages.remove') }}</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="text-center text-muted">{{ __('messages.cart_empty') }}</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-                <div style="display: flex; justify-content: flex-end;">
-                    <a href="{{ url('/en/products') }}" class="btn btn-outline-primary btn-sm"> Add More Product </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Submit Quotation Request Button if there are items in the cart -->
-        @if(count($cartItems) > 0)
-            <div class="d-flex justify-content-center mt-4">
-                <form action="{{ route('quotations.submit') }}" method="POST">
-                    @csrf
-                    <button type="submit"
-                        class="btn btn-primary btn-lg shadow-sm">{{ __('messages.submit_quotation_request') }}</button>
-                </form>
-            </div>
-        @endif
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Keranjang Permintaan Quotation</h3>
+        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
+            <li class="breadcrumb-item active text-primary">Keranjang Permintaan Quotation</li>
+        </ol>
     </div>
 </div>
+<!-- Header End -->
 
+<div class="container py-5">
+    <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Keranjang Permintaan Quotation</h2>
+
+    <!-- Flash Messages -->
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Button to Add More Products -->
+    <div class="text-end mb-4">
+        <a href="{{ url('/en/products') }}" class="btn btn-primary btn-lg shadow-sm" style="border-radius: 10px;">
+            <i class="fas fa-plus-circle me-2"></i>Tambah Produk
+        </a>
+    </div>
+
+    <!-- Cart Table -->
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th>Nama Produk</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($cartItems as $key => $item)
+                        <tr>
+                            <td class="text-center">{{ $key + 1 }}</td>
+                            <td>{{ $item['nama'] }}</td>
+                            <td class="text-center">
+                                <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" 
+                                       class="form-control d-inline-block update-quantity" 
+                                       style="width: 80px;" 
+                                       data-produk-id="{{ $item['produk_id'] }}">
+                            </td>
+                            <td class="text-center">
+                                <form action="{{ route('quotations.cart.remove') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Keranjang kosong.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Submit Quotation Button -->
+    @if(count($cartItems) > 0)
+        <form action="{{ route('quotations.submit') }}" method="POST" class="mt-4 text-end">
+            @csrf
+            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                <i class="fas fa-paper-plane me-2"></i>Ajukan Permintaan Quotation
+            </button>
+        </form>
+    @endif
+</div>
+
+<!-- JavaScript for AJAX -->
+<script>
+    document.querySelectorAll('.update-quantity').forEach(input => {
+        input.addEventListener('change', function () {
+            const produkId = this.getAttribute('data-produk-id');
+            const quantity = this.value;
+
+            fetch('{{ route('quotations.cart.update') }}', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ produk_id: produkId, quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Optional: Reload or update part of the page
+                    console.log('Quantity updated successfully');
+                } else {
+                    alert(data.message || 'Error updating quantity.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
 @endsection
-
-<style>
-    /* Styling for Card and Table */
-    .card {
-        border-radius: 10px;
-    }
-
-    .card-body {
-        padding: 2rem;
-    }
-
-    .table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table th,
-    .table td {
-        text-align: center;
-        padding: 12px;
-    }
-
-    .table-bordered {
-        border: 1px solid #ddd;
-    }
-
-    .table-striped tbody tr:nth-child(odd) {
-        background-color: #f9f9f9;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .table-light {
-        background-color: #f8f9fa;
-    }
-
-    .btn-outline-primary {
-        border-radius: 8px;
-    }
-
-    .btn-outline-danger {
-        border-radius: 8px;
-    }
-
-    .btn-lg {
-        padding: 12px 20px;
-    }
-
-    .btn-sm {
-        padding: 6px 12px;
-    }
-
-    .shadow-sm {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .shadow-lg {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Styling for Submit Quotation Button */
-    .btn-primary {
-        border-radius: 8px;
-        padding: 8px 16px;
-    }
-</style>

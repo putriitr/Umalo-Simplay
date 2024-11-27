@@ -1,5 +1,4 @@
-<body> 
-    @php
+@php
         // Fetch the first record from the compro_parameter table
         $compro = \App\Models\CompanyParameter::first();
     @endphp
@@ -92,6 +91,7 @@
                                         class="dropdown-item">{{ $meta->title }}</a>
                                 @endforeach
                             </div>
+
                         </div>
                     @endforeach
 
@@ -143,9 +143,26 @@
                                     style="width: 25px; height: auto; margin-right: 5px;">
                                 {{ __('messages.english') }}
                             </a>
+
                         </div>
+
                     </div>
+                    <!-- Shopping Cart Icon -->
+                    @auth
+                        @if (Auth::user()->type === 'distributor')
+                            <div class="nav-item">
+                                <a href="{{ route('quotations.cart') }}" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span id="cart-count" class="badge bg-primary rounded-pill">
+                                        {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
+                                    </span>
+                                </a>
+
+                            </div>
+                        @endif
+                    @endauth
                 </div>
+
 
                 <!-- Profile and Logout for Members -->
                 <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
@@ -185,7 +202,10 @@
                     @endif
                 </div>
 
+
+
             </div>
+
         </nav>
     </div>
     <!-- Navbar End -->
@@ -226,7 +246,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const links = document.querySelectorAll('.navbar-nav .nav-link');
-            const metaDropdownItems = document.querySelectorAll('.dropdown-item'); 
+            const metaDropdownItems = document.querySelectorAll('.dropdown-item');
             const currentUrl = window.location.href;
 
             // Set the active link on page load
@@ -274,4 +294,4 @@
             setActiveLink();
         });
     </script>
-</body>
+    </body>

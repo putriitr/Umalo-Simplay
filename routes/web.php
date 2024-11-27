@@ -7,7 +7,6 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\Member\MemberController;
 use App\Http\Controllers\Admin\FAQ\FAQController;
-use App\Http\Controllers\Admin\Monitoring\MonitoringController;
 use App\Http\Controllers\Admin\Parameter\CompanyParameterController;
 use App\Http\Controllers\Admin\Produk\ProdukController;
 use App\Http\Controllers\Member\Portal\PortalController;
@@ -116,10 +115,6 @@ Route::middleware(['auth', 'user-access:member'])->group(function () {
         Route::put('/portal/tickets/{id}/cancel', [TicketMemberController::class, 'cancel'])->name('tickets.cancel');
         Route::put('/portal/tickets/{id}', [TicketMemberController::class, 'update'])->name('tickets.update');
 
-
-        Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
-        Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
-
         Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
         Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
         Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
@@ -164,6 +159,7 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
         Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
         Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
+        Route::get('/proforma-invoices/{id}', [ProformaInvoiceDistributorController::class, 'show'])->name('distributor.proforma-invoices.show');
 
         // Quotation Routes
         Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
@@ -210,15 +206,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::put('/admin/tickets/{id}/complete', [TicketController::class, 'complete'])->name('admin.tickets.complete');
         Route::get('/admin/tickets/{id}', [TicketController::class, 'show'])->name('admin.tickets.show');
 
-
-        Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
-        Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');
-        Route::get('monitoring/{id}', [MonitoringController::class, 'monitoringDetail'])->name('monitoring.detail');
-        Route::get('admin/monitoring/create/{userProdukId}', [MonitoringController::class, 'create'])->name('admin.monitoring.create');
-        Route::post('admin/monitoring/store', [MonitoringController::class, 'store'])->name('admin.monitoring.store');
-        Route::get('admin/monitoring/{id}/edit', [MonitoringController::class, 'edit'])->name('admin.monitoring.edit');
-        Route::put('admin/monitoring/{id}', [MonitoringController::class, 'update'])->name('admin.monitoring.update');
-
         Route::get('/admin/quotations', [QuotationAdminController::class, 'index'])->name('admin.quotations.index');
         Route::put('/quotations/{id}/status', [QuotationAdminController::class, 'updateStatus'])->name('admin.quotations.updateStatus');
         Route::post('/quotations/{id}/upload-file', [QuotationAdminController::class, 'uploadFile'])->name('admin.quotations.uploadFile');
@@ -237,11 +224,16 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/purchase-orders/{id}', [PurchaseOrderAdminController::class, 'show'])->name('admin.purchase-orders.show');
         Route::put('/purchase-orders/{id}/approve', [PurchaseOrderAdminController::class, 'approve'])->name('admin.purchase-orders.approve');
         Route::put('/purchase-orders/{id}/reject', [PurchaseOrderAdminController::class, 'reject'])->name('admin.purchase-orders.reject');
+        Route::put('/purchase-orders/{id}/po-number', [PurchaseOrderAdminController::class, 'updatePoNumber'])->name('admin.purchase-orders.update-po-number');
 
 
         Route::get('/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
         Route::post('/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');
         Route::get('/admin/proforma-invoices', [ProformaInvoiceAdminController::class, 'index'])->name('admin.proforma-invoices.index');
+        Route::get('/admin/proforma-invoices/{id}', [ProformaInvoiceAdminController::class, 'show'])->name('admin.proforma-invoices.show');
+        Route::put('/admin/proforma-invoices/{id}/approve-reject', [ProformaInvoiceAdminController::class, 'approveRejectPayment'])
+        ->name('admin.proforma-invoices.approve-reject');
+
         // Route untuk index dan pembuatan invoice
         Route::get('/invoices', [InvoiceAdminController::class, 'index'])->name('invoices.index');
         Route::get('/invoices/create/{proformaInvoiceId}', [InvoiceAdminController::class, 'create'])->name('invoices.create');
@@ -249,15 +241,6 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/invoices/{id}', [InvoiceAdminController::class, 'show'])->name('invoices.show');
 
 
-        Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
-            Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');
-            Route::get('/create/{userProdukId}', [MonitoringController::class, 'inspeksiCreate'])->name('create');
-            Route::post('/store/{userProdukId}', [MonitoringController::class, 'inspeksiStore'])->name('store');
-            Route::get('/edit/{id}', [MonitoringController::class, 'inspeksiEdit'])->name('edit');
-            Route::put('/update/{id}/{userProdukId}', [MonitoringController::class, 'inspeksiUpdate'])->name('update');
-            Route::delete('/destroy/{id}', [MonitoringController::class, 'inspeksiDestroy'])->name('destroy');
-            Route::get('/show/{id}', [MonitoringController::class, 'inspeksiShow'])->name('show');
-        });
 
         Route::get('/admin/visitors', [VisitorController::class, 'index'])->name('admin.visitors');
         Route::resource('admin/produk', ProdukController::class)->names('admin.produk');

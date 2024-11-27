@@ -1,116 +1,125 @@
 @extends('layouts.Admin.master')
+
 @section('content')
 <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
+    <div class="card shadow-lg p-4 rounded-3">
+        <div class="card-body">
+            <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Negotiations</h2>
 
-            <div class="card">
-
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <div class="card-title">
-                        <h1>Negotiations</h1>
-                    </div>
+            <!-- Flash Message -->
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+            @endif
 
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-                <!-- Search Form -->
-                <form action="{{ route('admin.quotations.negotiations.index') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control"
-                            placeholder="Cari berdasarkan nomor quotation, harga negosiasi, atau status..."
-                            value="{{ request()->input('search') }}">
-                        <button class="btn btn-primary" type="submit">Cari</button>
-                    </div>
-                </form>
-
-                <div class="card-body">
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Quotation Number</th>
-                                        <th>Negotiated Price</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($negotiations as $negotiation)
-                                        <tr>
-                                            <td>{{ $negotiation->id }}</td>
-                                            <td>{{ $negotiation->quotation->quotation_number }}</td>
-                                            <td>{{ number_format($negotiation->negotiated_price, 2) }}</td>
-                                            <td>{{ ucfirst($negotiation->status) }}</td>
-                                            <td>
-                                                <!-- Tombol untuk memicu modal Accept -->
-                                                <button class="btn btn-success btn-sm"
-                                                    onclick="openModal({{ $negotiation->id }}, 'accept')">Accept</button>
-                                                <!-- Tombol untuk memicu modal Reject -->
-                                                <button class="btn btn-danger btn-sm"
-                                                    onclick="openModal({{ $negotiation->id }}, 'reject')">Reject</button>
-                                            </td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="5" class="text-center text-muted">Belum ada negosiasi.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Pagination Links -->
-                        <div class="d-flex justify-content-center mt-4">
-                            {{ $negotiations->links('pagination::bootstrap-4') }}
-                        </div>
-                        <!-- Modal untuk Accept/Reject Notes -->
-                        <div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form id="notesForm" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="notesModalLabel">Add Notes</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="notes">Notes</label>
-                                                <textarea class="form-control" id="notes" name="notes" rows="4"
-                                                    required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Search Form -->
+            <form action="{{ route('admin.quotations.negotiations.index') }}" method="GET" class="mb-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan nomor quotation,  status..."
+                           value="{{ request()->input('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
                 </div>
+            </form>
+
+            <!-- Tabel Negotiations -->
+            <div class="table-responsive">
+                <table class="table table-hover shadow-sm rounded">
+                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Quotation Number</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Notes</th>
+                            <th class="text-center">Notes Admin</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #f9f9f9;">
+                        @forelse($negotiations as $negotiation)
+                            <tr>
+                                <td class="text-center">{{ $negotiation->id }}</td>
+                                <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
+                                <td class="text-center">
+                                    <span class="badge 
+                                        @if ($negotiation->status === 'pending') bg-warning
+                                        @elseif ($negotiation->status === 'accepted') bg-success
+                                        @else bg-danger
+                                        @endif">
+                                        {{ ucfirst($negotiation->status) }}
+                                    </span>
+                                </td>
+                            <td class="text-center">{{ $negotiation->notes ?? '-' }}</td>
+                            <td class="text-center">{{ $negotiation->admin_notes ?? '-' }}</td>
+                            <td class="text-center">
+                                @if ($negotiation->status === 'in_progress')
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-success btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'accept')">
+                                            <i class="fas fa-check"></i> Accept
+                                        </button>
+                                        <button class="btn btn-danger btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'reject')">
+                                            <i class="fas fa-times"></i> Reject
+                                        </button>
+                                    </div>
+                                @else
+                                    <span class="text-muted">No Actions Available</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">Belum ada negosiasi.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+                </table>
             </div>
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $negotiations->links('pagination::bootstrap-4') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Accept/Reject -->
+<div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="notesForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notesModalLabel" style="font-family: 'Poppins', sans-serif; color: #00796b;">Add Notes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="notes" style="font-weight: bold;">Notes</label>
+                        <textarea class="form-control rounded shadow-sm" id="notes" name="notes" rows="4" placeholder="Provide additional notes here..." required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill shadow-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary rounded-pill shadow-sm">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
 <script>
     function openModal(id, action) {
-        // Set form action based on Accept or Reject
-        let url = action === 'accept'
+        // Set form action URL for Accept or Reject
+        let url = action === 'accept' 
             ? "{{ url('/admin/quotations/negotiations') }}/" + id + "/accept"
             : "{{ url('/admin/quotations/negotiations') }}/" + id + "/reject";
-
+        
         document.getElementById('notesForm').action = url;
-        // Open modal
+
+        // Show modal
         var notesModal = new bootstrap.Modal(document.getElementById('notesModal'));
         notesModal.show();
     }

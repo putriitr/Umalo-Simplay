@@ -57,6 +57,13 @@
                 </select>
             </div>
 
+            <!-- Pesan Alert Sukses -->
+            <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert"
+                style="display: none;">
+                <span id="success-text"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
             <div class="row">
                 @foreach ($produks as $produk)
                                 <div class="col-md-4 mb-4">
@@ -78,10 +85,10 @@
                                                 style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
                                                 View Product →
                                             </a>
-                                            <!-- Ajukan Quotation Button for Distributor Users Only -->
+                                            <!-- Form untuk Distributor -->
                                             @if (auth()->user() && auth()->user()->type === 'distributor')
                                                 <form action="{{ route('quotations.add_to_cart') }}" method="POST"
-                                                    class="d-inline-flex align-items-center">
+                                                    class="d-flex justify-content-center align-items-center add-to-cart-form">
                                                     @csrf
                                                     <input type="hidden" name="produk_id" value="{{ $produk->id }}">
                                                     <input type="number" name="quantity" min="1" value="1"
@@ -99,6 +106,47 @@
     </div>
 </div>
 @endsection
+
+<script>
+    document.querySelectorAll('.add-to-cart-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form biasa
+            const formData = new FormData(this);
+            const url = this.action;
+            fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Menampilkan pesan sukses di halaman
+                        const successMessage = document.getElementById('success-message');
+                        const successText = document.getElementById('success-text');
+                        successText.textContent = data.message;
+                        successMessage.style.display = 'block';
+                        // Perbarui badge jumlah keranjang jika ada
+                        const cartCount = document.getElementById('cart-count');
+                        if (cartCount) {
+                            cartCount.textContent = parseInt(cartCount.textContent) + parseInt(
+                                formData.get('quantity'));
+                        }
+                        // Sembunyikan pesan setelah 3 detik
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        // Menampilkan pesan error
+                        alert(data.message || 'Terjadi kesalahan.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
 
 <!-- Additional Custom CSS -->
 <style>
@@ -161,3 +209,4 @@
         text-transform: uppercase;
     }
 </style>
+

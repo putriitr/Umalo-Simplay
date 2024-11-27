@@ -1,101 +1,118 @@
 @extends('layouts.Member.master')
 
 @section('content')
-<div class="container mt-5">
-    <h1 class="text-center mb-4">{{ __('messages.choose_product_quotation') }}</h1>
-    <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-        <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.breadcrumb_home') }}</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.breadcrumb_distributor') }}</a></li>
-        <li class="breadcrumb-item active text-primary">{{ __('messages.request-quotation') }}</li>
-    </ol>
-</div>
-
-<div class="container mt-5">
-    <div class="d-flex justify-content-center justify-content-md-between mb-4 flex-wrap gap-3">
-        
-        <a href="{{ route('quotations.cart') }}" class="btn btn-info btn-lg shadow-sm">
-            <i class="bx bx-cart"></i> {{ __('messages.cart_view') }}
-        </a>
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Pilih Produk & Permintaan Quotation</h3>
+            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
+                <li class="breadcrumb-item active text-primary">Pilih Produk & Permintaan Quotation</li>
+            </ol>
+        </div>
     </div>
+    <!-- Header End -->
 
-    <!-- Tabel Daftar Permintaan Quotation -->
-    <div class="card shadow-lg border-light rounded">
-        <div class="card-body">
-            <h3 class="mb-4 text-secondary">{{ __('messages.quotation_list') }}</h3>
-            <table class="table table-bordered table-striped table-hover">
-                <thead class="table-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Pilih Produk & Permintaan Quotation</h2>
+        <p class="text-center text-muted">Di sini Anda dapat memilih produk dan mengajukan permintaan quotation.</p>
+
+        <!-- Button to Redirect to Products Page -->
+        <div class="text-end mb-4">
+            <a href="{{ url('/en/products') }}" class="btn btn-primary btn-lg shadow-sm" style="border-radius: 10px; padding: 10px 20px;">
+                <i class="fas fa-plus-circle me-2"></i>Ajukan Quotation
+            </a>
+            <a href="{{ route('quotations.cart') }}" class="btn btn-secondary btn-lg shadow-sm" style="border-radius: 10px; padding: 10px 20px; margin-left: 10px;">
+                <i class="fas fa-shopping-cart me-2"></i>Lihat Keranjang
+            </a>
+        </div>
+        <!-- Form Pencarian -->
+<form method="GET" action="{{ route('distribution.request-quotation') }}" class="mb-4">
+    <div class="row g-3">
+        <div class="col-md-10">
+            <input type="text" name="search" class="form-control" placeholder="Cari Nomor Pengajuan atau Status"
+                value="{{ request('search') }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-search me-2"></i>Cari
+            </button>
+        </div>
+    </div>
+</form>
+
+
+        <!-- Quotation Requests Table -->
+        <div class="table-responsive">
+            <h3 class="mt-5 text-center" style="font-family: 'Poppins', sans-serif; color: #004d40;">Daftar Permintaan Quotation</h3>
+            <table class="table table-hover shadow rounded">
+                <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
                     <tr>
-                        <th>No</th>
-                        <th>{{ __('messages.nomor_pengajuan') }}</th>
-                        <th>{{ __('messages.nama_produk') }}</th>
-                        <th>{{ __('messages.quantity') }}</th>
-                        <th>{{ __('messages.status') }}</th>
-                        <th>{{ __('messages.action') }}</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Nomor Pengajuan</th>
+                        <th class="text-center">Tanggal</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: #f9f9f9;">
                     @forelse($quotations as $key => $quotation)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $quotation->nomor_pengajuan ?? __('messages.no_submission_number') }}</td>
-                            <td>
-                                @foreach ($quotation->quotationProducts as $product)
-                                    <span class="d-block">{{ $product->equipment_name ?? __('messages.no_product_available') }}</span>
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach ($quotation->quotationProducts as $product)
-                                    <span class="text-center d-block">{{ $product->quantity ?? __('messages.no_quantity') }}</span>
-                                @endforeach
-                            </td>
-                            <td>
+                            <td class="text-center">{{ $key + 1 }}</td>
+                            <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
+                            <td class="text-center">{{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}</td>
+                            <td class="text-center">
                                 <span class="badge 
                                     @if ($quotation->status === 'cancelled') bg-danger
-                                    @elseif ($quotation->status === 'quotation') bg-primary
-                                    @else bg-warning @endif text-white">
-                                    {{ ucfirst(__('messages.' . $quotation->status)) }}
+                                    @elseif ($quotation->status === 'quotation') bg-success
+                                    @else bg-warning @endif">
+                                    {{ ucfirst($quotation->status) }}
                                 </span>
                             </td>
-                            <td class="d-flex justify-content-center gap-2">
-                                <a href="{{ route('quotations.show', $quotation->id) }}" class="btn btn-outline-primary btn-sm">
-                                    <i class="bx bx-show"></i> {{ __('messages.view') }}
+                            <td class="text-center">
+                                <a href="{{ route('quotations.show', $quotation->id) }}" class="btn btn-info btn-sm rounded-pill">
+                                    <i class="fas fa-eye"></i> View
                                 </a>
-                                
+                                 <!-- Tombol Download PDF -->
+                        @if ($quotation->pdf_path)
+                        <a href="{{ asset($quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                            <i class="fas fa-download me-2"></i>Download PDF
+                        </a>
+                    @endif
+
+
                                 @if ($quotation->status === 'pending')
-                                    <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('PUT')
-                                        <button type="submit" class="btn btn-danger btn-sm"
-                                            onclick="return confirm('{{ __('messages.cancel_confirmation') }}');">
-                                            <i class="bx bx-x-circle"></i> {{ __('messages.cancel') }}
+                                        <button type="submit" class="btn btn-danger btn-sm rounded-pill"
+                                            onclick="return confirm('Apakah Anda yakin ingin membatalkan permintaan quotation ini?');">
+                                            <i class="fas fa-times-circle"></i> Batal
                                         </button>
                                     </form>
-                                @elseif($quotation->status === 'quotation')
-                                    @if (!$quotation->purchaseOrder)
-                                        <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}"
-                                            class="btn btn-warning btn-sm">
-                                            <i class="bx bx-dollar-circle"></i> {{ __('messages.negotiate') }}
-                                        </a>
-                                        <a href="{{ route('quotations.create_po', $quotation->id) }}" class="btn btn-success btn-sm">
-                                            <i class="bx bx-file"></i> {{ __('messages.create_po') }}
-                                        </a>
-                                    @endif
+                                @elseif ($quotation->status === 'quotation' && !$quotation->purchaseOrder)
+                                    <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}" class="btn btn-warning btn-sm rounded-pill">
+                                        <i class="fas fa-handshake"></i> Nego
+                                    </a>
+                                    <a href="{{ route('quotations.create_po', $quotation->id) }}" class="btn btn-success btn-sm rounded-pill">
+                                        <i class="fas fa-file-invoice-dollar"></i> Create PO
+                                    </a>
                                 @endif
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted">{{ __('messages.no_quotation_request') }}</td>
+                            <td colspan="6" class="text-center text-muted">Belum ada permintaan quotation.</td>
                         </tr>
                     @endforelse
                 </tbody>
-                
             </table>
-            <a href="{{ url('/en/products') }}" class="btn btn-primary btn-lg shadow-sm">
-                <i class="bx bx-file"></i> {{ __('messages.create_quotation') }}
-            </a>
-        </div>
-    </div>
+            <!-- Pagination -->
+<div class="mt-4 d-flex justify-content-center">
+    {{ $quotations->links('pagination::bootstrap-4') }}
 </div>
 
+        </div>
+    </div>
 @endsection
