@@ -24,6 +24,8 @@
                     <th scope="col" class="text-center" style="vertical-align: middle;">Status</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Notes</th>
                     <th scope="col" class="text-center" style="vertical-align: middle;">Admin Notes</th>
+                    <th scope="col" class="text-center" style="vertical-align: middle;">Actions</th>
+
                 </tr>
             </thead>
             <tbody style="background-color: #f9f9f9;">
@@ -38,6 +40,30 @@
                         </td>
                         <td class="text-center">{{ $negotiation->notes }}</td>
                         <td class="text-center">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
+                        <td class="text-center">
+                            @if ($negotiation->status === 'accepted' && !$negotiation->quotation->purchaseOrder)
+                            <!-- Tombol Create PO hanya muncul jika PO belum dibuat -->
+                            <a href="{{ route('quotations.create_po', $negotiation->quotation->id) }}" class="btn btn-success btn-sm rounded-pill">
+                                <i class="fas fa-file-invoice-dollar"></i> Create PO
+                            </a>
+                            @elseif ($negotiation->status === 'pending' || $negotiation->status === 'in_progress')
+                                <!-- Tombol Nego -->
+                                <a href="{{ route('distributor.quotations.negotiations.create', $negotiation->quotation->id) }}" class="btn btn-warning btn-sm rounded-pill">
+                                    <i class="fas fa-handshake"></i> Nego
+                                </a>
+                            @endif
+                        
+                            <!-- Tombol Download PDF -->
+                            @if ($negotiation->quotation->pdf_path)
+                                <a href="{{ asset($negotiation->quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                                    <i class="fas fa-download me-2"></i> Download PDF
+                                </a>
+                            @else
+                                <span class="text-muted d-block mt-2">No PDF Available</span>
+                            @endif
+                        </td>
+                        
+                        
                     </tr>
                 @endforeach
             </tbody>

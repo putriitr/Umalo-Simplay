@@ -14,10 +14,8 @@ class ProformaInvoiceAdminController extends Controller
 {
     public function show($id)
     {
-        // Temukan Proforma Invoice berdasarkan ID
-        $proformaInvoice = ProformaInvoice::with('purchaseOrder.user')->findOrFail($id);
-
-        // Kirim data ke view
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($id);
+    
         return view('Admin.ProformaInvoice.show', compact('proformaInvoice'));
     }
     public function index(Request $request)
@@ -155,31 +153,63 @@ class ProformaInvoiceAdminController extends Controller
     }
     public function approveRejectPayment(Request $request, $id)
     {
+        // Validasi input
         $request->validate([
             'remarks' => 'nullable|string|max:500',
             'action' => 'required|in:approve,reject',
+            'next_payment_percentage' => 'nullable|numeric|min:1|max:100',
         ]);
     
-        $proformaInvoice = ProformaInvoice::findOrFail($id);
+        // Ambil Proforma Invoice dengan relasi ke Purchase Order dan Quotation
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($id);
     
         if ($request->action === 'approve') {
+            // Tambah jumlah pembayaran yang sudah selesai
             $proformaInvoice->payments_completed++;
             $proformaInvoice->last_payment_status = 'approved';
     
+            // Hitung jumlah pembayaran berikutnya jika next_payment_percentage diisi
+            if ($request->filled('next_payment_percentage')) {
+                // Pastikan Quotation ada
+                if (!$proformaInvoice->purchaseOrder || !$proformaInvoice->purchaseOrder->quotation) {
+                    return redirect()->back()->with('error', 'Quotation data not found for this Proforma Invoice.');
+                }
+    
+                $percentage = $request->input('next_payment_percentage');
+                $proformaInvoice->next_payment_amount= $percentage;
+    
+                // Hitung jumlah pembayaran berikutnya berdasarkan subtotal
+                $subtotal = $proformaInvoice->purchaseOrder->quotation->subtotal_price;
+                $nextPaymentAmount = ($subtotal * $percentage) / 100;
+                $proformaInvoice->next_payment_amount = $nextPaymentAmount;
+            }
+    
+            // Update status Proforma Invoice
             if ($proformaInvoice->payments_completed >= $proformaInvoice->installments) {
-                $proformaInvoice->status = 'paid'; // Tandai sebagai paid jika semua pembayaran selesai
+                $proformaInvoice->status = 'paid';
             } else {
-                $proformaInvoice->status = 'partially_paid'; // Tandai sebagai partially_paid jika masih ada pembayaran
+                $proformaInvoice->status = 'partially_paid';
             }
         } elseif ($request->action === 'reject') {
+            // Jika pembayaran ditolak, ubah status menjadi 'rejected'
             $proformaInvoice->last_payment_status = 'rejected';
         }
     
+        // Simpan remarks jika ada
         $proformaInvoice->remarks = $request->input('remarks');
+    
+        // Simpan perubahan Proforma Invoice ke database
         $proformaInvoice->save();
     
+        // Redirect jika status sudah 'paid'
+    if ($proformaInvoice->status === 'paid') {
+        return redirect()->back()
+            ->with('success', 'Final payment approved successfully.');
+    }
+        // Redirect kembali ke halaman detail Proforma Invoice
         return redirect()->back()->with('success', 'Pembayaran berhasil ' . ($request->action === 'approve' ? 'disetujui' : 'ditolak') . '.');
     }
     
+    
+    
 }
-

@@ -42,6 +42,17 @@
                         <td>{{ $proformaInvoice->installments }} kali pembayaran</td>
                     </tr>
                     <tr>
+                        <th>Next Payment Amount</th>
+                        <td>
+                            @if (!empty($proformaInvoice->next_payment_amount) && !empty($proformaInvoice->purchaseOrder->quotation->subtotal_price))
+                                {{ number_format($proformaInvoice->next_payment_amount, 2) }} IDR
+                                ({{ number_format(($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)
+                            @else
+                                <span class="text-muted">Belum ada pembayaran berikutnya</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Payments Completed</th>
                         <td>{{ $proformaInvoice->payments_completed }} dari {{ $proformaInvoice->installments }}</td>
                     </tr>
@@ -85,7 +96,7 @@
                         </a>
 
                         <!-- Upload Payment Proof -->
-                        @if ($proformaInvoice->status !== 'unpaid' && $proformaInvoice->payments_completed < $proformaInvoice->installments)
+                        @if ($proformaInvoice->status !== 'paid' && $proformaInvoice->payments_completed < $proformaInvoice->installments)
                             @if ($proformaInvoice->payments_completed === 0 || $proformaInvoice->last_payment_status === 'approved')
                                 <form action="{{ route('distributor.proforma-invoices.upload', $proformaInvoice->id) }}"
                                     method="POST" enctype="multipart/form-data" class="mt-2">

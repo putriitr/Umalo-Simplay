@@ -52,6 +52,7 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Nomor Pengajuan</th>
                         <th class="text-center">Tanggal</th>
+                        <th class="text-center">Topik</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -62,6 +63,7 @@
                             <td class="text-center">{{ $key + 1 }}</td>
                             <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
                             <td class="text-center">{{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}</td>
+                            <td class="text-center">{{ $quotation->topik ?? 'Topik tidak tersedia' }}</td>
                             <td class="text-center">
                                 <span class="badge 
                                     @if ($quotation->status === 'cancelled') bg-danger
@@ -91,10 +93,13 @@
                                             <i class="fas fa-times-circle"></i> Batal
                                         </button>
                                     </form>
-                                @elseif ($quotation->status === 'quotation' && !$quotation->purchaseOrder)
-                                    <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}" class="btn btn-warning btn-sm rounded-pill">
-                                        <i class="fas fa-handshake"></i> Nego
-                                    </a>
+                                    @elseif ($quotation->status === 'quotation' && !$quotation->purchaseOrder)
+                                    <!-- Tampilkan tombol Nego hanya jika status negosiasi bukan 'accepted' -->
+                                    @if (!$quotation->negotiation || $quotation->negotiation->status !== 'accepted')
+                                        <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}" class="btn btn-warning btn-sm rounded-pill">
+                                            <i class="fas fa-handshake"></i> Nego
+                                        </a>
+                                    @endif
                                     <a href="{{ route('quotations.create_po', $quotation->id) }}" class="btn btn-success btn-sm rounded-pill">
                                         <i class="fas fa-file-invoice-dollar"></i> Create PO
                                     </a>

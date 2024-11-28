@@ -45,6 +45,17 @@
                     <td>{{ $proformaInvoice->installments ?? '-' }} kali pembayaran</td>
                 </tr>
                 <tr>
+                    <th>Next Payment Amount</th>
+                    <td>
+                        @if (!empty($proformaInvoice->next_payment_amount) && !empty($proformaInvoice->purchaseOrder->quotation->subtotal_price))
+                            {{ number_format($proformaInvoice->next_payment_amount, 2) }} IDR
+                            ({{ number_format(($proformaInvoice->next_payment_amount / $proformaInvoice->purchaseOrder->quotation->subtotal_price) * 100, 2) }}%)
+                        @else
+                            <span class="text-muted">Belum ada pembayaran berikutnya</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
                     <th>Payments Completed</th>
                     <td>{{ $proformaInvoice->payments_completed ?? 0 }}</td>
                 </tr>
@@ -94,6 +105,21 @@
                                         <textarea name="remarks" id="remarks_{{ $index }}" rows="2" class="form-control" required></textarea>
                                     </div>
             
+                                      <!-- Input Persentase Pembayaran -->
+                                      @if ($index + 1 < $proformaInvoice->installments)
+                                      <!-- Input Persentase Pembayaran -->
+                                      <div class="mb-3">
+                                          <label for="next_payment_percentage_{{ $index }}" class="form-label">Next Payment Percentage</label>
+                                          <input 
+                                              type="number" 
+                                              name="next_payment_percentage" 
+                                              id="next_payment_percentage_{{ $index }}" 
+                                              class="form-control" 
+                                              placeholder="Enter percentage (e.g., 20)" 
+                                              required>
+                                          <small class="text-muted">Masukkan persentase pembayaran berikutnya dalam %</small>
+                                      </div>
+                                  @endif
                                     <div class="d-flex gap-2">
                                         <button type="submit" name="action" value="approve" class="btn btn-success btn-sm rounded-pill">
                                             <i class="fas fa-check-circle"></i> Approve Payment {{ $index + 1 }}
@@ -109,15 +135,22 @@
                 @else
                     <span class="text-muted">Belum ada bukti pembayaran yang diunggah.</span>
                 @endif
+                @if ($proformaInvoice->dp > 0 && !$proformaInvoice->dp_invoice_created)
+                <!-- Tombol untuk Down Payment -->
+                <a href="{{ route('invoices.create', ['proformaInvoiceId' => $proformaInvoice->id, 'type' => 'dp']) }}" 
+                   class="btn btn-primary btn-sm rounded-pill shadow-sm mt-2">
+                    <i class="fas fa-plus"></i> Create Invoice for Down Payment (DP)
+                </a>
+            @endif
             
-                <!-- Create Invoice -->
-                @if ($proformaInvoice->status === 'paid' && $proformaInvoice->payments_completed >= $proformaInvoice->installments)
-                    <a href="{{ route('invoices.create', $proformaInvoice->id) }}" class="btn btn-primary btn-sm rounded-pill shadow-sm mt-2">
-                        <i class="fas fa-plus"></i> Create Invoice
-                    </a>
-                @else
-                    <span class="text-muted">Invoice hanya dapat dibuat setelah semua pembayaran selesai.</span>
-                @endif
+            @if ($proformaInvoice->next_payment_amount > 0)
+                <!-- Tombol untuk Next Payment -->
+                <a href="{{ route('invoices.create', ['proformaInvoiceId' => $proformaInvoice->id, 'type' => 'next_payment']) }}" 
+                   class="btn btn-primary btn-sm rounded-pill shadow-sm mt-2">
+                    <i class="fas fa-plus"></i> Create Invoice for Next Payment
+                </a>
+            @endif
+            
             </div>
             
 

@@ -27,8 +27,8 @@ class DistributionController extends Controller
         $keyword = $request->input('search');
     
         // Query quotations dengan filter user_id, pencarian, dan pagination
-        $quotations = Quotation::with('quotationProducts')
-            ->where('user_id', $userId)
+        $quotations = Quotation::with(['quotationProducts', 'negotiation']) // Tambahkan relasi 'negotiation'
+        ->where('user_id', $userId)
             ->when($keyword, function ($query) use ($keyword) {
                 $query->where('nomor_pengajuan', 'like', "%{$keyword}%")
                     ->orWhere('status', 'like', "%{$keyword}%");
@@ -37,7 +37,7 @@ class DistributionController extends Controller
     
         // Perbarui status jika diperlukan
         foreach ($quotations as $quotation) {
-            if ($quotation->pdf_path && $quotation->status === 'pending') {
+            if ($quotation->pdf_path && $quotation->status === 'pe  nding') {
                 $quotation->update(['status' => 'quotation']);
             }
         }

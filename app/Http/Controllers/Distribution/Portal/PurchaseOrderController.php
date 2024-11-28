@@ -31,6 +31,8 @@ class PurchaseOrderController extends Controller
 {
     // Validasi input
     $request->validate([
+        'po_number' => 'required|string|max:255', // Validasi agar po_number wajib diisi
+
         'file_path' => 'required|file|mimes:pdf,doc,docx|max:10048', // Validasi agar file wajib diisi
     ]);
 
@@ -55,7 +57,7 @@ class PurchaseOrderController extends Controller
         'user_id' => auth()->id(),
         'po_date' => now(), // Tanggal otomatis diisi dengan waktu saat ini
         'file_path' => $filePath,
-        'po_number' => null, // Kolom po_number dibiarkan kosong
+        'po_number' => $request->input('po_number'), // Simpan po_number yang diisi oleh distributor
 
     ]);
 

@@ -7,13 +7,14 @@ use App\Models\BrandPartner;
 use App\Models\Principal;
 use Illuminate\Http\Request;
 
+
 class BrandPartnerController extends Controller
 {
     public function index()
     {
         $brandPartners = BrandPartner::all();
         $principals = Principal::all();
-        return view('Admin.Brand.index', compact('partners'));
+        return view('Admin.Brand.index', compact('brandPartners', 'principals'));
     }
 
     public function create()

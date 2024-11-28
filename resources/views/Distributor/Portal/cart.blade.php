@@ -83,12 +83,17 @@
 
     <!-- Submit Quotation Button -->
     @if(count($cartItems) > 0)
-        <form action="{{ route('quotations.submit') }}" method="POST" class="mt-4 text-end">
-            @csrf
-            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
-                <i class="fas fa-paper-plane me-2"></i>Ajukan Permintaan Quotation
-            </button>
-        </form>
+    <form action="{{ route('quotations.submit') }}" method="POST" class="mt-4">
+        @csrf
+        <div class="mb-3">
+            <label for="topik" class="form-label">Topik</label>
+            <input type="text" name="topik" id="topik" class="form-control" placeholder="Masukkan topik permintaan">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+            <i class="fas fa-paper-plane me-2"></i>Ajukan Permintaan Quotation
+        </button>
+    </form>
+    
     @endif
 </div>
 

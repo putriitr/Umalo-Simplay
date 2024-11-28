@@ -53,13 +53,82 @@ use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
 |--------------------------------------------------------------------------
 */
 
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/meta')->name('Admin.Meta.')->group(function () {
+    Route::get('/', [MetaController::class, 'index'])->name('index');
+    Route::get('/create', [MetaController::class, 'create'])->name('create');
+    Route::post('/', [MetaController::class, 'store'])->name('store');
+    Route::get('/{slug}', [MetaController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [MetaController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [MetaController::class, 'update'])->name('update');
+    Route::delete('/{id}', [MetaController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/slider')->name('Admin.Slider.')->group(function () {
+    Route::get('/', [SliderController::class, 'index'])->name('index');
+    Route::get('/create', [SliderController::class, 'create'])->name('create');
+    Route::post('/', [SliderController::class, 'store'])->name('store');
+    Route::get('/{slug}', [SliderController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [SliderController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [SliderController::class, 'update'])->name('update');
+    Route::delete('/{id}', [SliderController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/activity')->name('Admin.Activity.')->group(function () {
+    Route::get('/', [ActivityController::class, 'index'])->name('index');
+    Route::get('/create', [ActivityController::class, 'create'])->name('create');
+    Route::post('/', [ActivityController::class, 'store'])->name('store');
+    Route::get('/{slug}', [ActivityController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [ActivityController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [ActivityController::class, 'update'])->name('update');
+    Route::delete('/{id}', [ActivityController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/brand')->name('Admin.Brand.')->group(function () {
+    Route::get('/', [BrandPartnerController::class, 'index'])->name('index');
+    Route::get('/create', [BrandPartnerController::class, 'create'])->name('create');
+    Route::post('/', [BrandPartnerController::class, 'store'])->name('store');
+    Route::get('/{slug}', [BrandPartnerController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [BrandPartnerController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [BrandPartnerController::class, 'update'])->name('update');
+    Route::delete('/{id}', [BrandPartnerController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/location')->name('Admin.Location.')->group(function () {
+    Route::get('/', [LocationController::class, 'index'])->name('index');
+    Route::get('/create', [LocationController::class, 'create'])->name('create');
+    Route::post('/', [LocationController::class, 'store'])->name('store');
+    Route::get('/{slug}', [LocationController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [LocationController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [LocationController::class, 'update'])->name('update');
+    Route::delete('/{id}', [LocationController::class, 'destroy'])->name('destroy');
+});
+
+Route::middleware(['auth', 'user-access:admin'])->prefix('admin/faq')->name('Admin.Faq.')->group(function () {
+    Route::get('/', [FAQController::class, 'index'])->name('index');
+    Route::get('/create', [FAQController::class, 'create'])->name('create');
+    Route::post('/', [FAQController::class, 'store'])->name('store');
+    Route::get('/{faq_id}', [FAQController::class, 'show'])->name('show');
+    Route::get('/{faq_id}/edit', [FAQController::class, 'edit'])->name('edit');
+    Route::put('/{faq_id}', [FAQController::class, 'update'])->name('update');
+    Route::delete('/{faq_id}', [FAQController::class, 'destroy'])->name('destroy');
+});
+
+
+Route::prefix('id/admin')->middleware(['auth', 'user-access:admin'])->group(function () {
+    Route::get('/admin/produk', [ProdukController::class, 'index'])->name('Admin.Produk.index');
+    Route::get('/admin/produk/create', [ProdukController::class, 'create'])->name('Admin.Produk.create');
+    Route::post('/admin/produk', [ProdukController::class, 'store'])->name('Admin.Produk.store');
+    Route::get('/admin/produk/{produk}/edit', [ProdukController::class, 'edit'])->name('Admin.Produk.edit');
+    Route::put('/admin/produk/{produk}', [ProdukController::class, 'update'])->name('Admin.Produk.update');
+    Route::delete('/admin/produk/{produk}', [ProdukController::class, 'destroy'])->name('Admin.Produk.destroy');
+});
+
 
 // Guest Routes (No Authentication Required)
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     // Rute lainnya
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
     Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
     Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
@@ -151,15 +220,22 @@ Route::middleware(['auth', 'user-access:distributor'])->group(function () {
         // Rute untuk negosiasi quotation
         Route::get('/quotations/{id}/nego', [QuotationController::class, 'nego'])->name('quotations.nego');
 
+
         // Route untuk menampilkan form negosiasi
         Route::get('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'create'])->name('distributor.quotations.negotiations.create');
+
+        // Route untuk menampilkan form negosiasi
+        Route::get('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'create'])->name('distributor.quotations.negotiations.create');
+
         // Route untuk menyimpan negosiasi
         Route::post('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'store'])->name('distributor.quotations.negotiations.store');
         Route::get('/distributor/quotations/negotiations', [DistributorQuotationNegotiationController::class, 'index'])->name('distributor.quotations.negotiations.index');
         Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
         Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
-        Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
         Route::get('/proforma-invoices/{id}', [ProformaInvoiceDistributorController::class, 'show'])->name('distributor.proforma-invoices.show');
+
+        Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
+
 
         // Quotation Routes
         Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
@@ -218,6 +294,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/admin/quotations/negotiations', [QuotationNegotiationController::class, 'index'])->name('admin.quotations.negotiations.index');
         // Menerima negosiasi
         Route::put('/admin/quotations/negotiations/{id}/accept', [QuotationNegotiationController::class, 'accept'])->name('admin.quotations.negotiations.accept');
+        Route::put('/admin/quotations/negotiations/{id}/process', [QuotationNegotiationController::class, 'process'])->name('admin.quotations.negotiations.process');
         // Menolak negosiasi
         Route::put('/admin/quotations/negotiations/{id}/reject', [QuotationNegotiationController::class, 'reject'])->name('admin.quotations.negotiations.reject');
         Route::get('/purchase-orders', [PurchaseOrderAdminController::class, 'index'])->name('admin.purchase-orders.index');
@@ -227,12 +304,13 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::put('/purchase-orders/{id}/po-number', [PurchaseOrderAdminController::class, 'updatePoNumber'])->name('admin.purchase-orders.update-po-number');
 
 
-        Route::get('/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
-        Route::post('/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');
+        Route::get('admin/purchase-orders/{id}/create-proforma-invoice', [ProformaInvoiceAdminController::class, 'create'])->name('admin.proforma-invoices.create');
+        Route::post('admin/purchase-orders/{id}/store-proforma-invoice', [ProformaInvoiceAdminController::class, 'store'])->name('admin.proforma-invoices.store');
         Route::get('/admin/proforma-invoices', [ProformaInvoiceAdminController::class, 'index'])->name('admin.proforma-invoices.index');
         Route::get('/admin/proforma-invoices/{id}', [ProformaInvoiceAdminController::class, 'show'])->name('admin.proforma-invoices.show');
         Route::put('/admin/proforma-invoices/{id}/approve-reject', [ProformaInvoiceAdminController::class, 'approveRejectPayment'])
-        ->name('admin.proforma-invoices.approve-reject');
+            ->name('admin.proforma-invoices.approve-reject');
+
 
         // Route untuk index dan pembuatan invoice
         Route::get('/invoices', [InvoiceAdminController::class, 'index'])->name('invoices.index');

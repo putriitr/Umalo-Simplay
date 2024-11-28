@@ -49,23 +49,8 @@
                                         <a href="{{ route('admin.purchase-orders.show', $po->id) }}" class="btn btn-info btn-sm rounded-pill shadow-sm">
                                             <i class="fas fa-eye"></i> View
                                         </a>
-
-                                        @if (!$po->po_number)
-                                            <!-- Form Input PO Number -->
-                                            <form action="{{ route('admin.purchase-orders.update-po-number', $po->id) }}" method="POST" style="display: inline;">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="input-group" style="max-width: 200px;">
-                                                    <input type="text" name="po_number" class="form-control form-control-sm" placeholder="Input PO Number" required>
-                                                    <button type="submit" class="btn btn-success btn-sm rounded-pill shadow-sm">
-                                                        <i class="fas fa-save"></i> Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        @elseif($po->po_number)
-                                            <!-- Display PO Number -->
-                                            <span class="text-muted">PO Number: {{ $po->po_number }}</span>
-
+                                
+                                
                                             <!-- Create Proforma Invoice Button -->
                                             @if (!$po->proformaInvoice)
                                                 <a href="{{ route('admin.proforma-invoices.create', $po->id) }}" class="btn btn-primary btn-sm rounded-pill shadow-sm">
@@ -74,9 +59,10 @@
                                             @else
                                                 <span class="text-muted">Proforma Invoice Created</span>
                                             @endif
-                                        @endif
+                                        
                                     </div>
                                 </td>
+                                
                             </tr>
                         @empty
                             <tr>

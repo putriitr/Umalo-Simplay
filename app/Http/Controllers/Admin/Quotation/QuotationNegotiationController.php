@@ -28,28 +28,55 @@ class QuotationNegotiationController extends Controller
        return view('Admin.Quotation.Negotiation.index', compact('negotiations', 'keyword'));
    }
    
-
+   public function process($id, Request $request)
+   {
+       $request->validate([
+           'notes' => 'required|string|max:255',
+       ]);
+   
+       $negotiation = QuotationNegotiation::findOrFail($id);
+       $negotiation->update([
+           'status' => 'in_progress', // Status tetap in_progress
+           'admin_notes' => $request->input('notes'), // Simpan catatan admin
+       ]);
+   
+       return redirect()->route('admin.quotations.negotiations.index')->with('success', 'Negotiation updated and is still in progress.');
+   }
+   
+   
    public function accept($id, Request $request)
    {
+       $request->validate([
+           'notes' => 'nullable|string|max:255',
+       ]);
+   
        $negotiation = QuotationNegotiation::findOrFail($id);
        $negotiation->update([
            'status' => 'accepted',
-           'admin_notes' => $request->input('notes'), // Menyimpan admin_notes ke database
+           'admin_notes' => $request->input('notes'), // Simpan catatan admin jika ada
        ]);
    
-       return redirect()->route('admin.quotations.negotiations.index')->with('success', 'Negotiation accepted with notes.');
+       // Redirect ke halaman edit quotation
+       return redirect()->route('admin.quotations.edit', $negotiation->quotation_id)
+           ->with('success', 'Negotiation accepted. Proceed to edit the quotation.');
    }
+   
    
    public function reject($id, Request $request)
    {
+       $request->validate([
+           'notes' => 'required|string|max:255',
+       ]);
+   
        $negotiation = QuotationNegotiation::findOrFail($id);
        $negotiation->update([
            'status' => 'rejected',
-           'admin_notes' => $request->input('notes'), // Menyimpan admin_notes ke database
+           'admin_notes' => $request->input('notes'), // Simpan catatan admin
        ]);
    
        return redirect()->route('admin.quotations.negotiations.index')->with('success', 'Negotiation rejected with notes.');
    }
+   
    
 
 }

@@ -22,7 +22,11 @@
             
             <form action="{{ route('quotations.store_po', $quotation->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
+                 <!-- Input PO Number -->
+    <div class="form-group mb-4">
+        <label for="po_number" class="form-label" style="font-weight: bold; color: #004d40;">PO Number</label>
+        <input type="text" class="form-control rounded-pill shadow-sm" id="po_number" name="po_number" placeholder="Enter PO Number" required>
+    </div>
 
                 <!-- Upload PO File -->
                 <div class="form-group mb-4">

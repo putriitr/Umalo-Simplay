@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,103 +6,136 @@
     <title>Invoice #{{ $invoice->invoice_number }}</title>
     <style>
         @page {
-            size: A4 portrait; /* Ensures A4 in portrait orientation */
-            margin: 20px;
+            margin: 120px 50px 80px;
+            /* Top, Right, Bottom, Left */
         }
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 12px; /* Increased font size */
+            color: #333;
             margin: 0;
             padding: 0;
         }
 
+        /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px; /* Increased margin for better spacing */
-            padding: 0 20px;
+            position: fixed;
+            top: -120px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            text-align: center;
         }
 
         .header img {
-            width: 200px; /* Increased width */
+            width: 100%;
             height: auto;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: -100px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            text-align: center;
+        }
+
+        .footer img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Content */
+        .content {
+            margin-top: 20px;
         }
 
         .invoice-info {
             text-align: right;
+            margin-bottom: 20px;
         }
 
         .invoice-info h1 {
-            font-size: 18px; /* Increased font size */
-            color: #b89222;
+            font-size: 24px;
             margin: 0;
+            color: #b89222;
         }
 
-        .content {
-            margin: 0 20px;
+        .invoice-info p {
+            margin: 2px 0;
+            font-size: 12px;
         }
 
-        .client-info p {
-            margin: 4px 0; /* Increased margin for better spacing */
+        .client-info {
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px; /* Increased font size */
+            margin-top: 15px;
+            font-size: 12px;
         }
 
         .table th,
         .table td {
-            border: 1px solid #ddd;
-            padding: 8px; /* Increased padding for better readability */
+            border: 1px solid black;
+            padding: 8px;
             text-align: center;
         }
 
         .table th {
             background-color: #f2f2f2;
+            font-weight: bold;
         }
 
         .total-row {
             font-weight: bold;
+            text-align: right;
         }
 
         .payment-info {
-            margin-top: 20px; /* Increased margin */
-            font-size: 12px; /* Increased font size */
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.5;
         }
 
         .signature {
-            margin-top: 20px; /* Increased margin */
-            font-size: 12px; /* Increased font size */
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: left;
         }
 
-        .footer {
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-size: 10px; /* Slightly larger footer font */
-            color: #666;
+        .signature img {
+            height: 50px;
         }
     </style>
 </head>
 
 <body>
+    <!-- Header -->
     <div class="header">
-        <div class="logo">
-            <img src="{{ public_path('pdfquo/header.png') }}" alt="Company Logo">
-        </div>
-        <div class="invoice-info">
-            <h1>INVOICE</h1>
-            <p><strong>Number:</strong> {{ $piNumberFormatted }}</p>
-            <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</p>
-        </div>
+        <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        <img src="{{ public_path('pdfquo/footer.png') }}" alt="Footer Image">
+    </div>
+
+    <!-- Content -->
     <div class="content">
+        <!-- Invoice Information -->
+        <div class="invoice-info">
+            <h1>INVOICE</h1>
+            <p>Number: {{ $piNumberFormatted }}</p>
+            <p>Date: {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</p>
+        </div>
+
+        <!-- Client Information -->
         <div class="client-info">
             <p><strong>Billed To:</strong></p>
             <p><strong>{{ $vendor_name }}</strong></p>
@@ -110,9 +143,12 @@
             <p>Phone: {{ $vendor_phone }}</p>
         </div>
 
-        <p>Dear {{ $vendor_name }},</p>
-        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following invoice:</p>
+        <!-- Invoice Description -->
+        <p>Dear :{{ $vendor_name }}</p>
+        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following invoice:
+        </p>
 
+        <!-- Product Table -->
         <table class="table">
             <thead>
                 <tr>
@@ -121,35 +157,50 @@
                     <th>QTY</th>
                     <th>Satuan</th>
                     <th>Unit Price</th>
-                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($invoice->proformaInvoice->purchaseOrder->quotation->quotationProducts as $index => $product)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $product->equipment_name }}</td>
+                        <td>
+                            {{ $product->equipment_name }}
+                            @if ($invoice->type === 'dp')
+                                <br>
+                                <small><em>(Uang muka: 
+                                    {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
+                            @elseif ($invoice->type === 'next_payment')
+                                <br>
+                                <small><em>(Pembayaran termin 
+                                    {{ $invoice->proformaInvoice->payments_completed }} dari {{ $invoice->proformaInvoice->installments }} termin 
+                                    - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em></small>
+                            @endif
+                        </td>
+                        
+                        
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->merk_type }}</td>
                         <td>{{ number_format($product->unit_price, 2) }}</td>
-                        <td>{{ number_format($product->total_price, 2) }}</td>
                     </tr>
                 @endforeach
+
+                <!-- Row untuk Subtotal, PPN, dan Grand Total -->
                 <tr class="total-row">
-                    <td colspan="5">Sub Total</td>
+                    <td colspan="4">Sub Total</td>
                     <td>{{ number_format($invoice->subtotal, 2) }}</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="5">PPN</td>
+                    <td colspan="4">PPN</td>
                     <td>{{ number_format($invoice->ppn, 2) }}</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="5"><strong>Grand Total Include PPN</strong></td>
+                    <td colspan="4"><strong>Grand Total Include PPN</strong></td>
                     <td><strong>{{ number_format($invoice->grand_total_include_ppn, 2) }}</strong></td>
                 </tr>
             </tbody>
         </table>
 
+        <!-- Payment Information -->
         <div class="payment-info">
             <p><strong>Please make payments to:</strong></p>
             <p>PT. Simplay Abyakta Mediatek</p>

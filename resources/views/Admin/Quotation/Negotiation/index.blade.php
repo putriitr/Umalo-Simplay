@@ -53,19 +53,28 @@
                             <td class="text-center">{{ $negotiation->notes ?? '-' }}</td>
                             <td class="text-center">{{ $negotiation->admin_notes ?? '-' }}</td>
                             <td class="text-center">
-                                @if ($negotiation->status === 'in_progress')
-                                    <div class="d-flex justify-content-center gap-2">
-                                        <button class="btn btn-success btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'accept')">
-                                            <i class="fas fa-check"></i> Accept
+                                <div class="d-flex justify-content-center gap-2">
+                                    @if ($negotiation->status === 'pending' || $negotiation->status === 'in_progress')
+                                        <!-- Button Proses -->
+                                        <button class="btn btn-primary btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'process')">
+                                            <i class="fas fa-spinner"></i> Proses
                                         </button>
+                                        <!-- Button Accept -->
+                                        @if ($negotiation->status === 'in_progress')
+                                            <button class="btn btn-success btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'accept')">
+                                                <i class="fas fa-check"></i> Accept
+                                            </button>
+                                        @endif
+                                        <!-- Button Reject -->
                                         <button class="btn btn-danger btn-sm rounded-pill shadow-sm" onclick="openModal({{ $negotiation->id }}, 'reject')">
                                             <i class="fas fa-times"></i> Reject
                                         </button>
-                                    </div>
-                                @else
-                                    <span class="text-muted">No Actions Available</span>
-                                @endif
+                                    @else
+                                        <span class="text-muted">No Actions Available</span>
+                                    @endif
+                                </div>
                             </td>
+                            
                         </tr>
                     @empty
                         <tr>
@@ -112,16 +121,30 @@
 
 <script>
     function openModal(id, action) {
-        // Set form action URL for Accept or Reject
-        let url = action === 'accept' 
-            ? "{{ url('/admin/quotations/negotiations') }}/" + id + "/accept"
-            : "{{ url('/admin/quotations/negotiations') }}/" + id + "/reject";
-        
+        // Set form action URL based on the selected action
+        let url = '';
+        let modalTitle = '';
+
+        if (action === 'accept') {
+            url = "{{ url('/admin/quotations/negotiations') }}/" + id + "/accept";
+            modalTitle = 'Accept Negotiation';
+        } else if (action === 'reject') {
+            url = "{{ url('/admin/quotations/negotiations') }}/" + id + "/reject";
+            modalTitle = 'Reject Negotiation';
+        } else if (action === 'process') {
+            url = "{{ url('/admin/quotations/negotiations') }}/" + id + "/process";
+            modalTitle = 'Process Negotiation';
+        }
+
+        // Set form action and modal title
         document.getElementById('notesForm').action = url;
+        document.getElementById('notesModalLabel').textContent = modalTitle;
 
         // Show modal
         var notesModal = new bootstrap.Modal(document.getElementById('notesModal'));
         notesModal.show();
     }
 </script>
+
+
 @endsection
