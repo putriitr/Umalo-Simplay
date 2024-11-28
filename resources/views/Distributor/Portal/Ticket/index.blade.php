@@ -16,7 +16,7 @@
 <!-- Content Start -->
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a href="{{ route('distribution.tickets.create') }}" class="btn btn-primary custom-rounded">
+        <a href="{{ route('distribution.tickets.create') }}" class="btn btn-primary ">
             <i class="fas fa-plus-circle me-2"></i>{{ __('messages.create_new_ticket') }}
         </a>
     </div>

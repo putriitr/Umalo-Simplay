@@ -1,6 +1,8 @@
 @extends('layouts.Admin.master')
 
 @section('content')
+
+
     <div class="container py-5">
         <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Daftar Permintaan Quotation
         </h2>

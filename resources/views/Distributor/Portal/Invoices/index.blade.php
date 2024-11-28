@@ -13,9 +13,8 @@
 <div class="container mt-5">
 
     <!-- Tabel Invoices -->
-    <div class="card shadow-lg border-light rounded">
+    <div class="p-4 shadow-sm rounded bg-white">
         <div class="card-body">
-            <h3 class="mb-4 text-secondary">{{ __('messages.invoice_list') }}</h3>
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
             @endif
@@ -30,56 +29,63 @@
                         <i class="fas fa-file-invoice"></i> {{ __('messages.view_proforma_invoices') }}
                     </a>
                 </div>
-                <table class="table table-bordered table-striped table-hover">
-                    <thead class="table-light">
-                        <tr>
-                            <th class="text-center">{{ __('messages.id') }}</th>
-                            <th class="text-center">{{ __('messages.invoice_number') }}</th>
-                            <th class="text-center">{{ __('messages.invoice_date') }}</th>
-                            <th class="text-center">{{ __('messages.due_date') }}</th>
-                            <th class="text-center">{{ __('messages.subtotal') }}</th>
-                            <th class="text-center">{{ __('messages.ppn') }}</th>
-                            <th class="text-center">{{ __('messages.grand_total') }}</th>
-                            <th class="text-center">{{ __('messages.status') }}</th>
-                            <th class="text-center">{{ __('messages.actions') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($invoices as $invoice)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-light">
                             <tr>
-                                <td class="text-center">{{ $invoice->id }}</td>
-                                <td class="text-center">{{ $invoice->invoice_number }}</td>
-                                <td class="text-center">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}</td>
-                                <td class="text-center">{{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}</td>
-                                <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
-                                <td class="text-center">{{ number_format($invoice->ppn, 2) }}</td>
-                                <td class="text-center">{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
-                                <td class="text-center">
-                                    <span class="badge 
-                                        @if($invoice->status == 'paid') badge-success 
-                                        @elseif($invoice->status == 'unpaid') badge-danger 
-                                        @elseif($invoice->status == 'partial') badge-warning
-                                        @else badge-secondary @endif">
-                                        {{ ucfirst($invoice->status) }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="d-flex justify-content-start gap-2">
-                                        <!-- Tombol untuk melihat PDF Invoice -->
-                                        <a href="{{ asset($invoice->file_path) }}" target="_blank" class="btn btn-info btn-sm w-100 mb-2">
-                                            <i class="fas fa-eye"></i> {{ __('messages.view_pdf') }}
-                                        </a>
-                                        <!-- Tombol untuk mengunduh PDF Invoice -->
-                                        <a href="{{ asset($invoice->file_path) }}" download class="btn btn-success btn-sm w-100 mb-2">
-                                            <i class="fas fa-download"></i> {{ __('messages.download_pdf') }}
-                                        </a>
-                                    </div>
-                                </td>
+                                <th class="text-center">{{ __('messages.id') }}</th>
+                                <th class="text-center">{{ __('messages.invoice_number') }}</th>
+                                <th class="text-center">{{ __('messages.invoice_date') }}</th>
+                                <th class="text-center">{{ __('messages.due_date') }}</th>
+                                <th class="text-center">{{ __('messages.subtotal') }}</th>
+                                <th class="text-center">{{ __('messages.ppn') }}</th>
+                                <th class="text-center">{{ __('messages.grand_total') }}</th>
+                                <th class="text-center">{{ __('messages.status') }}</th>
+                                <th class="text-center">{{ __('messages.actions') }}</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach($invoices as $invoice)
+                                <tr>
+                                    <td class="text-center">{{ $invoice->id }}</td>
+                                    <td class="text-center">{{ $invoice->invoice_number }}</td>
+                                    <td class="text-center">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}
+                                    </td>
+                                    <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
+                                    <td class="text-center">{{ number_format($invoice->ppn, 2) }}</td>
+                                    <td class="text-center">{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
+                                    <td class="text-center">
+                                        <span class="badge 
+                                                        @if($invoice->status == 'paid') badge-success 
+                                                        @elseif($invoice->status == 'unpaid') badge-danger 
+                                                        @elseif($invoice->status == 'partial') badge-warning
+                                                        @else badge-secondary @endif">
+                                            {{ ucfirst($invoice->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-start gap-2">
+                                            <!-- Tombol untuk melihat PDF Invoice -->
+                                            <a href="{{ asset($invoice->file_path) }}" target="_blank"
+                                                class="btn btn-info btn-sm w-100 mb-2">
+                                                <i class="fas fa-eye"></i> {{ __('messages.view_pdf') }}
+                                            </a>
+                                            <!-- Tombol untuk mengunduh PDF Invoice -->
+                                            <a href="{{ asset($invoice->file_path) }}" download
+                                                class="btn btn-success btn-sm w-100 mb-2">
+                                                <i class="fas fa-download"></i> {{ __('messages.download_pdf') }}
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
             @endif
+            </div>
         </div>
     </div>
 </div>
@@ -158,7 +164,8 @@
     }
 
     /* Styling button view/download */
-    .btn-info, .btn-success {
+    .btn-info,
+    .btn-success {
         font-size: 14px;
         padding: 10px 20px;
         border-radius: 5px;

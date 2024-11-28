@@ -19,34 +19,32 @@
 
         /* Header */
         .header {
-            position: fixed;
-            top: -120px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            /* Add padding to create space on both sides */
         }
 
         .header img {
-            width: 100%;
+            width: 150px;
             height: auto;
         }
 
         /* Footer */
         .footer {
             position: fixed;
-            bottom: -100px;
+            bottom: 50px;
             left: 0;
             right: 0;
-            height: 100px;
             text-align: center;
+            font-size: 12px;
         }
 
-        .footer img {
-            width: 100%;
-            height: auto;
+        .footer p {
+            margin: 5px 0;
         }
-
         /* Content */
         .content {
             margin-top: 20px;
@@ -116,24 +114,19 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
+    
+     <!-- Header -->
+     <div class="header">
         <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <img src="{{ public_path('pdfquo/footer.png') }}" alt="Footer Image">
-    </div>
-
-    <!-- Content -->
-    <div class="content">
-        <!-- Invoice Information -->
-        <div class="invoice-info">
+        <div class="title">
             <h1>INVOICE</h1>
             <p>Number: {{ $piNumberFormatted }}</p>
             <p>Date: {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</p>
         </div>
+    </div>
+
+
+    <!-- Content -->
 
         <!-- Client Information -->
         <div class="client-info">
@@ -215,6 +208,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
         <p>PT. Simplay Abyakta Mediatek, Rajawali Selatan Raya Blok A No.33, Jakarta 10720</p>
         <p>Email: <a href="mailto:info@simplay.co.id">info@simplay.co.id</a>, Phone: (021) 22097542</p>

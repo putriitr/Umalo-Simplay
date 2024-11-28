@@ -19,10 +19,12 @@
 
         /* Header */
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            /* Add padding to create space on both sides */
         }
 
         .header img {
@@ -46,14 +48,16 @@
 
         /* Footer */
         .footer {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            right: 0;
             text-align: center;
-            margin-top: 30px;
-            font-size: 10px;
+            font-size: 12px;
         }
 
-        .footer img {
-            width: 150px;
-            height: auto;
+        .footer p {
+            margin: 5px 0;
         }
 
         /* Content */
@@ -116,8 +120,8 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <img src="{{ public_path('pdfquo/header.png') }}" alt="Company Logo">
-        <div class="invoice-info">
+        <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
+        <div class="title">
             <h1>PROFORMA INVOICE</h1>
             <p>Number: {{ $piNumberFormatted }}</p>
             <p>Date: {{ \Carbon\Carbon::parse($proformaInvoice->pi_date)->format('F d, Y') }}</p>
@@ -196,6 +200,7 @@
             <p><strong>PT. Simplay Abyakta Mediatek</strong><br>Director</p>
         </div>
     </div>
+
     <!-- Footer -->
     <div class="footer">
         <p>PT. Simplay Abyakta Mediatek, Rajawali Selatan Raya Blok A No.33, Jakarta 10720</p>
