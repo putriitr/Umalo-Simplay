@@ -180,8 +180,10 @@ class ProformaInvoiceAdminController extends Controller
                 $proformaInvoice->next_payment_amount = $percentage;
 
                 // Hitung jumlah pembayaran berikutnya berdasarkan subtotal
-                $subtotal = $proformaInvoice->purchaseOrder->quotation->subtotal_price;
-                $nextPaymentAmount = ($subtotal * $percentage) / 100;
+                // Ambil grand total (termasuk PPN) dari quotation
+                $quotation = $proformaInvoice->purchaseOrder->quotation;
+                $grandTotalIncludePPN = $quotation->total_after_discount + ($quotation->total_after_discount * ($quotation->ppn / 100));
+                $nextPaymentAmount = ($grandTotalIncludePPN * $percentage) / 100;
                 $proformaInvoice->next_payment_amount = $nextPaymentAmount;
             }
 

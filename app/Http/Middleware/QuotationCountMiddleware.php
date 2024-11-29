@@ -14,7 +14,7 @@ class QuotationCountMiddleware
         // Hitung pending quotations
         $pendingQuotations = Quotation::where('status', 'pending')->count();
         // Hitung negosiasi pending
-        $pendingNegotiations = QuotationNegotiation::where('status', 'in_progress')->count();
+        $pendingNegotiations = QuotationNegotiation::where('status', 'pending')->orWhere('status', 'in_progress')->count();
         // Hitung PO yang belum selesai
         $pendingPOs = PurchaseOrder::whereNull('po_number')
         ->orDoesntHave('proformaInvoice')
