@@ -316,6 +316,12 @@ return [
 
     'po_number_placeholder' => 'Enter PO Number',
     'upload_po_file' => 'Upload PO File (optional)',
-    'create_po_button' => 'Create Purchase Order'
+    'create_po_button' => 'Create Purchase Order',
+
+    'search_by_invoice_number' => 'Search by Invoice Number',
+    'search_by_invoice_date' => 'Search by Invoice Date',
+    'cari' => 'Search',
+    'search_No' => 'Invoice Number',
+
     
 ];

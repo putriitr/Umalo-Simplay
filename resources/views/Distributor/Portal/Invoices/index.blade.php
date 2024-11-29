@@ -29,6 +29,21 @@
                         <i class="fas fa-file-invoice"></i> {{ __('messages.view_proforma_invoices') }}
                     </a>
                 </div>
+
+                <!-- Form Pencarian -->
+                <form method="GET" action="{{ route('distributor.invoices.index') }}"
+                    class="d-flex justify-content-center mb-4">
+                    <div class="input-group">
+                        <input type="text" name="invoice_number" placeholder="{{ __('messages.search_No') }}" class="form-control"
+                            value="{{ request('invoice_number') }}">
+                        <input type="date" name="invoice_date" class="form-control" value="{{ request('invoice_date') }}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> {{ __('messages.cari') }}
+                        </button>
+                    </div>
+                </form>
+
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
@@ -36,7 +51,6 @@
                                 <th class="text-center">{{ __('messages.id') }}</th>
                                 <th class="text-center">{{ __('messages.invoice_number') }}</th>
                                 <th class="text-center">{{ __('messages.invoice_date') }}</th>
-                                <th class="text-center">{{ __('messages.due_date') }}</th>
                                 <th class="text-center">{{ __('messages.subtotal') }}</th>
                                 <th class="text-center">{{ __('messages.ppn') }}</th>
                                 <th class="text-center">{{ __('messages.grand_total') }}</th>
@@ -51,18 +65,16 @@
                                     <td class="text-center">{{ $invoice->invoice_number }}</td>
                                     <td class="text-center">{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}
                                     </td>
-                                    <td class="text-center">
-                                        {{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}
-                                    </td>
                                     <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
                                     <td class="text-center">{{ number_format($invoice->ppn, 2) }}</td>
                                     <td class="text-center">{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
                                     <td class="text-center">
-                                        <span class="badge 
-                                                        @if($invoice->status == 'paid') badge-success 
-                                                        @elseif($invoice->status == 'unpaid') badge-danger 
-                                                        @elseif($invoice->status == 'partial') badge-warning
-                                                        @else badge-secondary @endif">
+                                        <span
+                                            class="badge 
+                                                                                                                                                                @if($invoice->status == 'paid') badge-success 
+                                                                                                                                                                @elseif($invoice->status == 'unpaid') badge-danger 
+                                                                                                                                                                @elseif($invoice->status == 'partial') badge-warning
+                                                                                                                                                                @else badge-secondary @endif">
                                             {{ ucfirst($invoice->status) }}
                                         </span>
                                     </td>
@@ -84,11 +96,16 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $invoices->links('pagination::bootstrap-4') }}
+                </div>
             @endif
-            </div>
         </div>
     </div>
 </div>
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -180,5 +197,20 @@
     /* Space between buttons */
     .gap-2 {
         gap: 10px;
+    }
+
+    /* Styling Form Pencarian */
+    .input-group {
+        max-width: flex;
+        margin: 0 auto;
+    }
+
+    .input-group .form-control {
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    .input-group .btn-primary {
+        border-radius: 5px;
     }
 </style>

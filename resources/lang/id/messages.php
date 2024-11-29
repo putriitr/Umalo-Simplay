@@ -326,4 +326,9 @@ return [
     'po_number_placeholder' => 'Masukkan Nomor PO',
     'upload_po_file' => 'Unggah File PO (opsional)',
     'create_po_button' => 'Buat Pesanan Pembelian',
+
+    'search_by_invoice_number' => 'Cari berdasarkan Nomor Faktur',
+    'search_by_invoice_date' => 'Cari berdasarkan Tanggal Faktur',
+    'cari' => 'Cari',
+    'search_No' => 'Nomor Invoice',
 ];

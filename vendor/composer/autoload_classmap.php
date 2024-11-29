@@ -89,6 +89,7 @@ return array(
     'App\\Models\\Meta' => $baseDir . '/app/Models/Meta.php',
     'App\\Models\\Monitoring' => $baseDir . '/app/Models/Monitoring.php',
     'App\\Models\\PermintaanData' => $baseDir . '/app/Models/PermintaanData.php',
+    'App\\Models\\Principal' => $baseDir . '/app/Models/Principal.php',
     'App\\Models\\Produk' => $baseDir . '/app/Models/Produk.php',
     'App\\Models\\ProdukFAQ' => $baseDir . '/app/Models/ProdukFAQ.php',
     'App\\Models\\ProdukImage' => $baseDir . '/app/Models/ProdukImage.php',

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.Admin.master')
 
 @section('content')
     <h1>{{ $meta->title }}</h1>

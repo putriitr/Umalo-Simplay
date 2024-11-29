@@ -1,4 +1,5 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
+
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -14,16 +15,17 @@
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
-                <!-- Search Form -->
-                <form action="{{ route('invoices.index') }}" method="GET" class="mb-4">
-                    <div class="input-group">
-                        <input type="text" name="search" class="form-control"
-                            placeholder="Cari berdasarkan nomor invoice, status, atau total..."
-                            value="{{ request()->input('search') }}">
-                        <button class="btn btn-primary" type="submit">Cari</button>
-                    </div>
-                </form>
+
                 <div class="card-body">
+                    <!-- Search Form -->
+                    <form action="{{ route('invoices.index') }}" method="GET" class="mb-4">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control"
+                                placeholder="Cari berdasarkan nomor invoice, status, atau total..."
+                                value="{{ request()->input('search') }}">
+                            <button class="btn btn-primary" type="submit">Cari</button>
+                        </div>
+                    </form>
                     <div class="row">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
@@ -32,7 +34,6 @@
                                         <th>ID</th>
                                         <th>Invoice Number</th>
                                         <th>Invoice Date</th>
-                                        <th>Due Date</th>
                                         <th>Subtotal</th>
                                         <th>PPN</th>
                                         <th>Grand Total</th>
@@ -45,8 +46,7 @@
                                         <tr>
                                             <td>{{ $invoice->id }}</td>
                                             <td>{{ $invoice->invoice_number }}</td>
-                                            <td>{{ $invoice->invoice_date }}</td>
-                                            <td>{{ $invoice->due_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}</td>
                                             <td>{{ number_format($invoice->subtotal, 2) }}</td>
                                             <td>{{ number_format($invoice->ppn, 2) }}</td>
                                             <td>{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>

@@ -674,6 +674,7 @@ class ComposerStaticInite1f2747c81e6f593546dd330641c4da3
         'App\\Models\\Meta' => __DIR__ . '/../..' . '/app/Models/Meta.php',
         'App\\Models\\Monitoring' => __DIR__ . '/../..' . '/app/Models/Monitoring.php',
         'App\\Models\\PermintaanData' => __DIR__ . '/../..' . '/app/Models/PermintaanData.php',
+        'App\\Models\\Principal' => __DIR__ . '/../..' . '/app/Models/Principal.php',
         'App\\Models\\Produk' => __DIR__ . '/../..' . '/app/Models/Produk.php',
         'App\\Models\\ProdukFAQ' => __DIR__ . '/../..' . '/app/Models/ProdukFAQ.php',
         'App\\Models\\ProdukImage' => __DIR__ . '/../..' . '/app/Models/ProdukImage.php',

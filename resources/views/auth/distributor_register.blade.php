@@ -1,4 +1,4 @@
-@extends('layouts.member.master2')
+@extends('layouts.Member.master2')
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">

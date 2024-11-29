@@ -6,7 +6,7 @@
     <title>Proforma Invoice #{{ $proformaInvoice->pi_number }}</title>
     <style>
         @page {
-            margin: 20px 40px;
+            margin: 20px 50px;
             size: A4 portrait;
         }
 
@@ -22,15 +22,19 @@
             width: 100%;
             margin-bottom: 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
             padding: 0 20px;
             /* Add padding to create space on both sides */
         }
 
         .header img {
-            width: 150px;
+            width: 250px;
             height: auto;
+            margin-top: 10px;
         }
+        
+        
 
         .invoice-info {
             text-align: right;
@@ -39,6 +43,7 @@
         .invoice-info h1 {
             font-size: 24px;
             color: #b89222;
+            margin-bottom: 5px;
         }
 
         .invoice-info p {
@@ -121,25 +126,24 @@
     <!-- Header -->
     <div class="header">
         <img src="{{ public_path('pdfquo/header.png') }}" alt="Header Image">
-        <div class="title">
+        <div class="invoice-info">
             <h1>PROFORMA INVOICE</h1>
             <p>Number: {{ $piNumberFormatted }}</p>
             <p>Date: {{ \Carbon\Carbon::parse($proformaInvoice->pi_date)->format('F d, Y') }}</p>
         </div>
     </div>
+
     <!-- Content -->
     <div class="content">
         <!-- Vendor Information -->
-        <div>
-            <p class="section-title">Billed To:</p>
-            <p><strong>{{ $vendorName }}</strong></p>
-            <p>{{ $vendorAddress }}</p>
-            <p>Phone: {{ $vendorPhone }}</p>
-        </div>
-        <!-- Introduction -->
+        <p class="section-title">Billed To:</p>
+        <p><strong>{{ $vendorName }}</strong></p>
+        <p>{{ $vendorAddress }}</p>
+        <p>Phone: {{ $vendorPhone }}</p>
+        
         <p>Dear {{ $vendorName }},</p>
-        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following proforma
-            invoice:</p>
+        <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Simplay Abyakta Mediatek submits the following proforma invoice:</p>
+        
         <!-- Product Table -->
         <table class="table">
             <thead>
@@ -180,6 +184,7 @@
                 </tr>
             </tbody>
         </table>
+
         <!-- Payment Terms -->
         <div class="payment-terms">
             <p class="section-title">Term Payment:</p>
@@ -187,9 +192,9 @@
             <p><strong>PT. Simplay Abyakta Mediatek</strong></p>
             <p>Phone: (021) 22097542</p>
             <p>Mobile: +62 821-69998-0001</p>
-            <p>Address: Rajawali Selatan Raya Blok A No.33, Gunung Sahari Utara, Sawah Besar, Jakarta Pusat, DKI Jakarta
-                10720</p>
+            <p>Address: Rajawali Selatan Raya Blok A No.33, Gunung Sahari Utara, Sawah Besar, Jakarta Pusat, DKI Jakarta 10720</p>
         </div>
+
         <!-- Signature Section -->
         <div class="signature">
             <p>Should you require further information, please do not hesitate to contact the undersigned.</p>

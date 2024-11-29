@@ -1,4 +1,4 @@
-@extends('layouts.member.master2')
+@extends('layouts.Member.master2')
 @section('content')
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="text-center">

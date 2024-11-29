@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @section('content')
     <!-- Menampilkan pesan error -->

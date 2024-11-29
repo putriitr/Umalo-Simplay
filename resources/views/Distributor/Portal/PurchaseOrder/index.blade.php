@@ -1,4 +1,5 @@
 @extends('layouts.Member.master')
+
 @section('content')
 
 <div class="container mt-5">
@@ -30,15 +31,19 @@
 
                 <!-- Tabel Purchase Orders -->
                 <div class="table-responsive">
-                    <h3 class="mt-5 text-start">Detail Quotation:</h3>
-                    <!-- Tombol Lihat Quotation -->
-                    <div class="mb-4 text-end">
-                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary ms-2">
-                            <i class="fas fa-arrow-left me-2"></i>Lihat Quotation
-                        </a>
+                    <h3 class="mt-5 text-start">Detail Purchase Order:</h3>
+                    
+                    <!-- Search Form -->
+                    <form action="{{ route('admin.purchase-orders.index') }}" method="GET" class="mb-4">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control"
+                                placeholder="Cari berdasarkan nomor PO atau distributor..."
+                                value="{{ request()->input('search') }}">
+                            <button class="btn btn-primary" type="submit">Cari</button>
+                        </div>
+                    </form>
 
-                    </div>
-                    <table class="table table-bordered table-hover align-middle"  text-align: center;">
+                    <table class="table table-bordered table-hover align-middle" text-align: center;">
                         <thead class="table-light ">
                             <tr>
                                 <th class="text-center">ID</th>
@@ -75,8 +80,19 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $purchaseOrders->appends(request()->input())->links('pagination::bootstrap-4') }}
+                </div>
             @endif
         </div>
+        <!-- Tombol Lihat Quotation -->
+        <div class="mb-4 text-end">
+                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary ms-2">
+                            <i class="fas fa-arrow-left me-2"></i>Lihat Quotation
+                        </a>
+
+                    </div>
     </div>
 </div>
 @endsection

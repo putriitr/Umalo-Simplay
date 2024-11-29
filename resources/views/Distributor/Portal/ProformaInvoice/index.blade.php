@@ -41,6 +41,18 @@
                     </a>
                 </div>
 
+                <!-- Search Form -->
+                <form method="GET" action="{{ route('distributor.proforma-invoices.index') }}" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control"
+                            placeholder="Search by PI Number, PO Number, or Quotation Number"
+                            value="{{ request()->input('search') }}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> {{ __('messages.cari') }}
+                        </button>
+                    </div>
+                </form>
+
                 <!-- Tabel Proforma Invoices -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle">
@@ -77,6 +89,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $proformaInvoices->links('pagination::bootstrap-4') }}
                 </div>
             @endif
         </div>

@@ -2,9 +2,20 @@
 
 @section('content')
 <div class="container mt-5">
-    <div class="card shadow-lg p-4 rounded-3">
-        <div class="card-body">
-            <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Negotiations</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="card">
+
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-title">
+                        <h1>Daftar Negotiations</h1>
+                    </div>
+                </div>
+
+                 <!-- Quotation Table -->
+                 <div class="card-body">
+
 
             <!-- Flash Message -->
             @if (session('success'))
@@ -24,10 +35,11 @@
             </form>
 
             <!-- Tabel Negotiations -->
-            <div class="table-responsive">
-                <table class="table table-hover shadow-sm rounded">
-                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
-                        <tr>
+            <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
                             <th class="text-center">ID</th>
                             <th class="text-center">Quotation Number</th>
                             <th class="text-center">Status</th>

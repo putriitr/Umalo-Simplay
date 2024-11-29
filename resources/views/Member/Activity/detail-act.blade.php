@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @section('content')
     <!-- Activity 2 Start -->

@@ -6,8 +6,8 @@
     <title>Quotation Letter #{{ $quotation->quotation_number }}</title>
     <style>
         @page {
-            margin: 0px 50px;
-            /* No margins on top, bottom, and left, right */
+            margin: 20px 50px;
+            size: A4 portrait;
         }
 
         body {
@@ -22,24 +22,28 @@
             width: 100%;
             margin-bottom: 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
             padding: 0 20px;
             /* Add padding to create space on both sides */
         }
 
         .header img {
-            width: 150px;
+            width: 250px;
             height: auto;
+            margin-top: 10px;
         }
 
         .title {
             text-align: right;
             flex-grow: 1;
+            margin-left: 20px;
         }
 
         .title h1 {
             margin: 0;
-            font-size: 20px;
+            font-size: 22px;
+            color: #b59123;
         }
 
         .title p {
@@ -75,7 +79,8 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 15px;
+            font-size: 12px;
         }
 
         table th,

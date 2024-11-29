@@ -1,8 +1,8 @@
-@include('layouts.member.header')
+@include('layouts.Member.header')
 
-@include('layouts.member.content')
+@include('layouts.Member.content')
 
-@include('layouts.member.footer')
+@include('layouts.Member.footer')
 
 @include('partials.whatsapp-button')
 

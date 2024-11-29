@@ -1,12 +1,20 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
-<div class="container mt-5">
-    <div class="card shadow-lg p-4 rounded-3">
-        <div class="card-body">
-            <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Detail Proforma Invoice</h2>
+<div class="container py-5">
+    {{-- Card Wrapper --}}
+    <div class="card shadow-sm border-0 rounded">
+        {{-- Card Header --}}
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2>Detail Proforma Invoice</h2>
+        </div>
+            <div class="card-body">
+
 
             <!-- Informasi Proforma Invoice -->
+            <div class="row">
+                            <div class="table-responsive">
+                                
             <table class="table">
                 <tr>
                     <th>PI Number</th>
@@ -75,10 +83,10 @@
             <h4 class="mt-4">Aksi</h4>
             <div class="d-flex flex-column gap-2">
                 <!-- View & Download PDF -->
-                <a href="{{ asset($proformaInvoice->file_path) }}" target="_blank" class="btn btn-info btn-sm rounded-pill shadow-sm">
+                <a href="{{ asset($proformaInvoice->file_path) }}" target="_blank" class="btn btn-info btn-sm  shadow-sm">
                     <i class="fas fa-file-pdf"></i> View PDF
                 </a>
-                <a href="{{ asset($proformaInvoice->file_path) }}" download class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                <a href="{{ asset($proformaInvoice->file_path) }}" download class="btn btn-secondary btn-sm  shadow-sm">
                     <i class="fas fa-download"></i> Download PDF
                 </a>
             
@@ -87,10 +95,10 @@
                     <h5 class="mt-3">Bukti Pembayaran</h5>
                     @foreach ($proformaInvoice->payment_proof_paths as $index => $filePath)
                         <div class="mt-2">
-                            <a href="{{ asset($filePath) }}" target="_blank" class="btn btn-success btn-sm rounded-pill shadow-sm">
+                            <a href="{{ asset($filePath) }}" target="_blank" class="btn btn-success btn-sm  shadow-sm">
                                 <i class="fas fa-receipt"></i> View Payment Proof {{ $index + 1 }}
                             </a>
-                            <a href="{{ asset($filePath) }}" download class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                            <a href="{{ asset($filePath) }}" download class="btn btn-secondary btn-sm  shadow-sm">
                                 <i class="fas fa-download"></i> Download Payment Proof {{ $index + 1 }}
                             </a>
             
@@ -121,10 +129,10 @@
                                       </div>
                                   @endif
                                     <div class="d-flex gap-2">
-                                        <button type="submit" name="action" value="approve" class="btn btn-success btn-sm rounded-pill">
+                                        <button type="submit" name="action" value="approve" class="btn btn-success btn-sm ">
                                             <i class="fas fa-check-circle"></i> Approve Payment {{ $index + 1 }}
                                         </button>
-                                        <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm rounded-pill">
+                                        <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm ">
                                             <i class="fas fa-times-circle"></i> Reject Payment {{ $index + 1 }}
                                         </button>
                                     </div>
@@ -138,7 +146,7 @@
                 @if ($proformaInvoice->dp > 0 && !$proformaInvoice->dp_invoice_created)
                 <!-- Tombol untuk Down Payment -->
                 <a href="{{ route('invoices.create', ['proformaInvoiceId' => $proformaInvoice->id, 'type' => 'dp']) }}" 
-                   class="btn btn-primary btn-sm rounded-pill shadow-sm mt-2">
+                   class="btn btn-primary btn-sm  shadow-sm mt-2">
                     <i class="fas fa-plus"></i> Create Invoice for Down Payment (DP)
                 </a>
             @endif
@@ -146,7 +154,7 @@
             @if ($proformaInvoice->next_payment_amount > 0)
                 <!-- Tombol untuk Next Payment -->
                 <a href="{{ route('invoices.create', ['proformaInvoiceId' => $proformaInvoice->id, 'type' => 'next_payment']) }}" 
-                   class="btn btn-primary btn-sm rounded-pill shadow-sm mt-2">
+                   class="btn btn-primary btn-sm  shadow-sm mt-2">
                     <i class="fas fa-plus"></i> Create Invoice for Next Payment
                 </a>
             @endif

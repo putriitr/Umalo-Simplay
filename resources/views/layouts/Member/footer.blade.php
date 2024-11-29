@@ -123,9 +123,11 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'>
-<link rel="styleshceet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<!-- <link rel="stylesheet" href='https://unpkg.com/boxicons@latest/css/boxicons.min.css'> -->
+<!-- <link rel="styleshceet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+<!-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+
+
 <script src="{{ asset('assets/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('assets/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('assets/lib/waypoints/waypoints.min.js') }}"></script>
@@ -134,6 +136,8 @@
 <script src="{{ asset('assets/lib/tempusdominus/js/moment.min.js') }}"></script>
 <script src="{{ asset('assets/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
 <script src="{{ asset('assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<link href="{{ asset('assets/lib/boxicons-master/css/boxicons.min.css')}}" rel="stylesheet">
+<link href="{{ asset('assets/lib/flickity/css/flickity.min.css')}}" rel="stylesheet">
 
 <!-- Template Javascript -->
 <script src="{{ asset('assets/js/member/main.js') }}"></script>

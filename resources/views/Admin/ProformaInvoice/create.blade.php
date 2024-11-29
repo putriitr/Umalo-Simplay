@@ -1,6 +1,15 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
+<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card shadow-lg">
+                    <div class="card-header">
+                    <h2>Buat Proforma Invoice untuk PO #{{ $purchaseOrder->po_number }}</h2>
+                    </div>
+                    <div class="card-body">
+                        
 <div class="container mt-5">
       <!-- Tampilkan pesan error jika ada -->
       @if ($errors->any())
@@ -12,7 +21,7 @@
           </ul>
       </div>
   @endif
-    <h2>Buat Proforma Invoice untuk PO #{{ $purchaseOrder->po_number }}</h2>
+    
 
       <!-- Form Proforma Invoice -->
       <form action="{{ route('admin.proforma-invoices.store', $purchaseOrder->id) }}" method="POST">

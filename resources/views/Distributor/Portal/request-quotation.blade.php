@@ -31,7 +31,7 @@
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Cari Nomor Pengajuan atau Status" value="{{ request('search') }}">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-search"></i>
+                <i class="fas fa-search"></i> {{ __('messages.cari') }}
                 </button>
             </div>
         </form>

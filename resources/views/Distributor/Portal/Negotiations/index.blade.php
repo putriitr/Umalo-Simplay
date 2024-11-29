@@ -1,4 +1,5 @@
 @extends('layouts.Member.master')
+
 @section('content')
 <!-- Header Start -->
 <div class="container mt-5"></div>
@@ -13,6 +14,20 @@
 <div class="container mt-5">
     <div class="p-4 shadow-sm rounded bg-white">
         <div class="card-body">
+            <!-- Search Form -->
+            <!-- Search Form with flexible width using flexbox -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <form method="GET" action="{{ route('distributor.quotations.negotiations.index') }}"
+                    class="d-flex w-100">
+                    <div class="input-group w-100">
+                        <input type="text" name="search" class="form-control" placeholder="Search by Quotation Number"
+                            value="{{ request('search') }}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> {{ __('messages.cari') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover align-middle">
                     <thead class="table-light">
@@ -56,7 +71,7 @@
 
                                     <!-- Tombol Download PDF -->
                                     @if ($negotiation->quotation->pdf_path)
-                                        
+
                                         <a href="{{ asset($negotiation->quotation->pdf_path) }}" download
                                             class="btn btn-outline-secondary ms-2 shadow-sm">
                                             <i class="fas fa-download me-2"></i> Download PDF
@@ -71,6 +86,16 @@
                         @endforeach
                     </tbody>
                 </table>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-between mt-4">
+                    <div>
+                        Showing {{ $negotiations->firstItem() }} to {{ $negotiations->lastItem() }} of
+                        {{ $negotiations->total() }} results
+                    </div>
+                    <div>
+                        {{ $negotiations->links() }}
+                    </div>
+                </div>
                 <!-- Tombol Kembali -->
                 <div class="text-end mt-4">
 
@@ -84,3 +109,29 @@
     </div>
 </div>
 @endsection
+
+<style>
+    /* Styling Form Pencarian */
+    .input-group {
+        display: flex;
+        max-width: flex;
+        margin: 0 auto;
+        flex: 1;
+    }
+
+    .input-group .form-control {
+        border-radius: 5px;
+        margin-right: 10px;
+        height: 40px;
+        font-size: 16px;
+        flex-grow: 1;
+    }
+
+    .input-group .btn-primary {
+        border-radius: 5px;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 40px;
+        font-size: 16px;
+    }
+</style>

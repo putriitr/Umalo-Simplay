@@ -1,4 +1,4 @@
-@extends('layouts.admin.master') <!-- Ganti dengan layout yang sesuai -->
+@extends('layouts.Admin.master')
 
 @section('content')
     <!-- Customer Start -->

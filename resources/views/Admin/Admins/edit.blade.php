@@ -1,4 +1,5 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
+
 @section('content')
 <div class="container">
     <div class="card shadow-lg border-0">

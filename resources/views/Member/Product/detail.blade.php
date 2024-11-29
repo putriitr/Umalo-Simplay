@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @section('content')
     <div class="container mt-4 py-5 mb-5"

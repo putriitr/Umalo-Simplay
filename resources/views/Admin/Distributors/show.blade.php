@@ -1,4 +1,5 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
+
 @section('content')
 <div class="container py-5">
     {{-- Card Wrapper --}}

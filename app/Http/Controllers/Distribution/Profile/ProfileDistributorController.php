@@ -43,6 +43,6 @@ class ProfileDistributorController extends Controller
         $user->alamat = $request->input('alamat');
         $user->save();  // Save the changes
         // Redirect back with a success message
-        return redirect()->route('Distributor.Profile.show')->with('success', 'Profile updated successfully.');
+        return redirect()->route('distributor.profile.show')->with('success', 'Profile updated successfully.');
     }
 }

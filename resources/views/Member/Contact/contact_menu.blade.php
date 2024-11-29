@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @php
     $compro = \App\Models\CompanyParameter::first();
