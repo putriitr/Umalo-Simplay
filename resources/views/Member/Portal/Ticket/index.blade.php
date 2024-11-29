@@ -6,7 +6,6 @@
     <h1 class="text-center mb-4">{{ __('messages.ticket_list') }}</h1>
     <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('distribution') }}">Distributor Portal</a></li>
         <li class="breadcrumb-item active text-primary">{{ __('messages.ticket_list') }}</li>
     </ol>
 </div>
