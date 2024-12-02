@@ -75,9 +75,9 @@ class TicketController extends Controller
 
             $ticket->save();
 
-            return redirect()->route('Admin.Tickets.index')->with('success', 'Tiket ' . strtolower($ticket->jenis_layanan) . ' berhasil dijadwalkan dan dikordinasikan.');
+            return redirect()->route('admin.tickets.index')->with('success', 'Tiket ' . strtolower($ticket->jenis_layanan) . ' berhasil dijadwalkan dan dikordinasikan.');
         } else {
-            return redirect()->route('Admin.Tickets.index')->with('error', 'Tiket tidak valid untuk diproses.');
+            return redirect()->route('admin.tickets.index')->with('error', 'Tiket tidak valid untuk diproses.');
         }
     }
 
@@ -99,9 +99,9 @@ class TicketController extends Controller
 
             $ticket->save();
 
-            return redirect()->route('Admin.Tickets.index')->with('success', ucfirst($ticket->jenis_layanan) . ' berhasil diselesaikan dan diarsipkan.');
+            return redirect()->route('admin.tickets.index')->with('success', ucfirst($ticket->jenis_layanan) . ' berhasil diselesaikan dan diarsipkan.');
         }
 
-        return redirect()->route('Admin.Tickets.index')->with('error', 'Tiket tidak valid untuk penyelesaian.');
+        return redirect()->route('admin.tickets.index')->with('error', 'Tiket tidak valid untuk penyelesaian.');
     }
 }
